@@ -16,7 +16,7 @@ define( 'MANAGEMENT_PERMISSION', 'edit_pages' ); //The minimum privilege require
 define( 'SUBTABLE', $wpdb->prefix . 'resume_submissions' );
 define( 'JOBTABLE', $wpdb->prefix . 'job_postings' );
 
-date_default_timezone_set( get_option('timezone_string' ) );
+date_default_timezone_set( get_option( 'timezone_string' ) );
 
 
 //Installer
@@ -110,13 +110,13 @@ function resume_submission_menu() {
 //Return path to plugin directory (url/path)
 function resume_get_plugin_dir( $type ) {
 	if ( !defined( 'WP_CONTENT_URL' ) )
-		define( 'WP_CONTENT_URL', get_option( 'siteurl ') . '/wp-content' );
+		define( 'WP_CONTENT_URL', get_option( 'siteurl' ) . '/wp-content' );
 	if ( !defined('WP_CONTENT_DIR') )
 		define( 'WP_CONTENT_DIR', ABSPATH . 'wp-content' );
 	if ( $type == 'path' ) { 
-		return WP_CONTENT_DIR.'/plugins/'.plugin_basename( dirname( __FILE__ ) ); 
+		return WP_CONTENT_DIR . '/plugins/' . plugin_basename( dirname( __FILE__ ) ); 
 	} else { 
-		return WP_CONTENT_URL.'/plugins/'.plugin_basename( dirname( __FILE__ ) ); 
+		return WP_CONTENT_URL . '/plugins/' . plugin_basename( dirname( __FILE__ ) ); 
 	}
 
 }
