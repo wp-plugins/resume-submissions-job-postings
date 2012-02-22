@@ -3,7 +3,7 @@
 Plugin Name: Resumé Submissions & Job Postings
 Plugin URI: http://www.geerservices.com/wordpress-plugins/resume-jobs/
 Description: Allows the admin to create and show job postings. Users can submit their resume to a job posting, or submit it just because. 
-Version: 1.8.5
+Version: 1.8.7
 Author: Keith Andrews (GSI)
 Author URI: http://www.geerservices.com
 License: GPL2
@@ -143,39 +143,12 @@ function admin_register_resume_style( $hook ) {
 function addStyles (){
 	wp_enqueue_style( 'resume-style', resume_get_plugin_dir( 'go' ) . '/css/resume-styles.css' );	
 }
-function load_custom_wp_tiny_mce() {
-	
-	if ( function_exists( 'wp_tiny_mce' ) ) {	
-	
-	    add_filter( 'teeny_mce_before_init', create_function( '$a', '
-			$a["theme"] = "advanced";
-			$a["skin"] = "wp_theme";
-			$a["height"] = "200";
-			$a["width"] = "800";
-			$a["onpageload"] = "";
-			$a["mode"] = "exact";
-			$a["elements"] = "intro";
-			$a["editor_selector"] = "mceEditor";
-			$a["plugins"] = "safari,inlinepopups,spellchecker";
-		
-			$a["forced_root_block"] = false;
-			$a["force_br_newlines"] = true;
-			$a["force_p_newlines"] = false;
-			$a["convert_newlines_to_brs"] = true;
-		
-			return $a;' ) );
-	
-	    wp_tiny_mce( true );
-	}
-
-}
-
 
 // Add functions to head
 add_action( 'admin_enqueue_scripts', 'admin_register_resume_style' );
 add_action( 'resume_css', 'addStyles' );
-add_action( 'admin_head', 'load_custom_wp_tiny_mce' );
 
+// Bring in the functions
 include( 'includes/functions.php' );
 	
 // Create Pages

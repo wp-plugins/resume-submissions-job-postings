@@ -18,6 +18,15 @@ $sendEmailToUser   = $_POST['sendEmailToUser'];
 $userEmailSubject  = $_POST['userEmailSubject'];
 $userEmailCopy     = $_POST['userEmailCopy'];
 
+$editorSettings    = array(
+					'wpautop' => true,
+					'media_buttons' => false,
+					'textarea_rows' => '15',
+					'textarea_name' => 'userEmailCopy',
+					'teeny' => false,
+					'tinymce' => true,
+					'quicktags' => true
+					);
 
 if ( $update ) {
 	update_option( 'resume_captcha', $captchaUse );
@@ -108,7 +117,8 @@ if ( $update ) {
         </tr>
         <tr>
         	<td valign="top"><p><b>User Email Copy: </b></p></td>
-            <td align="left"><textarea name="userEmailCopy" rows="10" cols="80"><?php echo get_option( 'resume_user_email_copy' ); ?></textarea></td>
+            <td align="left" width="600px"><?php wp_editor( get_option( 'resume_user_email_copy' ), 'userEmailCopy', setTinySetting( 'userEmailCopy', '15', false, true, true ) ); ?></td>
+            <td></td>
         </tr>       
         <tr>
         	<td>&nbsp;</td>

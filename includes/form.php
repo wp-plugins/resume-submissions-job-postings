@@ -7,6 +7,7 @@ $siteName = get_option( 'blogname' );
 $adminEmail     = get_option( 'resume_send_admin_email_to' );
 $fromAdminEmail = get_option( 'resume_email_user_from' );
 $toUserCopy     = get_option( 'resume_user_email_copy' );
+$useTinyMce     = get_option( 'resume_use_tinymce' );
 
 $action      = $_POST['action'];
 $fname       = $_POST['fname'];
@@ -56,7 +57,12 @@ if ( get_option( 'resume_captcha') == 'Enabled' ) {
 	}
 }
 
-
+// Add TinyMce to the User form
+if ( $useTinyMce == "Enabled" ){
+	$setTinyMce = true;
+} else {
+	$setTinyMce = false;
+}
 
 
 // Error Checking
@@ -302,7 +308,7 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
             <td></td>
         </tr>
         <tr>
-            <td><p><textarea name='cover' rows='15' cols='70' id="intro"><?php echo $errorCover; ?></textarea></p></td>
+            <td><?php wp_editor( $errorCover, 'cover', setTinySetting( 'cover', '35', false, $setTinyMce, false ) ); ?></td>
             <td valign="top" width="5px"><p style='color:#CC0000; font-weight:bold;'>*</p></td>
         </tr>	
         <tr>
@@ -310,7 +316,7 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
             <td></td>
         </tr>
         <tr>
-            <td><p><textarea name='resume' rows='15' cols='70' id="intro"><?php echo $errorResume; ?></textarea></p></td>
+            <td><?php wp_editor( $errorResume, 'resume', setTinySetting( 'resume', '35', false, $setTinyMce, false ) ); ?></td>
             <td valign="top" width="5px"><p style='color:#CC0000; font-weight:bold;'>*</p></td>
         </tr>	
         <?php
