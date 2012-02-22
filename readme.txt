@@ -26,11 +26,14 @@ The admin may sort resumes by job, or anything else they search for.
 
 
 == Features ==
+
 1. Post Jobs
 2. Users Submit Resume
 3. Enable Captcha
 4. Send User 'Thank You' Email
 5. Widget to Show Job Postings
+6. Give User Ability to Use TinyMCE on the Cover Letter and the Resume fields (currently disabled)
+
 
 == Installation ==
 
