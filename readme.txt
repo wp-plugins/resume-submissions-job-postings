@@ -12,13 +12,18 @@ Allows the admin to create and show job postings. Users can submit their resume 
 
 The Resume Submissions & Job Postings plugin will allow an admin to post jobs for their business. 
 
+
 If the job is no longer active, it can be set to archive, and will no longer be shown on the listings page and widget.
+
 
 When there are open jobs, users can go in and look at each one. They may also submit their resume for any job.
 
+
 Once the user submits his/her information, the admin may look at or edit the submitted resume.
 
+
 The admin may sort resumes by job, or anything else they search for.
+
 
 == Features ==
 1. Post Jobs
