@@ -73,22 +73,7 @@ add_option( 'resume_user_email_copy', '<p>Dear %fname%,</p>
 $installed_ver = get_option( 'resume_db_version' );
 if( $installed_ver != $resume_db_version ) {
 
-	add_option( 'resume_widget_title', 'Resumé Submission' );
-	
-	update_option( 'resume_db_version', $resume_db_version );
-	
-	if( $wpdb->get_var( 'SHOW TABLES LIKE "' . JOBTABLE . '"' ) != JOBTABLE ) {
-		$sql = 'CREATE TABLE ' . JOBTABLE . ' (
-			  id int(12) NOT NULL auto_increment,
-			  title varchar(1000) NOT NULL,
-			  subTitle varchar(1000) NOT NULL,
-			  description text NOT NULL,
-			  archive int(1) NOT NULL 0,
-			  pubDate datetime NOT NULL,
-			  PRIMARY KEY  (id)
-			);';
-		dbDelta( $sql );
-	}
+	// Nothing yet
 }
 //***** End Installer *****
 ?>
