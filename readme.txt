@@ -16,6 +16,13 @@ When there are open jobs, users can go in and look at each one. They may also su
 Once the user submits his/her information, the admin may look at or edit the submitted resume.
 The admin may sort resumes by job, or anything else they search for.
 
+== Features ==
+1. Post Jobs
+2. Users Submit Resume
+3. Enable Captcha
+4. Send User 'Thank You' Email
+5. Widget to Show Job Postings
+
 == Installation ==
 
 1. Upload the folder `resume-submission` to the `/wp-content/plugins/` directory
