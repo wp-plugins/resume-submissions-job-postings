@@ -1,0 +1,23 @@
+@charset "utf-8";
+/* CSS Document */
+
+#resumeSubmission p { 
+	margin: 0; 
+	padding:0; 
+}
+#resumeSubmission #message { 
+	background-color: #FFFFE0; 
+	border: 1px solid #E6DB55; 
+	margin-bottom: 5px; 
+	padding: 5px;
+}
+#jobPostings ul { 
+	padding:0; 
+}
+#jobPostings p { 
+	padding:0; 
+	margin:0; 
+}
+#jobPostings h2 { 
+	padding:0; margin:0; 
+}

@@ -1,0 +1,33 @@
+@charset "utf-8";
+/* CSS Document */
+
+#adminmenu, #backButton, #footer, #wphead, h2, #screen-meta-links, #updateSubmit, #printResume {
+	display: none;
+}
+#resumePrint {
+	display:block;
+	left: 0px;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+}
+#fname, #lname, #lineOfBusiness, #position, #positionStart, #location, #supervisor, #pnumber, #pnumbertype, #snumber, #snumbertype, #email, #disciplinaryAction, #job, #resumeArea { 
+	background: none;
+	border: none;
+	width:100%;
+	height: 100%;
+}
+.o2k7Skin .mceIframeContainer, .o2k7Skin table.mceLayout, .o2k7Skin table.mceLayout tr.mceLast td {
+	border:none;
+}
+#resumeArea_tbl, #resumeArea_ifr, #tinymce, .mceContentBody {
+	border:none;
+	height:100%;
+	width:100%;
+}
+#mceFirst, .mceToolbar {
+	display:none;
+}
