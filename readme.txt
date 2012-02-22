@@ -6,7 +6,7 @@ Requires at least: 3.0
 Tested up to: 3.3.1
 Stable tag: 1.8.7
 
-Allows the admin to create and show job postings. Users can submit their resume to a job posting, or submit it just because. 
+Allows the admin to create and show job postings. Users can submit their resume in response to a posting or for general purposes. 
 
 == Description ==
 
@@ -74,7 +74,3 @@ Admin is now able to enable/disable TinyMce on the Resume Form.
 
 = 1.8.5 =
 This upgrade meets the standards of the Wordpress plugin development.
-
-
-
-
