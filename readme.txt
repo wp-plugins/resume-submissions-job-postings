@@ -59,8 +59,8 @@ You must make sure that the Captcha Key fields are correctly filled out. Also, m
 
 == Changelog ==
 = 1.8.7 =
-Fixed the use of TinyMce.
-Allows the admin to enable/disable TinyMce on the Resume Form.
+* Fixed the use of TinyMce.
+* Allows the admin to enable/disable TinyMce on the Resume Form.
 
 = 1.8.5 =
 * Changed queries to comply with the Wordpress standards.
