@@ -114,7 +114,7 @@ if ( $deleteSubmit == 'Delete' ){
 				<td width="280px" align="left">
 				<?php 
 				if ( $searchFor != '' || $showAllFor != '' ){ ?>
-					<form name="showall" method="post" enctype="multipart/form-data" action="<?php echo admin_url(); ?>admin.php?page=resume-submission/resume-submission.php">
+					<form name="showall" method="post" enctype="multipart/form-data" action="<?php echo admin_url(); ?>admin.php?page=resume-submissions-job-postings/resume-submission.php">
 						<input name="showall" type="submit" value="Show All" />
 					</form>
 					<?php
@@ -201,7 +201,7 @@ if ( $deleteSubmit == 'Delete' ){
                                 <td><p><?php echo date( 'F j, Y g:ia', strtotime( $info->pubdate ) ); ?></p></td>
                                 <td>&nbsp;</td>
                                  <td align="right" width="50px">
-                                    <form name="view_<?php echo $info->id; ?>" method="post" enctype="multipart/form-data" action="<?php echo admin_url(); ?>admin.php?page=resume-submission/resume-submission.php&id=<?php echo $info->id; ?>">
+                                    <form name="view_<?php echo $info->id; ?>" method="post" enctype="multipart/form-data" action="<?php echo admin_url(); ?>admin.php?page=resume-submissions-job-postings/resume-submission.php&id=<?php echo $info->id; ?>">
                                     	<input name="view" type="submit" value="View/Edit" />
                                     </form></td>
                                  <td align="left" width="50px">
@@ -245,24 +245,24 @@ if ( $deleteSubmit == 'Delete' ){
                             
                             <?php
                             if ( $currentPage > 1 ) {
-                               echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submission/resume-submission.php&currentPage=1">First</a> ';
+                               echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=1">First</a> ';
                                $prevPage = $currentPage - 1;
-                               echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submission/resume-submission.php&currentPage=' . $prevPage . '">«</a> ';
+                               echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=' . $prevPage . '">«</a> ';
                             } 
                             
                             for ( $x = ( $currentPage - $range ); $x < ( ( $currentPage + $range ) + 1 ); $x++ ) {
                                
                                if ( ( $x > 0 ) && ( $x <= $totalPages ) ) {
                                   if ( $x != $currentPage ) {
-                                     echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submission/resume-submission.php&currentPage=' . $x . '">' . $x . '</a> ';
+                                     echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=' . $x . '">' . $x . '</a> ';
                                   } 
                                } 
                             }
                                              
                             if ( $currentPage != $totalPages ) {
                                $nextPage = $currentPage + 1;
-                               echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submission/resume-submission.php&currentPage=' . $nextPage . '">»</a> ';
-                               echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submission/resume-submission.php&currentPage=' . $totalPages . '">Last</a> ';
+                               echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=' . $nextPage . '">»</a> ';
+                               echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=' . $totalPages . '">Last</a> ';
                             }
                             ?>
                         </div> 
@@ -282,7 +282,7 @@ if ( $deleteSubmit == 'Delete' ){
 		<table width="500px" cellpadding="0" cellspacing="0">
 			<tr>
 				<td><a href="javascript:window.print()"><img src="<?php echo resume_get_plugin_dir( 'go' ); ?>/images/print-icon.png" alt="Print resume" id="printResume" /></a></td>
-				<td align="right"><form name="back" method="post" id="backButton" enctype="multipart/form-data" action="<?php echo admin_url(); ?>admin.php?page=resume-submission/resume-submission.php">
+				<td align="right"><form name="back" method="post" id="backButton" enctype="multipart/form-data" action="<?php echo admin_url(); ?>admin.php?page=resume-submissions-job-postings/resume-submission.php">
 								      <input name="back" type="submit" value="Back" />
 								  </form>
 				</td>

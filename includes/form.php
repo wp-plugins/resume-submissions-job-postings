@@ -121,7 +121,7 @@ if( $action == 'add' && $formError == false ) {
 							<body>
 								<p>' . $fname . ' ' . $lname . ' has uploaded their resume into the database.</p>
 								<p>The user\'s submission is for: ' . $job . '.</p>
-								<p>Look at their resume <a href="' . admin_url() . 'admin.php?page=resume-submission/resume-submission.php&id=' . $upload->id . '"><b>here</b></a>.</p>
+								<p>Look at their resume <a href="' . admin_url() . 'admin.php?page=resume-submissions-job-postings/resume-submission.php&id=' . $upload->id . '"><b>here</b></a>.</p>
 								<br/>
 							</body>
 						</html>';
