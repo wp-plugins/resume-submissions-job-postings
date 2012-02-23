@@ -31,11 +31,9 @@ Features:
 * Send User 'Thank You' Email
 * Widget to Show Job Postings
 * Give User Ability to Use TinyMCE on the Cover Letter and the Resume fields
-
-Upcoming Features:
-* Let Admin choose what is required
-* Allow Admin to create input fields
-* Allow User attachment
+* Let Admin choose what is required (future)
+* Allow Admin to create input fields (future)
+* Allow User attachment (future)
 
 
 == Features ==
