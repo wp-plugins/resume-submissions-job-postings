@@ -297,55 +297,101 @@ if ( $deleteSubmit == 'Delete' ){
 				<td width="115px"></td>
 				<td width="145px"></td>
 			</tr>
-			<tr>
-				<td><p>First Name: </p></td>
-				<td><input type='text' name='fname' size='40'value='<?php echo $single->fname; ?>' /></td>
-			</tr>
-			<tr>
-				<td><p>Last Name: </p></td>
-				<td><input type='text' name='lname' size='40' value='<?php echo $single->lname; ?>' /></td>
-			</tr>
-			<tr>
-				<td><p>Address: </p></td>
-				<td><input type='text' name='address' size='40' value='<?php echo $single->address; ?>' /></td>
-			</tr>
-			<tr>
-				<td><p>Suite/Apt: </p></td>
-				<td><input type='text' name='address2' size='40' value='<?php echo $single->address2; ?>' /></td>
-				<td valign="top"></td>
-			</tr>
-			<tr>
-				<td><p>City: </p></td>
-				<td><input type='text' name='city' size='40' value='<?php echo $single->city; ?>' /></td>
-			</tr>
-            <tr>
-				<td><p>State: </p></td>
-				<td><select name="state" id="state">
-                        <?php echo arrayToSelect(stateList(), $single->state); ?>
-                    </select></td>
-			</tr>
-			<tr>
-				<td><p>Zip Code: </p></td>
-				<td><input type='text' name='zip' size='10' value='<?php echo $single->zip; ?>' /></td>
-			</tr>
+            <?php 
+			if ( grabContents( get_option( 'resume_input_fields' ), 'fname', 0 ) ) {	
+				?>
+                <tr>
+                    <td><p>First Name: </p></td>
+                    <td><input type='text' name='fname' size='40'value='<?php echo $single->fname; ?>' /></td>
+                </tr>
+               	<?php
+			}
+            if ( grabContents( get_option( 'resume_input_fields' ), 'lname', 0 ) ) {	
+				?>
+                <tr>
+                    <td><p>Last Name: </p></td>
+                    <td><input type='text' name='lname' size='40' value='<?php echo $single->lname; ?>' /></td>
+                </tr>
+                <?php
+			}
+            if ( grabContents( get_option( 'resume_input_fields' ), 'address', 0 ) ) {	
+				?>
+                <tr>
+                    <td><p>Address: </p></td>
+                    <td><input type='text' name='address' size='40' value='<?php echo $single->address; ?>' /></td>
+                </tr>
+                <?php
+			}
+            if ( grabContents( get_option( 'resume_input_fields' ), 'address2', 0 ) ) {	
+				?>
+                <tr>
+                    <td><p>Suite/Apt: </p></td>
+                    <td><input type='text' name='address2' size='40' value='<?php echo $single->address2; ?>' /></td>
+                    <td valign="top"></td>
+                </tr>
+                <?php
+			}
+            if ( grabContents( get_option( 'resume_input_fields' ), 'city', 0 ) ) {	
+				?>
+                <tr>
+                    <td><p>City: </p></td>
+                    <td><input type='text' name='city' size='40' value='<?php echo $single->city; ?>' /></td>
+                </tr>
+                <?php
+			}
+            if ( grabContents( get_option( 'resume_input_fields' ), 'state', 0 ) ) {	
+				?>
+                <tr>
+                    <td><p>State: </p></td>
+                    <td><select name="state" id="state">
+                            <?php echo arrayToSelect(stateList(), $single->state); ?>
+                        </select></td>
+                </tr>
+                <?php
+			}
+            if ( grabContents( get_option( 'resume_input_fields' ), 'zip', 0 ) ) {	
+				?>
+                <tr>
+                    <td><p>Zip Code: </p></td>
+                    <td><input type='text' name='zip' size='10' value='<?php echo $single->zip; ?>' /></td>
+                </tr>
+                <?php
+			}
+            ?>
 		</table>
 		<table width="700px" cellpadding="0" cellspacing="0">	
-			<tr>
-				<td width="190px"><p>Primary Contact Number: </p></td>
-				<td width="160px"><input type='text' name='pnumber' size='25' value='<?php echo $single->pnumber; ?>' /></td>
-				<td valign="top"><p><input type='text' name='pnumbertype' size='5' value='<?php echo $single->pnumbertype; ?>' /></p></td>
-			</tr>
-			<tr>
-				<td><p>Secondary Contact Number: </p></td>
-				<td><input type='text' name='snumber' size='25' value='<?php echo $single->snumber; ?>' /></td>
-				<td valign="top"><p><input type='text' name='snumbertype' size='5' value='<?php echo $single->snumbertype; ?>' /></p></td>
-			</tr>
+        	<?php
+            if ( grabContents( get_option( 'resume_input_fields' ), 'pnumber', 0 ) ) {	
+				?>
+                <tr>
+                    <td width="190px"><p>Primary Contact Number: </p></td>
+                    <td width="160px"><input type='text' name='pnumber' size='25' value='<?php echo $single->pnumber; ?>' /></td>
+                    <td valign="top"><p><input type='text' name='pnumbertype' size='5' value='<?php echo $single->pnumbertype; ?>' /></p></td>
+                </tr>
+                <?php
+			}
+            if ( grabContents( get_option( 'resume_input_fields' ), 'snumber', 0 ) ) {	
+				?>
+                <tr>
+                    <td><p>Secondary Contact Number: </p></td>
+                    <td><input type='text' name='snumber' size='25' value='<?php echo $single->snumber; ?>' /></td>
+                    <td valign="top"><p><input type='text' name='snumbertype' size='5' value='<?php echo $single->snumbertype; ?>' /></p></td>
+                </tr>
+            	<?php
+			}	
+			?>
 		</table>
 		<table width="700px" cellpadding="0" cellspacing="0">	
-			<tr>
-				<td width="115px"><p>E-Mail Address: </p></td>
-				<td align="left"><input type='text' name='email' size='60' value='<?php echo $single->email; ?>' /></td>
-			</tr>
+        	<?php
+            if ( grabContents( get_option( 'resume_input_fields' ), 'email', 0 ) ) {	
+				?>
+                <tr>
+                    <td width="115px"><p>E-Mail Address: </p></td>
+                    <td align="left"><input type='text' name='email' size='60' value='<?php echo $single->email; ?>' /></td>
+                </tr>
+            	<?php
+			}
+            ?>
 			<tr>
 				<td><p>Regarding Job: </p></td>
 				<td><input type='text' name='job' size='60' value='<?php echo $single->job; ?>' readonly="readonly" /></td>
@@ -353,24 +399,35 @@ if ( $deleteSubmit == 'Delete' ){
 		</table>
 		<br />
 		<table width="700px;" cellpadding="0" cellspacing="0">
-			<tr>
-				<td><p><b>Cover Letter: </b></p></td>
-				<td></td> 
-			</tr>
-			<tr>
-				<td style="background-color:#FFFFFF; border:1px solid #CCC; padding:5px;"><p><?php echo html_entity_decode( $single->cover ); ?></p></td>
-			</tr>	
-            <tr>
-				<td>&nbsp;</td>
-				<td></td>
-			</tr>
-            <tr>
-				<td><p><b>Resumé: </b></p></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td style="background-color:#FFFFFF; border:1px solid #CCC; padding:5px;"><p><?php echo html_entity_decode( $single->resume ); ?></p></td>
-			</tr>
+       		<?php
+            if ( grabContents( get_option( 'resume_input_fields' ), 'cover', 0 ) ) {	
+				?>
+                <tr>
+                    <td><p><b>Cover Letter: </b></p></td>
+                    <td></td> 
+                </tr>
+                <tr>
+                    <td style="background-color:#FFFFFF; border:1px solid #CCC; padding:5px;"><p><?php echo html_entity_decode( $single->cover ); ?></p></td>
+                </tr>	
+                <tr>
+                    <td>&nbsp;</td>
+                    <td></td>
+                </tr>
+                <?php
+			}
+			
+			if ( grabContents( get_option( 'resume_input_fields' ), 'resume', 0 ) ) {	
+				?>
+				<tr>
+					<td><p><b>Resumé: </b></p></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td style="background-color:#FFFFFF; border:1px solid #CCC; padding:5px;"><p><?php echo html_entity_decode( $single->resume ); ?></p></td>
+				</tr>
+                <?php
+			}
+			?>
 			<tr>
 				<td><input type='hidden' name='edit' value='Edit' />
                 	<p><input type='submit' value='Update Resume' name='submit' /></p></td>

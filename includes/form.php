@@ -2,6 +2,7 @@
 global $current_user, $wpdb;
 wp_get_current_user();
 
+
 $siteName = get_option( 'blogname' );
 
 $adminEmail     = get_option( 'resume_send_admin_email_to' );
@@ -33,9 +34,11 @@ $formMessage  = '';
 
 $find    = array( '\'', '\"', '"', '<', '>' );
 $replace = array( '&#39;', '&quot;', '&quot;', '&lt;', '&gt;' );
-
+$fields  = array( 'fname' => $fname, 'lname' => $lname, 'address' => $address, 'address2' => $address2, 'city' => $city, 'state' => $state,
+				  'zip' => $zip, 'pnumber' => $pnumber, 'pnumbertype' => $pnumbertype, 'snumber' => $snumber, 'snumbertype' => $snumbertype, 
+				  'email' => $email, 'job' => $job, 'cover' => $cover, 'resume' => $resume );
+				  
 $pubDate = date('Y-m-d H:i:s');
-
 
 if ( $fromPosting ){
 	$job      = $fromPosting;
@@ -66,8 +69,7 @@ if ( $useTinyMce == "Enabled" ){
 
 
 // Error Checking
-if ( ( $action == 'add' ) && ( !$fname || !$lname || !$address || !$city ||	!$state || !$zip || !$pnumber || !$pnumbertype ||
-	( !$email || ( strpos( $email, '.' ) == false || strpos( $email, '@' ) == false)) || !$resume ) ){
+if ( ( $action == 'add' ) && formErrorCheck( $fields ) == true ){
 	$formError = true;
 	$formMessage = '<p style="color:#CC0000;"><b>Error:</b> Make sure all fields required are filled out correctly.</p>';
 }
@@ -236,59 +238,100 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
             <td width="145px"></td>
             <td><p style='color:#CC0000;'><b>*</b> Required</p></td>
         </tr>
-        <tr>
-            <td><p>First Name: </p></td>
-            <td><input type='text' name='fname' size='20' value='<?php if ( $errorFName == '' ) echo $current_user->user_firstname; else echo $errorFName; ?>' /></td>
-            <td valign="top"><p style='color:#CC0000; font-weight:bold;'>*</p></td>
-        </tr>
-        <tr>
-            <td><p>Last Name: </p></td>
-            <td><input type='text' name='lname' size='20' value='<?php if ( $errorLName == '' ) echo $current_user->user_lastname; else echo $errorLName; ?>' /></td>
-            <td valign="top"><p style='color:#CC0000; font-weight:bold;'>*</p></td>
-        </tr>
-        <tr>
-            <td><p>Address: </p></td>
-            <td><input type='text' name='address' size='20' value='<?php echo $errorAddress; ?>' /></td>
-            <td valign="top"><p style='color:#CC0000; font-weight:bold;'>*</p></td>
-        </tr>
-        <tr>
-            <td><p>Address2: </p></td>
-            <td><input type='text' name='address2' size='20' value='<?php echo $errorAddress2; ?>' /></td>
-            <td valign="top"></td>
-        </tr>
-        <tr>
-            <td><p>City: </p></td>
-            <td><input type='text' name='city' size='20' value='<?php echo $errorCity; ?>' /></td>
-            <td valign="top"><p style='color:#CC0000; font-weight:bold;'>*</p></td>
-        </tr>
-        <tr>
-            <td><p>State: </p></td>
-            <td><select name="state" id="state">
-                	<?php echo arrayToSelect( stateList(), $errorState ); ?>
-                </select></td>
-            <td valign="top"><p style='color:#CC0000; font-weight:bold;'>*</p></td>
-        </tr>
-        <tr>
-            <td><p>Zip Code: </p></td>
-            <td><input type='text' name='zip' size='20' value='<?php echo $errorZip; ?>' /></td>
-            <td valign="top"><p style='color:#CC0000; font-weight:bold;'>*</p></td>
-        </tr>
-        <tr>
-            <td><p>Primary Contact Number: </p></td>
-            <td><input type='text' name='pnumber' size='15' value='<?php echo $errorPNumber; ?>' /></td>
-            <td valign="top"><p><span style='color:#CC0000; font-weight:bold;'>*</span> <?php echo $pType; ?></p></td>
-        </tr>
-        <tr>
-            <td><p>Secondary Contact Number: </p></td>
-            <td><input type='text' name='snumber' size='15' value='<?php echo $errorSNumber; ?>' /></td>
-            <td valign="top"><p>&nbsp;&nbsp;<?php echo $sType; ?></p></td>
-        </tr>
-        <tr>
-            <td><p>E-Mail Address: </p></td>
-            <td><input type='text' name='email' size='20' value='<?php if ( $errorEmail == '' ) echo $current_user->user_email; else echo $errorEmail; ?>' /></td>
-            <td valign="top"><p style='color:#CC0000; font-weight:bold;'>*</p></td>
-        </tr>
-        <?php 
+        <?php
+		if ( grabContents( get_option( 'resume_input_fields' ), 'fname', 0 ) ) {	
+			?>
+            <tr>
+                <td><p>First Name: </p></td>
+                <td><input type='text' name='fname' size='20' value='<?php if ( $errorFName == '' ) echo $current_user->user_firstname; else echo $errorFName; ?>' /></td>
+                <td valign="top"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'fname', 1 ) ); ?></p></td>
+            </tr>
+            <?php
+		}
+		if ( grabContents( get_option( 'resume_input_fields' ), 'lname', 0 ) ) {	
+			?>
+            <tr>
+                <td><p>Last Name: </p></td>
+                <td><input type='text' name='lname' size='20' value='<?php if ( $errorLName == '' ) echo $current_user->user_lastname; else echo $errorLName; ?>' /></td>
+                <td valign="top"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'lname', 1 ) ); ?></p></td>
+            </tr>
+            <?php
+		}
+		if ( grabContents( get_option( 'resume_input_fields' ), 'address', 0 ) ) {	
+			?>
+            <tr>
+                <td><p>Address: </p></td>
+                <td><input type='text' name='address' size='20' value='<?php echo $errorAddress; ?>' /></td>
+                <td valign="top"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'address', 1 ) ); ?></p></td>
+            </tr>
+            <?php
+		}
+		if ( grabContents( get_option( 'resume_input_fields' ), 'address2', 0 ) ) {	
+			?>
+			<tr>
+				<td><p>Address2: </p></td>
+				<td><input type='text' name='address2' size='20' value='<?php echo $errorAddress2; ?>' /></td>
+				<td valign="top"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'address2', 1 ) ); ?></p></td>
+			</tr>
+            <?php
+		}
+		if ( grabContents( get_option( 'resume_input_fields' ), 'city', 0 ) ) {	
+			?>
+            <tr>
+                <td><p>City: </p></td>
+                <td><input type='text' name='city' size='20' value='<?php echo $errorCity; ?>' /></td>
+                <td valign="top"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'city', 1 ) ); ?></p></td>
+            </tr>
+            <?php
+		}
+		if ( grabContents( get_option( 'resume_input_fields' ), 'state', 0 ) ) {	
+			?>
+            <tr>
+                <td><p>State: </p></td>
+                <td><select name="state" id="state">
+                        <?php echo arrayToSelect( stateList(), $errorState ); ?>
+                    </select></td>
+                <td valign="top"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'state', 1 ) ); ?></p></td>
+            </tr>
+            <?php
+		}
+		if ( grabContents( get_option( 'resume_input_fields' ), 'zip', 0 ) ) {	
+			?>
+            <tr>
+                <td><p>Zip Code: </p></td>
+                <td><input type='text' name='zip' size='20' value='<?php echo $errorZip; ?>' /></td>
+                <td valign="top"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'zip', 1 ) ); ?></p></td>
+            </tr>
+            <?php
+		}
+		if ( grabContents( get_option( 'resume_input_fields' ), 'pnumber', 0 ) ) {	
+			?>
+            <tr>
+                <td><p>Primary Contact Number: </p></td>
+                <td><input type='text' name='pnumber' size='15' value='<?php echo $errorPNumber; ?>' /></td>
+                <td valign="top"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'pnumber', 1 ) ); ?><?php echo $pType; ?></p></td>
+            </tr>
+            <?php
+		}
+		if ( grabContents( get_option( 'resume_input_fields' ), 'snumber', 0 ) ) {	
+			?>
+            <tr>
+                <td><p>Secondary Contact Number: </p></td>
+                <td><input type='text' name='snumber' size='15' value='<?php echo $errorSNumber; ?>' /></td>
+                <td valign="top"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'snumber', 1 ) ); ?><?php echo $sType; ?></p></td>
+            </tr>
+            <?php
+		}
+		if ( grabContents( get_option( 'resume_input_fields' ), 'email', 0 ) ) {	
+			?>
+            <tr>
+                <td><p>E-Mail Address: </p></td>
+                <td><input type='text' name='email' size='20' value='<?php if ( $errorEmail == '' ) echo $current_user->user_email; else echo $errorEmail; ?>' /></td>
+                <td valign="top"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'email', 1 ) ); ?></p></td>
+            </tr>
+        	<?php 
+		}
+		
 		$currentJobs = $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM ' . JOBTABLE . ' WHERE archive != "1" ORDER BY title DESC' ) );
 		?>
         <tr>
@@ -303,23 +346,32 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
     </table>
     <br />
     <table width="100%" cellpadding="0" cellspacing="0">
-    	<tr>
-            <td><p><b>Cover Letter: </b>(Please submit with good formatting)</p></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td><?php wp_editor( $errorCover, 'cover', setTinySetting( 'cover', '35', false, $setTinyMce, false ) ); ?></td>
-            <td valign="top" width="5px"><p style='color:#CC0000; font-weight:bold;'>*</p></td>
-        </tr>	
-        <tr>
-            <td><p><b>Resumé: </b>(Please submit with good formatting)</p></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td><?php wp_editor( $errorResume, 'resume', setTinySetting( 'resume', '35', false, $setTinyMce, false ) ); ?></td>
-            <td valign="top" width="5px"><p style='color:#CC0000; font-weight:bold;'>*</p></td>
-        </tr>	
-        <?php
+    	<?php
+		if ( grabContents( get_option( 'resume_input_fields' ), 'cover', 0 ) ) {	
+			?>
+            <tr>
+                <td><p><b>Cover Letter: </b>(Please submit with good formatting)</p></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><?php wp_editor( $errorCover, 'cover', setTinySetting( 'cover', '35', false, $setTinyMce, false ) ); ?></td>
+                <td valign="top" width="5px"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'cover', 1 ) ); ?></p></td>
+            </tr>	
+            <?php
+		}
+		if ( grabContents( get_option( 'resume_input_fields' ), 'resume', 0 ) ) {	
+			?>
+            <tr>
+                <td><p><b>Resumé: </b>(Please submit with good formatting)</p></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><?php wp_editor( $errorResume, 'resume', setTinySetting( 'resume', '35', false, $setTinyMce, false ) ); ?></td>
+                <td valign="top" width="5px"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'resume', 1 ) ); ?></p></td>
+            </tr>	
+        	<?php
+		}
+		
 		// Display Captcha if enabled
         if ( get_option( 'resume_captcha' ) == 'Enabled' ) {
             ?>

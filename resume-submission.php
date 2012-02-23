@@ -102,6 +102,7 @@ function resume_submission_menu() {
 	add_menu_page( __( 'Resumés &amp; Jobs', 'resume_submission' ), __( 'Resumés &amp; Jobs', 'resume_submission' ), MANAGEMENT_PERMISSION, __FILE__, 'resume_view_all', resume_get_plugin_dir( 'go' ) . '/images/menu-icon.png', 25 );		
 	add_submenu_page( __FILE__, __( 'Resumé Submissions', 'resume_submission' ), __( 'Resumé Submissions', 'resume_submission' ), MANAGEMENT_PERMISSION, __FILE__, 'resume_view_all' );		
 	add_submenu_page( __FILE__, __( 'Job Postings', 'resume_submission' ), __( 'Job Postings', 'resume_submission' ), MANAGEMENT_PERMISSION, 'job_postings', 'resume_view_jp');		
+	add_submenu_page( __FILE__, __( 'Input Fields', 'resume_submission' ), __( 'Input Fields', 'resume_submission' ), MANAGEMENT_PERMISSION, 'input_fields', 'resume_input_fields');
 	add_submenu_page( __FILE__, __( 'Settings', 'resume_submission' ), __( 'Settings', 'resume_submission' ), MANAGEMENT_PERMISSION, 'settings', 'resume_settings');
 }
 
@@ -160,6 +161,11 @@ function resume_view_all(){
 // Job Postings Page
 function resume_view_jp(){
 	include( 'includes/job-postings.php' );
+}
+
+// Input Fields Page
+function resume_input_fields(){
+	include( 'includes/input-fields.php' );
 }
 
 // Settings Page

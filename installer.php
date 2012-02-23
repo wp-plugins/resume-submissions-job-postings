@@ -7,7 +7,7 @@ if ( version_compare( $wp_version, '3.0', '<' ) ) {
 	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 }
 //***Installer variables***
-$resume_db_version = "1.8.8";
+$resume_db_version = "1.9.2";
 //***Installer****
 if( $wpdb->get_var( 'SHOW TABLES LIKE "' . SUBTABLE . '"' ) != SUBTABLE ) {
 	$sql = 'CREATE TABLE ' . SUBTABLE . ' (
@@ -66,6 +66,11 @@ add_option( 'resume_user_email_copy', '<p>Dear %fname%,</p>
 <p>If you have met our qualifications, we will contact for further infomation.</p>
 <br/>' );
 
+// Set Input Fields
+add_option( 'resume_input_fields', array( 'fname' => array( 1, 1 ), 'lname' => array( 1, 1 ), 'address' => array( 1, 1 ), 'address2' => array( 1, 1 ), 
+										  'city' => array( 1, 1 ), 'state' => array( 1, 1 ), 'zip' => array( 1, 1 ), 'pnumber' => array( 1, 1 ), 'snumber' => array( 1, 1 ),
+										  'email' => array( 1, 1 ), 'cover' => array( 1, 1 ), 'resume' => array( 1, 1 ) ) );
+
 
 
 
@@ -75,6 +80,9 @@ if( $installed_ver != $resume_db_version ) {
 	
 	update_option( 'resume_db_version', $resume_db_version );
 	
+	add_option( 'resume_input_fields', array( 'fname' => array( 1, 1 ), 'lname' => array( 1, 1 ), 'address' => array( 1, 1 ), 'address2' => array( 1, 1 ), 
+											  'city' => array( 1, 1 ), 'state' => array( 1, 1 ), 'zip' => array( 1, 1 ), 'pnumber' => array( 1, 1 ), 'snumber' => array( 1, 1 ),
+											  'email' => array( 1, 1 ), 'cover' => array( 1, 1 ), 'resume' => array( 1, 1 ) ) );
 	// Nothing else yet
 	
 }

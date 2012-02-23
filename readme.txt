@@ -4,7 +4,7 @@ Donate link: http://www.geerservices.com/wordpress-plugins/resume-jobs/
 Tags: resume submission, job postings, job listing, resume, jobs 
 Requires at least: 3.2
 Tested up to: 3.3.1
-Stable tag: 1.8.8.1
+Stable tag: 1.9.2
 
 Allows the admin to create and show job postings. Users can submit their resume in response to a posting or for general purposes. 
 
@@ -32,7 +32,7 @@ Features:
 * Send User 'Thank You' Email
 * Widget to Show Job Postings
 * Give User Ability to Use TinyMCE on the Cover Letter and the Resume fields
-* Let Admin choose what is required (future)
+* Lets Admin choose what is shown and required
 * Allow Admin to create input fields (future)
 * Allow User attachment (future)
 
@@ -45,11 +45,12 @@ Features:
 4. Send User 'Thank You' Email
 5. Widget to Show Job Postings
 6. Give User Ability to Use TinyMCE on the Cover Letter and the Resume fields
+7. Lets Admin choose what is shown and required
 
 
 == Installation ==
 
-1. Upload the folder `resume-submission` to the `/wp-content/plugins/` directory
+1. Upload the folder `resume-submissions-job-postings` to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Place the shortcodes `[resumeForm]` and `[jobPostings]` in their respected pages
 
@@ -70,6 +71,12 @@ You must make sure that the Captcha Key fields are correctly filled out. Also, m
 3. The Settings page where you can set Captcha or User Email.
 
 == Changelog ==
+= 1.9.2 =
+* Added the page "Input Fields" to the Admin
+* Improved scripting for error reporting
+* Admin can select which fields to show
+* Admin can select whcih fields are required
+
 = 1.8.8 =
 * Fixed the link for the "View/Edit" Submission.
 
@@ -84,6 +91,9 @@ You must make sure that the Captcha Key fields are correctly filled out. Also, m
 
 
 == Upgrade Notice ==
+= 1.9.2 =
+The Admin can now select which input fields are shown and which ones are required
+
 = 1.8.7 =
 Admin is now able to enable/disable TinyMce on the Resume Form.
 

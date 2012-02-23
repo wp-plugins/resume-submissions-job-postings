@@ -36,12 +36,13 @@ function arrayToSelect( $options, $selected = '', $optgroup = NULL ){
 // Checks the input and returns the correct syntax
 function checkIt( $field, $set, $type ) {
 	switch( $type ){
-		case 'radio':
-					$language = 'checked="checked"';
-					break;
-		case 'select':
-					$language = 'selected="selected"';
-					break;
+		case 'radio'  :
+		case 'check'  :
+					  $language = 'checked="checked"';
+					  break;
+		case 'select' :
+					  $language = 'selected="selected"';
+					  break;
 	}
 	if ( $field == $set ){
 		$selected = $language;
@@ -77,6 +78,56 @@ function setTinySetting( $name, $rows, $media, $tiny, $tags ) {
 					);
 
 	return $settings;
+}
+
+
+// Grab the contents of the specific field in the array
+function grabContents( $array, $field, $sub ){
+	
+	$value = $array[$field][$sub];
+	
+	return $value;	
+}
+
+// Display the form * if the field is required
+function displayRequired( $value ){
+	
+	if ( $value == 1 ) {
+		$display = '<span style="color:#CC0000; font-weight:bold;">*</span>';
+	} else {
+		$display = '';
+	}
+	
+	return $display;
+}
+
+// Checks to make sure all the required fields are filled out
+function formErrorCheck( $fields ) {
+	
+	$array = get_option( 'resume_input_fields' );
+	
+	foreach ( $array as $item => $key) {
+		foreach ( $fields as $field => $sub ) {
+			if ( $field == $item && $key[1] == 1 ){
+				if ( !$sub ) {
+					return $error = true;
+				} else {
+					$error = false;
+				}
+			} elseif ( ( ( $item == 'pnumber' && $key[1] == 1 ) && $field == 'pnumbertype' ) || ( ( $item == 'snumber' && $key[1] == 1 ) && $field == 'snumbertype' ) ){
+				if ( !$sub ) {
+					return $error = true;
+				} 
+			} elseif ( $field == 'job' ){
+				if ( !$sub ) {
+					return $error = true;
+				}
+			} 
+		}
+		
+	}
+	
+	return $error;	
 }
 
 ?>
