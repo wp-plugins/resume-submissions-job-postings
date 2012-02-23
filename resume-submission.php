@@ -122,7 +122,7 @@ function resume_get_plugin_dir( $type ) {
 }
 
 function resume_add_menu_favorite( $actions ) {
-	$actions['admin.php?page=resume-submission/resume-submission.php'] = array( 'Resumé Submission', 'manage_options' );
+	$actions['admin.php?page=resume-submissions-job-postings/resume-submission.php'] = array( 'Resumé Submission', 'manage_options' );
 	return $actions;
 }
 
@@ -136,7 +136,7 @@ if ( is_admin() ) {
 
 // Functions for styling
 function admin_register_resume_style( $hook ) {
-	if( 'toplevel_page_resume-submission/resume-submission' != $hook && 'resumes-jobs_page_job_postings' != $hook )
+	if( 'toplevel_page_resume-submissions-job-postings/resume-submission' != $hook && 'resumes-jobs_page_job_postings' != $hook )
         return;
     wp_enqueue_script( 'resume_custom_css', plugins_url( '/css/resume-admin-styles.css', __FILE__ ) );
 }
