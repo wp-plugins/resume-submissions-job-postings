@@ -25,13 +25,17 @@ Once the user submits his/her information, the admin may look at or edit the sub
 The admin may sort resumes by job, or anything else they search for.
 
 Features:
-
 * Post Jobs
 * Users Submit Resume
 * Enable Captcha
 * Send User 'Thank You' Email
 * Widget to Show Job Postings
 * Give User Ability to Use TinyMCE on the Cover Letter and the Resume fields
+
+Upcoming Features:
+* Let Admin choose what is required
+* Allow Admin to create input fields
+* Allow User attachment
 
 
 == Features ==
