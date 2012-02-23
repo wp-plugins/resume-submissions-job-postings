@@ -4,7 +4,7 @@ Donate link: http://www.geerservices.com/wordpress-plugins/resume-jobs/
 Tags: resume submission, job postings, job listing, resume, jobs 
 Requires at least: 3.0
 Tested up to: 3.3.1
-Stable tag: 1.8.7
+Stable tag: 1.8.8
 
 Allows the admin to create and show job postings. Users can submit their resume in response to a posting or for general purposes. 
 
@@ -58,6 +58,9 @@ You must make sure that the Captcha Key fields are correctly filled out. Also, m
 3. The Settings page where you can set Captcha or User Email.
 
 == Changelog ==
+= 1.8.8 =
+* Fixed the link for the "View/Edit" Submission.
+
 = 1.8.7 =
 * Fixed the use of TinyMce.
 * Allows the admin to enable/disable TinyMce on the Resume Form.
