@@ -7,7 +7,7 @@ if ( version_compare( $wp_version, '3.0', '<' ) ) {
 	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 }
 //***Installer variables***
-$resume_db_version = "1.8.7";
+$resume_db_version = "1.8.8";
 //***Installer****
 if( $wpdb->get_var( 'SHOW TABLES LIKE "' . SUBTABLE . '"' ) != SUBTABLE ) {
 	$sql = 'CREATE TABLE ' . SUBTABLE . ' (
@@ -72,8 +72,11 @@ add_option( 'resume_user_email_copy', '<p>Dear %fname%,</p>
 //***Upgrader***
 $installed_ver = get_option( 'resume_db_version' );
 if( $installed_ver != $resume_db_version ) {
-
-	// Nothing yet
+	
+	update_option( 'resume_db_version', $resume_db_version );
+	
+	// Nothing else yet
+	
 }
 //***** End Installer *****
 ?>
