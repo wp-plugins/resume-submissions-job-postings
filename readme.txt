@@ -2,7 +2,7 @@
 Contributors: kandrews
 Donate link: http://www.geerservices.com/wordpress-plugins/resume-jobs/
 Tags: resume submission, job postings, job listing, resume, jobs 
-Requires at least: 3.0
+Requires at least: 3.2
 Tested up to: 3.3.1
 Stable tag: 1.8.8.1
 
