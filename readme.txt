@@ -25,6 +25,7 @@ Once the user submits his/her information, the admin may look at or edit the sub
 The admin may sort resumes by job, or anything else they search for.
 
 Features:
+
 * Post Jobs
 * Users Submit Resume
 * Enable Captcha
