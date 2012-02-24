@@ -34,6 +34,7 @@ The admin may sort resumes by job, or anything else they search for.
 * Lets Admin choose what is shown and required
 * Allow Admin to create input fields (future)
 * Allow User attachment (future)
+* Save/Download Submitted Resume as PDF or Spreadsheet (future)
 
  
 == Features ==
