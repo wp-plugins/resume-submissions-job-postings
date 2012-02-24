@@ -146,7 +146,7 @@ if ( $ID ){
 		</form>
 		<br class="a_break" style="clear: both;"/>
 		<form name='form' id='form' class='form' method='POST'>
-		<table width="100%" cellpadding="0" cellspacing="0">
+		<table width="600px" cellpadding="0" cellspacing="0">
 			<tr>
 				<td width="80px">&nbsp;</td>
 				<td></td>
@@ -161,7 +161,7 @@ if ( $ID ){
 			</tr>
 			<tr>
 				<td valign="top"><p><b>Copy: </b></p></td>
-				<td align="left"><p><textarea name='description' rows='15' cols='70'><?php echo $single->description; ?></textarea></p><br /></td>
+				<td align="left"><p><?php wp_editor( $single->description, 'description', setTinySetting( 'description', '15', true, true, true ) ); ?></p><br /></td>
 			</tr>
 		<?php
 		if ( $single->archive == 1 ){
@@ -191,7 +191,7 @@ if ( $ID ){
 		</form>
 		<br class="a_break" style="clear: both;"/>
 		<form name='form' method='post' enctype="multipart/form-data">
-		<table width="100%" cellpadding="0" cellspacing="0">
+		<table width="600px" cellpadding="0" cellspacing="0">
 			<tr>
 				<td width="80px">&nbsp;</td>
 				<td></td>
@@ -206,7 +206,7 @@ if ( $ID ){
 			</tr>
 			<tr>
 				<td valign="top"><p><b>Description: </b></p></td>
-				<td align="left"><p><textarea name='description' rows='15' cols='70'></textarea></p><br /></td>
+				<td align="left"><p><?php wp_editor( 'description', 'description', setTinySetting( 'description', '15', true, true, true ) ); ?></p><br /></td>
 			</tr>
 			<tr>
 				<td><p><b>Archive: </b></p></td>
