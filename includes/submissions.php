@@ -238,21 +238,21 @@ if ( $deleteSubmit == 'Delete' ){
                             if ( $currentPage > 1 ) {
                                echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=1">' . _e( 'First' ) . '</a> ';
                                $prevPage = $currentPage - 1;
-                               echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=' . $prevPage . '">' . _e( '«' ) . '</a> ';
+                               echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=' . $prevPage . '">«</a> ';
                             } 
                             
                             for ( $x = ( $currentPage - $range ); $x < ( ( $currentPage + $range ) + 1 ); $x++ ) {
                                
                                if ( ( $x > 0 ) && ( $x <= $totalPages ) ) {
                                   if ( $x != $currentPage ) {
-                                     echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=' . $x . '">' . _e( $x ) . '</a> ';
+                                     echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=' . $x . '">' . $x . '</a> ';
                                   } 
                                } 
                             }
                                              
                             if ( $currentPage != $totalPages ) {
                                $nextPage = $currentPage + 1;
-                               echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=' . $nextPage . '">' . _e( '»' ) . '</a> ';
+                               echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=' . $nextPage . '">»</a> ';
                                echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=' . $totalPages . '">' . _e( 'Last' ) . '</a> ';
                             }
                             ?>

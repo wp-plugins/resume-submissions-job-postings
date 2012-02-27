@@ -64,7 +64,7 @@ $range = 3;
 			if ( $currentPage > 1 ) {
 			   echo ' <a href="' . $_SERVER['PHP_SELF'] . '&view=archive&currentPage=1">' . _e( 'First' ) . '</a> ';
 			   $prevPage = $currentPage - 1;
-			   echo ' <a href="{' . $_SERVER['PHP_SELF'] . '&view=archive&currentPage=' . $prevPage . '">' . _e( '«' ) . '</a> ';
+			   echo ' <a href="{' . $_SERVER['PHP_SELF'] . '&view=archive&currentPage=' . $prevPage . '">«</a> ';
 			} 
 			
 			for ( $x = ( $currentPage - $range ); $x < ( ( $currentPage + $range ) + 1 ); $x++ ) {
@@ -73,14 +73,14 @@ $range = 3;
 				  if ( $x == $currentPage ) {
 					 echo ' <b>$x</b> ';
 				  } else {
-					 echo ' <a href="' . $_SERVER['PHP_SELF'] . '&view=archive&currentPage=$x">' . _e( $x ) . '</a> ';
+					 echo ' <a href="' . $_SERVER['PHP_SELF'] . '&view=archive&currentPage=$x">' . $x . '</a> ';
 				  } 
 			   } 
 			}
 							 
 			if ( $currentPage != $totalPages ) {
 			   $nextPage = $currentPage + 1;
-			   echo ' <a href="' . $_SERVER['PHP_SELF'] . '&view=archive&currentPage=' . $nextPage . '">' . _e( '»' ) . '</a> ';
+			   echo ' <a href="' . $_SERVER['PHP_SELF'] . '&view=archive&currentPage=' . $nextPage . '">»</a> ';
 			   echo ' <a href="' . $_SERVER['PHP_SELF'] . '&view=archive&currentPage=' . $totalPages . '">' . _e( 'Last' ) . '</a> ';
 			}
 		}
@@ -125,7 +125,7 @@ $range = 3;
         $jobPostingQuery = $wpdb->get_results( 'SELECT * FROM ' . JOBTABLE . ' WHERE archive != 1 ORDER BY pubDate DESC' );
         ?>
         
-        <p><?php _e( 'The following are current job opportunities provided by <?php echo $siteName; ?>.' ); ?></p>
+        <p><?php _e( 'The following are current job opportunities provided by ' . $siteName . '.' ); ?></p>
     
         
         <ul>
