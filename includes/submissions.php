@@ -44,15 +44,6 @@ if ( isset( $ID ) ){
 	
 	if ( isset( $edit ) ){
 		
-		// Take any html out of the submission before updating
-		$fname    = htmlentities($fname);
-		$lname    = htmlentities($lname);
-		$address  = htmlentities($address);
-		$address2 = htmlentities($address2);
-		$city     = htmlentities($city);
-		$state    = htmlentities($state);
-		$zip      = htmlentities($zip);
-		
 		$updateQuery = $wpdb->query( 'UPDATE ' . SUBTABLE . ' SET fname = "' . $fname . '",
 																  lname = "' . $lname . '",
 																  address = "' . $address . '",
@@ -98,7 +89,7 @@ if ( $deleteSubmit == 'Delete' ){
 <div class="wrap alternate">
 	
     <div id="icon-edit-pages" class="icon32"></div>
-	<h2><?php _e( 'Resumé Submissions' ,'resume_view_all' ); ?></h2>
+	<h2><?php _e( 'Resumé Submissions' ); ?></h2>
 	<?php echo $message; ?>
 	<br class="a_break" style="clear: both;"/>
 	<?php
@@ -108,7 +99,7 @@ if ( $deleteSubmit == 'Delete' ){
 			<tr>
 				<td width="280px" align="left">
 				<form method="post" name="search" id="search">
-					<p>Find: <input type="text" name="searchFor" /> <input type="submit" name="search" value="Search" /></p>
+					<p><?php _e( 'Find:' ); ?> <input type="text" name="searchFor" /> <input type="submit" name="search" value="Search" /></p>
 				</form>
 				</td>
 				<td width="280px" align="left">
@@ -127,7 +118,7 @@ if ( $deleteSubmit == 'Delete' ){
 				$showFor = $wpdb->get_results( $wpdb->prepare( 'SELECT title FROM ' . JOBTABLE . ' WHERE archive != "1" ORDER BY title DESC' ) );
 				?>
 				<form method="post" name="showfor" id="showfor">
-					<p>Show All For: <select name="showAllFor">                            	
+					<p><?php _e( 'Show All For:' ); ?> <select name="showAllFor">                            	
 						<?php echo arrayToSelect($showFor, $showFor->title); ?>
                         <option value="General Purpose" <?php if ( $showFor->title == 'General Purpose' ){ echo 'selected="selected"'; } ?>>General Purpose</option>    
                     </select>
@@ -180,10 +171,10 @@ if ( $deleteSubmit == 'Delete' ){
         <table class="widefat">
             <thead>
                 <tr>
-                    <th scope="col" width="300px">Name</th>
-                    <th scope="col" width="280px">E-Mail</th>
-                    <th scope="col" width="240px">Regarding Job</th>
-                    <th scope="col" width="200px">Submission Date</th>
+                    <th scope="col" width="300px"><?php _e( 'Name' ); ?></th>
+                    <th scope="col" width="280px"><?php _e( 'E-Mail' ); ?></th>
+                    <th scope="col" width="240px"><?php _e( 'Regarding Job' ); ?></th>
+                    <th scope="col" width="200px"><?php _e( 'Submission Date' ); ?></th>
                     <th scope="col">&nbsp;</th>
                     <th scope="col">&nbsp;</th>
                     <th scope="col">&nbsp;</th>
@@ -217,11 +208,11 @@ if ( $deleteSubmit == 'Delete' ){
                         ?>
                             <tr>
                                 <td><?php if ( $searchFor != '' ){ ?>
-                                        <p>There are no submissions that contain "<b><?php echo $searchFor; ?></b>".</p>
+                                        <p><?php _e( 'There are no submissions that contain &quot;<b>' . $searchFor . '</b>&quot;.' ); ?></p>
                                     <?php } elseif( $showAllFor != '' ){ ?> 
-                                        <p>There are no submissions for the job posting "<b><?php echo $showAllFor; ?></b>".</p> 
+                                        <p><?php _e( 'There are no submissions for the job posting &quot;<b>' . $showAllFor . '</b>&quot;.' ); ?></p> 
                                     <?php } else { ?> 
-                                        <p>There are no submissions at this time.</p> 
+                                        <p><?php _e( 'There are no submissions at this time.' ); ?></p> 
                                     <?php }?></td>
                                 <td>&nbsp;</td>
                                 <td>&nbsp;</td>
@@ -240,29 +231,29 @@ if ( $deleteSubmit == 'Delete' ){
                     ?>
                     <div class="tablenav">
                         <div class="tablenav-pages">
-                            <span class="displaying-num">Displaying <?php echo $offSet + 1; ?> - <?php echo $offSet + count($infoQuery); ?> of <?php echo $numRows; ?></span>
+                            <span class="displaying-num"><?php _e( 'Displaying ' . $offSet + 1 . ' - ' . $offSet + count($infoQuery) . ' of ' . $numRows ); ?></span>
                             
                             
                             <?php
                             if ( $currentPage > 1 ) {
-                               echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=1">First</a> ';
+                               echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=1">' . _e( 'First' ) . '</a> ';
                                $prevPage = $currentPage - 1;
-                               echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=' . $prevPage . '">«</a> ';
+                               echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=' . $prevPage . '">' . _e( '«' ) . '</a> ';
                             } 
                             
                             for ( $x = ( $currentPage - $range ); $x < ( ( $currentPage + $range ) + 1 ); $x++ ) {
                                
                                if ( ( $x > 0 ) && ( $x <= $totalPages ) ) {
                                   if ( $x != $currentPage ) {
-                                     echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=' . $x . '">' . $x . '</a> ';
+                                     echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=' . $x . '">' . _e( $x ) . '</a> ';
                                   } 
                                } 
                             }
                                              
                             if ( $currentPage != $totalPages ) {
                                $nextPage = $currentPage + 1;
-                               echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=' . $nextPage . '">»</a> ';
-                               echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=' . $totalPages . '">Last</a> ';
+                               echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=' . $nextPage . '">' . _e( '»' ) . '</a> ';
+                               echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=' . $totalPages . '">' . _e( 'Last' ) . '</a> ';
                             }
                             ?>
                         </div> 
@@ -301,7 +292,7 @@ if ( $deleteSubmit == 'Delete' ){
 			if ( grabContents( get_option( 'resume_input_fields' ), 'fname', 0 ) ) {	
 				?>
                 <tr>
-                    <td><p>First Name: </p></td>
+                    <td><p><?php _e( 'First Name:' ); ?> </p></td>
                     <td><input type='text' name='fname' size='40'value='<?php echo $single->fname; ?>' /></td>
                 </tr>
                	<?php
@@ -309,7 +300,7 @@ if ( $deleteSubmit == 'Delete' ){
             if ( grabContents( get_option( 'resume_input_fields' ), 'lname', 0 ) ) {	
 				?>
                 <tr>
-                    <td><p>Last Name: </p></td>
+                    <td><p><?php _e( 'Last Name:' ); ?> </p></td>
                     <td><input type='text' name='lname' size='40' value='<?php echo $single->lname; ?>' /></td>
                 </tr>
                 <?php
@@ -317,7 +308,7 @@ if ( $deleteSubmit == 'Delete' ){
             if ( grabContents( get_option( 'resume_input_fields' ), 'address', 0 ) ) {	
 				?>
                 <tr>
-                    <td><p>Address: </p></td>
+                    <td><p><?php _e( 'Address:' ); ?> </p></td>
                     <td><input type='text' name='address' size='40' value='<?php echo $single->address; ?>' /></td>
                 </tr>
                 <?php
@@ -325,7 +316,7 @@ if ( $deleteSubmit == 'Delete' ){
             if ( grabContents( get_option( 'resume_input_fields' ), 'address2', 0 ) ) {	
 				?>
                 <tr>
-                    <td><p>Suite/Apt: </p></td>
+                    <td><p><?php _e( 'Suite/Apt:' ); ?> </p></td>
                     <td><input type='text' name='address2' size='40' value='<?php echo $single->address2; ?>' /></td>
                     <td valign="top"></td>
                 </tr>
@@ -334,7 +325,7 @@ if ( $deleteSubmit == 'Delete' ){
             if ( grabContents( get_option( 'resume_input_fields' ), 'city', 0 ) ) {	
 				?>
                 <tr>
-                    <td><p>City: </p></td>
+                    <td><p><?php _e( 'City:' ); ?> </p></td>
                     <td><input type='text' name='city' size='40' value='<?php echo $single->city; ?>' /></td>
                 </tr>
                 <?php
@@ -342,7 +333,7 @@ if ( $deleteSubmit == 'Delete' ){
             if ( grabContents( get_option( 'resume_input_fields' ), 'state', 0 ) ) {	
 				?>
                 <tr>
-                    <td><p>State: </p></td>
+                    <td><p><?php _e( 'State:' ); ?> </p></td>
                     <td><select name="state" id="state">
                             <?php echo arrayToSelect(stateList(), $single->state); ?>
                         </select></td>
@@ -352,7 +343,7 @@ if ( $deleteSubmit == 'Delete' ){
             if ( grabContents( get_option( 'resume_input_fields' ), 'zip', 0 ) ) {	
 				?>
                 <tr>
-                    <td><p>Zip Code: </p></td>
+                    <td><p><?php _e( 'Zip Code:' ); ?> </p></td>
                     <td><input type='text' name='zip' size='10' value='<?php echo $single->zip; ?>' /></td>
                 </tr>
                 <?php
@@ -364,7 +355,7 @@ if ( $deleteSubmit == 'Delete' ){
             if ( grabContents( get_option( 'resume_input_fields' ), 'pnumber', 0 ) ) {	
 				?>
                 <tr>
-                    <td width="190px"><p>Primary Contact Number: </p></td>
+                    <td width="190px"><p><?php _e( 'Primary Contact Number:' ); ?> </p></td>
                     <td width="160px"><input type='text' name='pnumber' size='25' value='<?php echo $single->pnumber; ?>' /></td>
                     <td valign="top"><p><input type='text' name='pnumbertype' size='5' value='<?php echo $single->pnumbertype; ?>' /></p></td>
                 </tr>
@@ -373,7 +364,7 @@ if ( $deleteSubmit == 'Delete' ){
             if ( grabContents( get_option( 'resume_input_fields' ), 'snumber', 0 ) ) {	
 				?>
                 <tr>
-                    <td><p>Secondary Contact Number: </p></td>
+                    <td><p><?php _e( 'Secondary Contact Number:' ); ?> </p></td>
                     <td><input type='text' name='snumber' size='25' value='<?php echo $single->snumber; ?>' /></td>
                     <td valign="top"><p><input type='text' name='snumbertype' size='5' value='<?php echo $single->snumbertype; ?>' /></p></td>
                 </tr>
@@ -386,14 +377,14 @@ if ( $deleteSubmit == 'Delete' ){
             if ( grabContents( get_option( 'resume_input_fields' ), 'email', 0 ) ) {	
 				?>
                 <tr>
-                    <td width="115px"><p>E-Mail Address: </p></td>
+                    <td width="115px"><p><?php _e( 'E-Mail Address:' ); ?> </p></td>
                     <td align="left"><input type='text' name='email' size='60' value='<?php echo $single->email; ?>' /></td>
                 </tr>
             	<?php
 			}
             ?>
 			<tr>
-				<td><p>Regarding Job: </p></td>
+				<td><p><?php _e( 'Regarding Job:' ); ?> </p></td>
 				<td><input type='text' name='job' size='60' value='<?php echo $single->job; ?>' readonly="readonly" /></td>
 			</tr>
 		</table>
@@ -403,7 +394,7 @@ if ( $deleteSubmit == 'Delete' ){
             if ( grabContents( get_option( 'resume_input_fields' ), 'cover', 0 ) ) {	
 				?>
                 <tr>
-                    <td><p><b>Cover Letter: </b></p></td>
+                    <td><p><b><?php _e( 'Cover Letter:' ); ?> </b></p></td>
                     <td></td> 
                 </tr>
                 <tr>
@@ -419,7 +410,7 @@ if ( $deleteSubmit == 'Delete' ){
 			if ( grabContents( get_option( 'resume_input_fields' ), 'resume', 0 ) ) {	
 				?>
 				<tr>
-					<td><p><b>Resumé: </b></p></td>
+					<td><p><b><?php _e( 'Resumé:'); ?></b></p></td>
 					<td></td>
 				</tr>
 				<tr>

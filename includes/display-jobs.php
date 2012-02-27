@@ -13,7 +13,7 @@ $range = 3;
 	// View archived jobs
     if ( $view == 'archive' ){
         ?>
-        <h2>Archived Job Postings</h2>
+        <h2><?php _e( 'Archived Job Postings' ); ?></h2>
         
         <?php
 		$archivedRows = $wpdb->get_var( 'SELECT COUNT(*) FROM ' . JOBTABLE . ' WHERE archive = 1');
@@ -62,9 +62,9 @@ $range = 3;
 		<?php
 		if ( $numRows > 0 ){
 			if ( $currentPage > 1 ) {
-			   echo ' <a href="' . $_SERVER['PHP_SELF'] . '&view=archive&currentPage=1">First</a> ';
+			   echo ' <a href="' . $_SERVER['PHP_SELF'] . '&view=archive&currentPage=1">' . _e( 'First' ) . '</a> ';
 			   $prevPage = $currentPage - 1;
-			   echo ' <a href="{' . $_SERVER['PHP_SELF'] . '&view=archive&currentPage=' . $prevPage . '">«</a> ';
+			   echo ' <a href="{' . $_SERVER['PHP_SELF'] . '&view=archive&currentPage=' . $prevPage . '">' . _e( '«' ) . '</a> ';
 			} 
 			
 			for ( $x = ( $currentPage - $range ); $x < ( ( $currentPage + $range ) + 1 ); $x++ ) {
@@ -73,15 +73,15 @@ $range = 3;
 				  if ( $x == $currentPage ) {
 					 echo ' <b>$x</b> ';
 				  } else {
-					 echo ' <a href="' . $_SERVER['PHP_SELF'] . '&view=archive&currentPage=$x">' . $x . '</a> ';
+					 echo ' <a href="' . $_SERVER['PHP_SELF'] . '&view=archive&currentPage=$x">' . _e( $x ) . '</a> ';
 				  } 
 			   } 
 			}
 							 
 			if ( $currentPage != $totalPages ) {
 			   $nextPage = $currentPage + 1;
-			   echo ' <a href="' . $_SERVER['PHP_SELF'] . '&view=archive&currentPage=' . $nextPage . '">»</a> ';
-			   echo ' <a href="' . $_SERVER['PHP_SELF'] . '&view=archive&currentPage=' . $totalPages . '">Last</a> ';
+			   echo ' <a href="' . $_SERVER['PHP_SELF'] . '&view=archive&currentPage=' . $nextPage . '">' . _e( '»' ) . '</a> ';
+			   echo ' <a href="' . $_SERVER['PHP_SELF'] . '&view=archive&currentPage=' . $totalPages . '">' . _e( 'Last' ) . '</a> ';
 			}
 		}
 		?>
@@ -90,7 +90,7 @@ $range = 3;
         <?php
 		if ( $numRows == 0 ){
 			?>
-            <p>There are no archived job postings at this time.</p>
+            <p><?php _e( 'There are no archived job postings at this time.' ); ?></p>
             <?php
 		}
 
@@ -99,9 +99,9 @@ $range = 3;
 		// Display the single job
         $jobPosting = $wpdb->get_row( 'SELECT * FROM ' . JOBTABLE . ' WHERE id = ' . $postingID );
         ?>
-        <h2><?php echo $jobPosting->title; ?></h2>
-        <p style="padding:0; margin:0;"><?php echo $jobPosting->subTitle; ?></p>
-        <p><i style="font-size:12px;">Posted: <?php echo date( 'M j, Y g:ia', strtotime( $jobPosting->pubDate ) ); ?></i></p>
+        <h2><?php _e( $jobPosting->title ); ?></h2>
+        <p style="padding:0; margin:0;"><?php _e( $jobPosting->subTitle ); ?></p>
+        <p><i style="font-size:12px;"><?php _e( 'Posted:' ); ?> <?php echo date( 'M j, Y g:ia', strtotime( $jobPosting->pubDate ) ); ?></i></p>
         <p><?php echo $jobPosting->description; ?></p>
         <br />
         <?php
@@ -125,7 +125,7 @@ $range = 3;
         $jobPostingQuery = $wpdb->get_results( 'SELECT * FROM ' . JOBTABLE . ' WHERE archive != 1 ORDER BY pubDate DESC' );
         ?>
         
-        <p>The following are current job opportunities provided by <?php echo $siteName; ?>.</p>
+        <p><?php _e( 'The following are current job opportunities provided by <?php echo $siteName; ?>.' ); ?></p>
     
         
         <ul>

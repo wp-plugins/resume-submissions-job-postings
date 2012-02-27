@@ -28,7 +28,7 @@ if ( $update ){
 	
 	update_option( 'resume_input_fields', $inputFieldsArray );
 	
-	$message = '<div class="updated fade" id="message"><p>Input Fields have been updated.</p></div>';
+	$message = '<div class="updated fade" id="message"><p>' . _e( 'Input Fields have been updated.' ) . '</p></div>';
 	
 }
 
@@ -37,77 +37,77 @@ if ( $update ){
 <div class="wrap alternate">
 	
     <div id="icon-tools" class="icon32"></div>
-    <h2><?php _e( 'Input Fields', 'resume_input_fields' ); ?></h2>
+    <h2><?php _e( 'Input Fields' ); ?></h2>
     <?php echo $message; ?>
     <br class="a_break" style="clear: both;"/>
-    <p>Select which fields you would like to display on the Resume Form.</p>
+    <p><?php _e( 'Select which fields you would like to display on the Resume Form.' ); ?></p>
     <form name="inputFields" enctype="multipart/form-data" action="" method="post">
     <table class="widefat">
         <thead>
             <tr>
-                <th scope="col">Field Name</th>
-                <th scope="col">Display</th>
-                <th scope="col">Required</th>
+                <th scope="col"><?php _e( 'Field Name' ); ?></th>
+                <th scope="col"><?php _e( 'Display' ); ?></th>
+                <th scope="col"><?php _e( 'Required' ); ?></th>
             </tr>
         </thead>
         <tbody>
         	<tr>
-            	<td><p>First Name</p></td>
+            	<td><p><?php _e( 'First Name' ); ?></p></td>
                 <td><input type="checkbox" name="fnameShow" value="1" <?php echo checkIt( grabContents( get_option( 'resume_input_fields' ), 'fname', 0 ), 1, 'check' ); ?> /></td>
                 <td><input type="checkbox" name="fnameReq" value="1" <?php echo checkIt( grabContents( get_option( 'resume_input_fields' ), 'fname', 1 ), 1, 'check' ); ?> /></td>
             </tr>
             <tr>
-            	<td><p>Last Name</p></td>
+            	<td><p><?php _e( 'Last Name' ); ?></p></td>
                 <td><input type="checkbox" name="lnameShow" value="1" <?php echo checkIt( grabContents( get_option( 'resume_input_fields' ), 'lname', 0 ), 1, 'check' ); ?> /></td>
                 <td><input type="checkbox" name="lnameReq" value="1" <?php echo checkIt( grabContents( get_option( 'resume_input_fields' ), 'lname', 1 ), 1, 'check' ); ?> /></td>
             </tr>
             <tr>
-            	<td><p>Address</p></td>
+            	<td><p><?php _e( 'Address' ); ?></p></td>
                 <td><input type="checkbox" name="addressShow" value="1" <?php echo checkIt( grabContents( get_option( 'resume_input_fields' ), 'address', 0 ), 1, 'check' ); ?> /></td>
                 <td><input type="checkbox" name="addressReq" value="1" <?php echo checkIt( grabContents( get_option( 'resume_input_fields' ), 'address', 1 ), 1, 'check' ); ?> /></td>
             </tr>
             <tr>
-            	<td><p>Suite/Apt</p></td>
+            	<td><p><?php _e( 'Suite/Apt' ); ?></p></td>
                 <td><input type="checkbox" name="address2Show" value="1" <?php echo checkIt( grabContents( get_option( 'resume_input_fields' ), 'address2', 0 ), 1, 'check' ); ?> /></td>
                 <td><input type="checkbox" name="address2Req" value="1" <?php echo checkIt( grabContents( get_option( 'resume_input_fields' ), 'address2', 1 ), 1, 'check' ); ?> /></td>
             </tr>
             <tr>
-            	<td><p>City</p></td>
+            	<td><p><?php _e( 'City' ); ?></p></td>
                 <td><input type="checkbox" name="cityShow" value="1" <?php echo checkIt( grabContents( get_option( 'resume_input_fields' ), 'city', 0 ), 1, 'check' ); ?> /></td>
                 <td><input type="checkbox" name="cityReq" value="1" <?php echo checkIt( grabContents( get_option( 'resume_input_fields' ), 'city', 1 ), 1, 'check' ); ?> /></td>
             </tr>
             <tr>
-            	<td><p>State</p></td>
+            	<td><p><?php _e( 'State' ); ?></p></td>
                 <td><input type="checkbox" name="stateShow" value="1" <?php echo checkIt( grabContents( get_option( 'resume_input_fields' ), 'state', 0 ), 1, 'check' ); ?> /></td>
                 <td><input type="checkbox" name="stateReq" value="1" <?php echo checkIt( grabContents( get_option( 'resume_input_fields' ), 'state', 1 ), 1, 'check' ); ?> /></td>
             </tr>
             <tr>
-            	<td><p>Zip Code</p></td>
+            	<td><p><?php _e( 'Zip Code' ); ?></p></td>
                 <td><input type="checkbox" name="zipShow" value="1" <?php echo checkIt( grabContents( get_option( 'resume_input_fields' ), 'zip', 0 ), 1, 'check' ); ?> /></td>
                 <td><input type="checkbox" name="zipReq" value="1" <?php echo checkIt( grabContents( get_option( 'resume_input_fields' ), 'zip', 1 ), 1, 'check' ); ?> /></td>
             </tr>
             <tr>
-            	<td><p>Primary Number</p></td>
+            	<td><p><?php _e( 'Primary Number' ); ?></p></td>
                 <td><input type="checkbox" name="pnumberShow" value="1" <?php echo checkIt( grabContents( get_option( 'resume_input_fields' ), 'pnumber', 0 ), 1, 'check' ); ?> /></td>
                 <td><input type="checkbox" name="pnumberReq" value="1" <?php echo checkIt( grabContents( get_option( 'resume_input_fields' ), 'pnumber', 1 ), 1, 'check' ); ?> /></td>
             </tr>
             <tr>
-            	<td><p>Secondary Number</p></td>
+            	<td><p><?php _e( 'Secondary Number' ); ?></p></td>
                 <td><input type="checkbox" name="snumberShow" value="1" <?php echo checkIt( grabContents( get_option( 'resume_input_fields' ), 'snumber', 0 ), 1, 'check' ); ?> /></td>
                 <td><input type="checkbox" name="snumberReq" value="1" <?php echo checkIt( grabContents( get_option( 'resume_input_fields' ), 'snumber', 1 ), 1, 'check' ); ?> /></td>
             </tr>
             <tr>
-            	<td><p>Email</p></td>
+            	<td><p><?php _e( 'Email' ); ?></p></td>
                 <td><input type="checkbox" name="emailShow" value="1" <?php echo checkIt( grabContents( get_option( 'resume_input_fields' ), 'email', 0 ), 1, 'check' ); ?> /></td>
                 <td><input type="checkbox" name="emailReq" value="1" <?php echo checkIt( grabContents( get_option( 'resume_input_fields' ), 'email', 1 ), 1, 'check' ); ?> /></td>
             </tr>
             <tr>
-            	<td><p>Cover Letter</p></td>
+            	<td><p><?php _e( 'Cover Letter' ); ?></p></td>
                 <td><input type="checkbox" name="coverShow" value="1" <?php echo checkIt( grabContents( get_option( 'resume_input_fields' ), 'cover', 0 ), 1, 'check' ); ?> /></td>
                 <td><input type="checkbox" name="coverReq" value="1" <?php echo checkIt( grabContents( get_option( 'resume_input_fields' ), 'cover', 1 ), 1, 'check' ); ?> /></td>
             </tr>
             <tr>
-            	<td><p>Resume</p></td>
+            	<td><p><?php _e( 'Resume' ); ?></p></td>
                 <td><input type="checkbox" name="resumeShow" value="1" <?php echo checkIt( grabContents( get_option( 'resume_input_fields' ), 'resume', 0 ), 1, 'check' ); ?> /></td>
                 <td><input type="checkbox" name="resumeReq" value="1" <?php echo checkIt( grabContents( get_option( 'resume_input_fields' ), 'resume', 1 ), 1, 'check' ); ?> /></td>
             </tr>

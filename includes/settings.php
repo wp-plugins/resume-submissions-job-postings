@@ -41,7 +41,7 @@ if ( $update ) {
 	update_option( 'resume_user_email_subject', $userEmailSubject );
 	update_option( 'resume_user_email_copy', $userEmailCopy );
 	
-	$message = '<div class="updated fade" id="message"><p>Settings have been updated.</p></div>';
+	$message = '<div class="updated fade" id="message"><p> ' . _e( 'Settings have been updated.' ) . '</p></div>';
 }
 
 
@@ -50,27 +50,27 @@ if ( $update ) {
 <div class="wrap alternate">
 	
     <div id="icon-options-general" class="icon32"></div>
-    <h2><?php _e( 'Resumé Settings', 'resume_settings' ); ?></h2>
+    <h2><?php _e( 'Resumé Settings' ); ?></h2>
     <?php echo $message; ?>
     <br class="a_break" style="clear: both;"/>
 
 	<form name='form' id='form' class='form' method='post' enctype="multipart/form-data">
     <table width="100%" cellpadding="0" cellspacing="0">
         <tr>
-        	<td width="150px"><p><b>Enable Captcha: </b></p></td>
+        	<td width="150px"><p><b><?php _e( 'Enable Captcha:' ); ?> </b></p></td>
             <td align="left"><input type="radio" name="captchaUse" value="Enabled" <?php echo checkIt( get_option( 'resume_captcha' ), 'Enabled', 'radio' ); ?> />Enabled 
             				 <input type="radio" name="captchaUse" value="Disabled" <?php echo checkIt( get_option( 'resume_captcha' ), 'Disabled', 'radio' ); ?> />Disabled</td>
         </tr>
         <tr>
-        	<td><p><b>Captcha - Private Key: </b></p></td>
+        	<td><p><b><?php _e( 'Captcha - Private Key:' ); ?> </b></p></td>
             <td align="left"><input type='text' name='captchaPrivateKey' size='40' value='<?php echo get_option( 'resume_captcha_private_key' ); ?>' /></td>
         </tr>
         <tr>
-        	<td><p><b>Captcha - Public Key: </b></p></td>
+        	<td><p><b><?php _e( 'Captcha - Public Key:' ); ?> </b></p></td>
             <td align="left"><input type='text' name='captchaPublicKey' size='40' value='<?php echo get_option( 'resume_captcha_public_key' ); ?>' /></td>
         </tr>
         <tr>
-        	<td><p><b>Resume Form Page: </b></p></td>
+        	<td><p><b><?php _e( 'Resume Form Page:' ); ?> </b></p></td>
             <td align="left"><select name="formPage">
             			         <option value=""> -- Select -- </option>
                                  <?php 
@@ -82,7 +82,7 @@ if ( $update ) {
                              </select></td>
         </tr>
         <tr>
-        	<td><p><b>Display Jobs Page: </b></p></td>
+        	<td><p><b><?php _e( 'Display Jobs Page:' ); ?> </b></p></td>
             <td align="left"><select name="jobsPage">
   							     <option value=""> -- Select -- </option>
                                  <?php 
@@ -94,29 +94,29 @@ if ( $update ) {
                              </select></td>
         </tr>
         <tr>
-        	<td><p><b>Use TinyMCE: </b></p></td>
+        	<td><p><b><?php _e( 'Use TinyMCE:' ); ?> </b></p></td>
             <td align="left"><input type="radio" name="useTinymce" value="Enabled" <?php echo checkIt( get_option( 'resume_use_tinymce' ), 'Enabled', 'radio' ); ?> />Enabled 
             				 <input type="radio" name="useTinymce" value="Disabled" <?php echo checkIt( get_option( 'resume_use_tinymce' ), 'Disabled', 'radio' ); ?> />Disabled</td>
         </tr>
         <tr>
-        	<td><p><b>Send Admin Email To: </b></p></td>
+        	<td><p><b><?php _e( 'Send Admin Email To:' ); ?> </b></p></td>
             <td align="left"><input type='text' name='sendAdminEmailTo' size='40' value='<?php echo get_option( 'resume_send_admin_email_to' ); ?>' /></td>
         </tr>
         <tr>
-        	<td><p><b>Send User Email: </b></p></td>
+        	<td><p><b><?php _e( 'Send User Email:' ); ?> </b></p></td>
             <td align="left"><input type="radio" name="sendEmailToUser" value="Enabled"  <?php echo checkIt( get_option( 'resume_send_email_to_user' ), 'Enabled', 'radio' ); ?> />Enabled 
             				 <input type="radio" name="sendEmailToUser" value="Disabled" <?php echo checkIt( get_option( 'resume_send_email_to_user' ), 'Disabled', 'radio' ); ?> />Disabled</td>
         </tr>    
         <tr>
-        	<td><p><b>Email User From: </b></p></td>
+        	<td><p><b><?php _e( 'Email User From:' ); ?> </b></p></td>
             <td align="left"><input type='text' name='emailUserFrom' size='40' value='<?php echo get_option( 'resume_email_user_from' ); ?>' /></td>
         </tr>
         <tr>
-        	<td><p><b>User Email Subject: </b></p></td>
+        	<td><p><b><?php _e( 'User Email Subject:' ); ?> </b></p></td>
             <td align="left"><input type='text' name='userEmailSubject' size='40' value='<?php echo get_option( 'resume_user_email_subject' ); ?>' /></td>
         </tr>
         <tr>
-        	<td valign="top"><p><b>User Email Copy: </b></p></td>
+        	<td valign="top"><p><b><?php _e( 'User Email Copy:' ); ?> </b></p></td>
             <td align="left" width="600px"><?php wp_editor( get_option( 'resume_user_email_copy' ), 'userEmailCopy', setTinySetting( 'userEmailCopy', '15', false, true, true ) ); ?></td>
             <td></td>
         </tr>       
@@ -136,7 +136,7 @@ if ( $update ) {
     <table class="widefat">
         <thead>
             <tr>
-                <th scope="col">Helpful Hints</th>
+                <th scope="col"><?php _e( 'Helpful Hints' ); ?></th>
             </tr>
         </thead>
         <tbody>

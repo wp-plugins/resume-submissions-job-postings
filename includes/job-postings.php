@@ -18,9 +18,6 @@ $range = 3;
  
 // Add New
 if ( $add ){
-	$title       = htmlentities( $title );
-	$subTitle    = htmlentities( $subTitle );
-	$description = htmlentities( $description );
 
 	if ( $archive == '' ){
 		$archiveAdd = 0;
@@ -46,9 +43,6 @@ if ( $add ){
 
 // BOF View/Edit 
 if ( $edit ){
-	$title       = htmlentities( $title );
-	$subTitle    = htmlentities( $subTitle );
-	$description = htmlentities( $description );
 	
 	if ( $archive == '' ){
 		$archiveUpdate = 0;
@@ -119,7 +113,7 @@ if ( $ID ){
 <div class="wrap alternate">
 	
     <div id="icon-edit-comments" class="icon32"></div>	
-    <h2><?php _e( 'Job Postings' . $subName, 'resume_view_jp' ); ?></h2>
+    <h2><?php _e( 'Job Postings' . $subName ); ?></h2>
     <?php echo $message; ?>
     <br class="a_break" style="clear: both;"/>
     <?php
@@ -152,15 +146,15 @@ if ( $ID ){
 				<td></td>
 			</tr>
 			<tr>
-				<td><p><b>Job Title: </b></p></td>
+				<td><p><b><?php _e( 'Job Title:' ); ?> </b></p></td>
 				<td align="left"><input type='text' name='title' size='30' id='title' value='<?php echo $single->title; ?>' /></td>
 			</tr>
 			<tr>
-				<td><p><b>Subtitle: </b></p></td>
+				<td><p><b><?php _e( 'Subtitle:' ); ?> </b></p></td>
 				<td align="left"><input type='text' name='subTitle' size='25' id='subTitle' value='<?php echo $single->subTitle; ?>' /></td>
 			</tr>
 			<tr>
-				<td valign="top"><p><b>Copy: </b></p></td>
+				<td valign="top"><p><b><?php _e( 'Copy:' ); ?> </b></p></td>
 				<td align="left"><p><?php wp_editor( $single->description, 'description', setTinySetting( 'description', '15', true, true, true ) ); ?></p><br /></td>
 			</tr>
 		<?php
@@ -171,7 +165,7 @@ if ( $ID ){
 		}
 		?>
 			<tr>
-				<td><p><b>Archive: </b></p></td>
+				<td><p><b><?php _e( 'Archive:' ); ?> </b></p></td>
 				<td align="left"><input type="checkbox" name="archive" value="1" <?php echo $archiveChecked; ?> /></td>
 			</tr>
 			<tr>
@@ -197,19 +191,19 @@ if ( $ID ){
 				<td></td>
 			</tr>
 			<tr>
-				<td><p><b>Job Title: </b></p></td>
+				<td><p><b><?php _e( 'Job Title:' ); ?> </b></p></td>
 				<td align="left"><input type='text' name='title' size='30' id='title' value='' /></td>
 			</tr>
 			<tr>
-				<td><p><b>Subtitle: </b></p></td>
+				<td><p><b><?php _e( 'Subtitle:' ); ?> </b></p></td>
 				<td align="left"><input type='text' name='subTitle' size='25' id='subTitle' value='' /></td>
 			</tr>
 			<tr>
-				<td valign="top"><p><b>Description: </b></p></td>
+				<td valign="top"><p><b><?php _e( 'Description:' ); ?> </b></p></td>
 				<td align="left"><p><?php wp_editor( 'description', 'description', setTinySetting( 'description', '15', true, true, true ) ); ?></p><br /></td>
 			</tr>
 			<tr>
-				<td><p><b>Archive: </b></p></td>
+				<td><p><b><?php _e( 'Archive:' ); ?> </b></p></td>
 				<td align="left"><input type="checkbox" name="archive" value="1" /></td>
 			</tr>
 			<tr>
@@ -251,9 +245,9 @@ if ( $ID ){
 		<table class="widefat">
 			<thead>
 				<tr>
-					<th scope="col" width="300px">Job Title</th>
-					<th scope="col" width="300px">Post Date</th>
-					<th scope="col" width="300px">Status</th>
+					<th scope="col" width="300px"><?php _e( 'Job Title' ); ?></th>
+					<th scope="col" width="300px"><?php _e( 'Post Date' ); ?></th>
+					<th scope="col" width="300px"><?php _e( 'Status' ); ?></th>
 					<th scope="col">&nbsp;</th>
 					<th scope="col">&nbsp;</th>
 					<th scope="col">&nbsp;</th>
@@ -265,14 +259,14 @@ if ( $ID ){
 				foreach ( $infoQuery as $info ){
 					
 					if ( $info->archive == 0 ){
-						$isArchived = '<p style="color:#09cc09;">Open</p>';
+						$isArchived = '<p style="color:#09cc09;">' . _e( 'Open' ) . '</p>';
 					} else {
-						$isArchived = '<p style="color:#cc0909;">Closed</p>';
+						$isArchived = '<p style="color:#cc0909;">' . _e( 'Closed' ) . '</p>';
 					}
 				
 					?>
 					<tr>
-						<td><p><?php echo $info->title; ?></p></td>
+						<td><p><?php _e( $info->title ); ?></p></td>
 						<td><p><?php echo date( 'F j, Y g:ia', strtotime( $info->pubDate ) ); ?></p></td>
 						<td><?php echo $isArchived; ?></td>
 						<td>&nbsp;</td>
@@ -298,7 +292,7 @@ if ( $ID ){
 				
 				?>
 				<tr>
-					<td><p>There are no job postings at this time.</p></td>
+					<td><p><?php _e( 'There are no job postings at this time.' ); ?></p></td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
 					
@@ -314,29 +308,29 @@ if ( $ID ){
 				?>
 				<div class="tablenav">
 					<div class="tablenav-pages">
-						<span class="displaying-num">Displaying <?php echo $offset + 1; ?> - <?php echo $offset + count($infoQuery); ?> of <?php echo $numRows; ?></span>
+						<span class="displaying-num"><?php _e( 'Displaying ' . $offset + 1 . ' - ' . $offset + count($infoQuery) . ' of ' . $numRows ); ?></span>
 					
 					
 						<?php
 						if ( $currentPage > 1 ) {
-						   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?admin.php?page=job_postings&currentPage=1">First</a> ';
+						   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?admin.php?page=job_postings&currentPage=1">' . _e( 'First' ) . '</a> ';
 						   $prevPage = $currentPage - 1;
-						   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?admin.php?page=job_postings&currentPage=' . $prevPage . '">«</a> ';
+						   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?admin.php?page=job_postings&currentPage=' . $prevPage . '">' . _e( '«' ) . '</a> ';
 						} 
 						
 						for ( $x = ( $currentPage - $range ); $x < ( ( $currentPage + $range ) + 1 ); $x++ ) {
 						   
 						   if ( ( $x > 0 ) && ( $x <= $totalPages ) ) {
 							  if ( $x != $currentPage ) {
-								 echo ' <a href="' . $_SERVER['PHP_SELF'] . '?admin.php?page=job_postings&currentPage=' . $x . '">' . $x . '</a> ';
+								 echo ' <a href="' . $_SERVER['PHP_SELF'] . '?admin.php?page=job_postings&currentPage=' . $x . '">' . _e( $x ) . '</a> ';
 							  } 
 						   } 
 						}
 										 
 						if ( $currentPage != $totalPages ) {
 						   $nextPage = $currentPage + 1;
-						   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?admin.php?page=job_postings&currentPage=' . $nextPage . '">»</a> ';
-						   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?admin.php?page=job_postings&currentPage=' . $totalPages . '">Last</a> ';
+						   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?admin.php?page=job_postings&currentPage=' . $nextPage . '">' . _e( '»' ) . '</a> ';
+						   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?admin.php?page=job_postings&currentPage=' . $totalPages . '">' . _e( 'Last' ) . '</a> ';
 						}
 						?>
 					</div> 

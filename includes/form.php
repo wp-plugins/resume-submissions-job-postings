@@ -71,22 +71,11 @@ if ( $useTinyMce == "Enabled" ){
 // Error Checking
 if ( ( $action == 'add' ) && formErrorCheck( $fields ) == true ){
 	$formError = true;
-	$formMessage = '<p style="color:#CC0000;"><b>Error:</b> Make sure all fields required are filled out correctly.</p>';
+	$formMessage = '<p style="color:#CC0000;"> ' . _e( '<b>Error:</b> Make sure all fields required are filled out correctly.' ) . '</p>';
 }
 
 	
 if( $action == 'add' && $formError == false ) {
-
-	$fname    = htmlentities( $fname );
-	$lname    = htmlentities( $lname );
-	$address  = htmlentities( $address );
-	$address2 = htmlentities( $address2 );
-	$city     = htmlentities( $city );
-	$state    = htmlentities( $state );
-	$zip      = htmlentities( $zip );
-	$email    = htmlentities( $email );
-	$cover    = htmlentities( $cover );
-	$resume   = htmlentities( $resume );
 	
 	$insertQuery = $wpdb->query('INSERT INTO ' . SUBTABLE . ' VALUES (NULL,
 																	"' . $fname . '",
@@ -236,13 +225,13 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
         <tr>
             <td width="190px"></td>
             <td width="145px"></td>
-            <td><p style='color:#CC0000;'><b>*</b> Required</p></td>
+            <td><p style='color:#CC0000;'><?php _e( '<b>*</b> Required' ); ?></p></td>
         </tr>
         <?php
 		if ( grabContents( get_option( 'resume_input_fields' ), 'fname', 0 ) ) {	
 			?>
             <tr>
-                <td><p>First Name: </p></td>
+                <td><p><?php _e( 'First Name:' ); ?> </p></td>
                 <td><input type='text' name='fname' size='20' value='<?php if ( $errorFName == '' ) echo $current_user->user_firstname; else echo $errorFName; ?>' /></td>
                 <td valign="top"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'fname', 1 ) ); ?></p></td>
             </tr>
@@ -251,7 +240,7 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
 		if ( grabContents( get_option( 'resume_input_fields' ), 'lname', 0 ) ) {	
 			?>
             <tr>
-                <td><p>Last Name: </p></td>
+                <td><p><?php _e( 'Last Name:' ); ?> </p></td>
                 <td><input type='text' name='lname' size='20' value='<?php if ( $errorLName == '' ) echo $current_user->user_lastname; else echo $errorLName; ?>' /></td>
                 <td valign="top"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'lname', 1 ) ); ?></p></td>
             </tr>
@@ -260,7 +249,7 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
 		if ( grabContents( get_option( 'resume_input_fields' ), 'address', 0 ) ) {	
 			?>
             <tr>
-                <td><p>Address: </p></td>
+                <td><p><?php _e( 'Address:' ); ?> </p></td>
                 <td><input type='text' name='address' size='20' value='<?php echo $errorAddress; ?>' /></td>
                 <td valign="top"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'address', 1 ) ); ?></p></td>
             </tr>
@@ -269,7 +258,7 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
 		if ( grabContents( get_option( 'resume_input_fields' ), 'address2', 0 ) ) {	
 			?>
 			<tr>
-				<td><p>Address2: </p></td>
+				<td><p><?php _e( 'Address2:' ); ?> </p></td>
 				<td><input type='text' name='address2' size='20' value='<?php echo $errorAddress2; ?>' /></td>
 				<td valign="top"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'address2', 1 ) ); ?></p></td>
 			</tr>
@@ -278,7 +267,7 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
 		if ( grabContents( get_option( 'resume_input_fields' ), 'city', 0 ) ) {	
 			?>
             <tr>
-                <td><p>City: </p></td>
+                <td><p><?php _e( 'City:' ); ?> </p></td>
                 <td><input type='text' name='city' size='20' value='<?php echo $errorCity; ?>' /></td>
                 <td valign="top"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'city', 1 ) ); ?></p></td>
             </tr>
@@ -287,7 +276,7 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
 		if ( grabContents( get_option( 'resume_input_fields' ), 'state', 0 ) ) {	
 			?>
             <tr>
-                <td><p>State: </p></td>
+                <td><p><?php _e( 'State:' ); ?> </p></td>
                 <td><select name="state" id="state">
                         <?php echo arrayToSelect( stateList(), $errorState ); ?>
                     </select></td>
@@ -298,7 +287,7 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
 		if ( grabContents( get_option( 'resume_input_fields' ), 'zip', 0 ) ) {	
 			?>
             <tr>
-                <td><p>Zip Code: </p></td>
+                <td><p><?php _e( 'Zip Code:' ); ?> </p></td>
                 <td><input type='text' name='zip' size='20' value='<?php echo $errorZip; ?>' /></td>
                 <td valign="top"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'zip', 1 ) ); ?></p></td>
             </tr>
@@ -307,7 +296,7 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
 		if ( grabContents( get_option( 'resume_input_fields' ), 'pnumber', 0 ) ) {	
 			?>
             <tr>
-                <td><p>Primary Contact Number: </p></td>
+                <td><p><?php _e( 'Primary Contact Number:' ); ?> </p></td>
                 <td><input type='text' name='pnumber' size='15' value='<?php echo $errorPNumber; ?>' /></td>
                 <td valign="top"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'pnumber', 1 ) ); ?><?php echo $pType; ?></p></td>
             </tr>
@@ -316,7 +305,7 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
 		if ( grabContents( get_option( 'resume_input_fields' ), 'snumber', 0 ) ) {	
 			?>
             <tr>
-                <td><p>Secondary Contact Number: </p></td>
+                <td><p><?php _e( 'Secondary Contact Number:' ); ?> </p></td>
                 <td><input type='text' name='snumber' size='15' value='<?php echo $errorSNumber; ?>' /></td>
                 <td valign="top"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'snumber', 1 ) ); ?><?php echo $sType; ?></p></td>
             </tr>
@@ -325,7 +314,7 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
 		if ( grabContents( get_option( 'resume_input_fields' ), 'email', 0 ) ) {	
 			?>
             <tr>
-                <td><p>E-Mail Address: </p></td>
+                <td><p><?php _e( 'E-Mail Address:' ); ?> </p></td>
                 <td><input type='text' name='email' size='20' value='<?php if ( $errorEmail == '' ) echo $current_user->user_email; else echo $errorEmail; ?>' /></td>
                 <td valign="top"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'email', 1 ) ); ?></p></td>
             </tr>
@@ -335,7 +324,7 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
 		$currentJobs = $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM ' . JOBTABLE . ' WHERE archive != "1" ORDER BY title DESC' ) );
 		?>
         <tr>
-            <td><p>Regarding Job: </p></td>
+            <td><p><?php _e( 'Regarding Job:' ); ?> </p></td>
             <td><select name="job">                            	
 					<?php echo arrayToSelect( $currentJobs, $errorJob ); ?>
                     <option value="General Purpose" <?php if ( $errorJob == 'General Purpose' ){ echo 'selected="selected"'; } ?>>General Purpose</option>    
@@ -350,7 +339,7 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
 		if ( grabContents( get_option( 'resume_input_fields' ), 'cover', 0 ) ) {	
 			?>
             <tr>
-                <td><p><b>Cover Letter: </b>(Please submit with good formatting)</p></td>
+                <td><p><?php _e( '<b>Cover Letter: </b>(Please submit with good formatting)' ); ?></p></td>
                 <td></td>
             </tr>
             <tr>
@@ -362,7 +351,7 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
 		if ( grabContents( get_option( 'resume_input_fields' ), 'resume', 0 ) ) {	
 			?>
             <tr>
-                <td><p><b>Resumé: </b>(Please submit with good formatting)</p></td>
+                <td><p><?php _e( '<b>Resumé: </b>(Please submit with good formatting)' ); ?></p></td>
                 <td></td>
             </tr>
             <tr>
