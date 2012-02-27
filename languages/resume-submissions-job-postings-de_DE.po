@@ -1,0 +1,409 @@
+#@ resume-submissions-job-postings
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/resume-submissions-job-postings\n"
+"POT-Creation-Date: 2012-02-27 17:42:53+00:00\n"
+"PO-Revision-Date: 2012-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: \n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+#: includes/display-jobs.php:16
+#@ resume-submissions-job-postings
+msgid "Archived Job Postings"
+msgstr ""
+
+#: includes/display-jobs.php:65 includes/job-postings.php:316
+#: includes/submissions.php:239
+#@ resume-submissions-job-postings
+msgid "First"
+msgstr ""
+
+#: includes/display-jobs.php:84 includes/job-postings.php:333
+#: includes/submissions.php:256
+#@ resume-submissions-job-postings
+msgid "Last"
+msgstr ""
+
+#: includes/display-jobs.php:93
+#@ resume-submissions-job-postings
+msgid "There are no archived job postings at this time."
+msgstr ""
+
+#: includes/display-jobs.php:104
+#@ resume-submissions-job-postings
+msgid "Posted:"
+msgstr ""
+
+#: includes/form.php:74
+#@ resume-submissions-job-postings
+msgid "<b>Error:</b> Make sure all fields required are filled out correctly."
+msgstr ""
+
+#: includes/form.php:228
+#@ resume-submissions-job-postings
+msgid "<b>*</b> Required"
+msgstr ""
+
+#: includes/form.php:234 includes/submissions.php:295
+#@ resume-submissions-job-postings
+msgid "First Name:"
+msgstr ""
+
+#: includes/form.php:243 includes/submissions.php:303
+#@ resume-submissions-job-postings
+msgid "Last Name:"
+msgstr ""
+
+#: includes/form.php:252 includes/submissions.php:311
+#@ resume-submissions-job-postings
+msgid "Address:"
+msgstr ""
+
+#: includes/form.php:261
+#@ resume-submissions-job-postings
+msgid "Address2:"
+msgstr ""
+
+#: includes/form.php:270 includes/submissions.php:328
+#@ resume-submissions-job-postings
+msgid "City:"
+msgstr ""
+
+#: includes/form.php:279 includes/submissions.php:336
+#@ resume-submissions-job-postings
+msgid "State:"
+msgstr ""
+
+#: includes/form.php:290 includes/submissions.php:346
+#@ resume-submissions-job-postings
+msgid "Zip Code:"
+msgstr ""
+
+#: includes/form.php:299 includes/submissions.php:358
+#@ resume-submissions-job-postings
+msgid "Primary Contact Number:"
+msgstr ""
+
+#: includes/form.php:308 includes/submissions.php:367
+#@ resume-submissions-job-postings
+msgid "Secondary Contact Number:"
+msgstr ""
+
+#: includes/form.php:317 includes/submissions.php:380
+#@ resume-submissions-job-postings
+msgid "E-Mail Address:"
+msgstr ""
+
+#: includes/form.php:327 includes/submissions.php:387
+#@ resume-submissions-job-postings
+msgid "Regarding Job:"
+msgstr ""
+
+#: includes/form.php:342
+#@ resume-submissions-job-postings
+msgid "<b>Cover Letter: </b>(Please submit with good formatting)"
+msgstr ""
+
+#: includes/form.php:354
+#@ resume-submissions-job-postings
+msgid "<b>Resumé: </b>(Please submit with good formatting)"
+msgstr ""
+
+#: includes/input-fields.php:31
+#@ resume-submissions-job-postings
+msgid "Input Fields have been updated."
+msgstr ""
+
+#: includes/input-fields.php:40 resume-submission.php:105
+#@ resume-submissions-job-postings
+msgid "Input Fields"
+msgstr ""
+
+#: includes/input-fields.php:43
+#@ resume-submissions-job-postings
+msgid "Select which fields you would like to display on the Resume Form."
+msgstr ""
+
+#: includes/input-fields.php:48
+#@ resume-submissions-job-postings
+msgid "Field Name"
+msgstr ""
+
+#: includes/input-fields.php:49
+#@ resume-submissions-job-postings
+msgid "Display"
+msgstr ""
+
+#: includes/input-fields.php:50
+#@ resume-submissions-job-postings
+msgid "Required"
+msgstr ""
+
+#: includes/input-fields.php:55
+#@ resume-submissions-job-postings
+msgid "First Name"
+msgstr ""
+
+#: includes/input-fields.php:60
+#@ resume-submissions-job-postings
+msgid "Last Name"
+msgstr ""
+
+#: includes/input-fields.php:65
+#@ resume-submissions-job-postings
+msgid "Address"
+msgstr ""
+
+#: includes/input-fields.php:70
+#@ resume-submissions-job-postings
+msgid "Suite/Apt"
+msgstr ""
+
+#: includes/input-fields.php:75
+#@ resume-submissions-job-postings
+msgid "City"
+msgstr ""
+
+#: includes/input-fields.php:80
+#@ resume-submissions-job-postings
+msgid "State"
+msgstr ""
+
+#: includes/input-fields.php:85
+#@ resume-submissions-job-postings
+msgid "Zip Code"
+msgstr ""
+
+#: includes/input-fields.php:90
+#@ resume-submissions-job-postings
+msgid "Primary Number"
+msgstr ""
+
+#: includes/input-fields.php:95
+#@ resume-submissions-job-postings
+msgid "Secondary Number"
+msgstr ""
+
+#: includes/input-fields.php:100
+#@ resume-submissions-job-postings
+msgid "Email"
+msgstr ""
+
+#: includes/input-fields.php:105
+#@ resume-submissions-job-postings
+msgid "Cover Letter"
+msgstr ""
+
+#: includes/input-fields.php:110
+#@ resume-submissions-job-postings
+msgid "Resume"
+msgstr ""
+
+#: includes/job-postings.php:149 includes/job-postings.php:194
+#@ resume-submissions-job-postings
+msgid "Job Title:"
+msgstr ""
+
+#: includes/job-postings.php:153 includes/job-postings.php:198
+#@ resume-submissions-job-postings
+msgid "Subtitle:"
+msgstr ""
+
+#: includes/job-postings.php:157
+#@ resume-submissions-job-postings
+msgid "Copy:"
+msgstr ""
+
+#: includes/job-postings.php:168 includes/job-postings.php:206
+#@ resume-submissions-job-postings
+msgid "Archive:"
+msgstr ""
+
+#: includes/job-postings.php:202
+#@ resume-submissions-job-postings
+msgid "Description:"
+msgstr ""
+
+#: includes/job-postings.php:248
+#@ resume-submissions-job-postings
+msgid "Job Title"
+msgstr ""
+
+#: includes/job-postings.php:249
+#@ resume-submissions-job-postings
+msgid "Post Date"
+msgstr ""
+
+#: includes/job-postings.php:250
+#@ resume-submissions-job-postings
+msgid "Status"
+msgstr ""
+
+#: includes/job-postings.php:262
+#@ resume-submissions-job-postings
+msgid "Open"
+msgstr ""
+
+#: includes/job-postings.php:264
+#@ resume-submissions-job-postings
+msgid "Closed"
+msgstr ""
+
+#: includes/job-postings.php:295
+#@ resume-submissions-job-postings
+msgid "There are no job postings at this time."
+msgstr ""
+
+#: includes/settings.php:44
+#@ resume-submissions-job-postings
+msgid "Settings have been updated."
+msgstr ""
+
+#: includes/settings.php:53
+#@ resume-submissions-job-postings
+msgid "Resumé Settings"
+msgstr ""
+
+#: includes/settings.php:60
+#@ resume-submissions-job-postings
+msgid "Enable Captcha:"
+msgstr ""
+
+#: includes/settings.php:65
+#@ resume-submissions-job-postings
+msgid "Captcha - Private Key:"
+msgstr ""
+
+#: includes/settings.php:69
+#@ resume-submissions-job-postings
+msgid "Captcha - Public Key:"
+msgstr ""
+
+#: includes/settings.php:73
+#@ resume-submissions-job-postings
+msgid "Resume Form Page:"
+msgstr ""
+
+#: includes/settings.php:85
+#@ resume-submissions-job-postings
+msgid "Display Jobs Page:"
+msgstr ""
+
+#: includes/settings.php:97
+#@ resume-submissions-job-postings
+msgid "Use TinyMCE:"
+msgstr ""
+
+#: includes/settings.php:102
+#@ resume-submissions-job-postings
+msgid "Send Admin Email To:"
+msgstr ""
+
+#: includes/settings.php:106
+#@ resume-submissions-job-postings
+msgid "Send User Email:"
+msgstr ""
+
+#: includes/settings.php:111
+#@ resume-submissions-job-postings
+msgid "Email User From:"
+msgstr ""
+
+#: includes/settings.php:115
+#@ resume-submissions-job-postings
+msgid "User Email Subject:"
+msgstr ""
+
+#: includes/settings.php:119
+#@ resume-submissions-job-postings
+msgid "User Email Copy:"
+msgstr ""
+
+#: includes/settings.php:139
+#@ resume-submissions-job-postings
+msgid "Helpful Hints"
+msgstr ""
+
+#: includes/submissions.php:92 resume-submission.php:103
+#@ resume-submissions-job-postings
+msgid "Resumé Submissions"
+msgstr ""
+
+#: includes/submissions.php:102
+#@ resume-submissions-job-postings
+msgid "Find:"
+msgstr ""
+
+#: includes/submissions.php:121
+#@ resume-submissions-job-postings
+msgid "Show All For:"
+msgstr ""
+
+#: includes/submissions.php:174
+#@ resume-submissions-job-postings
+msgid "Name"
+msgstr ""
+
+#: includes/submissions.php:175
+#@ resume-submissions-job-postings
+msgid "E-Mail"
+msgstr ""
+
+#: includes/submissions.php:176
+#@ resume-submissions-job-postings
+msgid "Regarding Job"
+msgstr ""
+
+#: includes/submissions.php:177
+#@ resume-submissions-job-postings
+msgid "Submission Date"
+msgstr ""
+
+#: includes/submissions.php:215
+#@ resume-submissions-job-postings
+msgid "There are no submissions at this time."
+msgstr ""
+
+#: includes/submissions.php:319
+#@ resume-submissions-job-postings
+msgid "Suite/Apt:"
+msgstr ""
+
+#: includes/submissions.php:397
+#@ resume-submissions-job-postings
+msgid "Cover Letter:"
+msgstr ""
+
+#: includes/submissions.php:413
+#@ resume-submissions-job-postings
+msgid "Resumé:"
+msgstr ""
+
+#: resume-submission.php:102
+#@ resume-submissions-job-postings
+msgid "Resumés &amp; Jobs"
+msgstr ""
+
+#: resume-submission.php:104
+#@ resume-submissions-job-postings
+msgid "Job Postings"
+msgstr ""
+
+#: resume-submission.php:106
+#@ resume-submissions-job-postings
+msgid "Settings"
+msgstr ""
+

@@ -4,7 +4,7 @@ Donate link: http://www.geerservices.com/wordpress-plugins/resume-jobs/
 Tags: resume submission, job postings, job listing, resume, jobs 
 Requires at least: 3.2
 Tested up to: 3.3.1
-Stable tag: 1.9.4
+Stable tag: 1.9.4.3
 
 Allows the admin to create and show job postings. Users can submit their resume in response to a posting or for general purposes. 
 
@@ -74,6 +74,9 @@ The Keys can be downloaded at [reCaptcha](https://www.google.com/recaptcha). Fol
 3. The Settings page where you can set Captcha or User Email.
 
 == Changelog ==
+= 1.9.4.3 =
+* Added Spanish and Dutch .po files 
+
 = 1.9.4 =
 * Removed htmlentities function from the input
 * Added I18n to the main text
