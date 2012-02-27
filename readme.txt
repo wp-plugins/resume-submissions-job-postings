@@ -64,6 +64,9 @@ Make sure to have the "Resume Form Page" field filled out to go to the page that
 
 You must make sure that the Captcha Key fields are correctly filled out. Also, make sure that the url for those keys is the same url as this site.
 
+= Where can I get the Captcha Keys? =
+The Keys can be downloaded at [reCaptcha](https://www.google.com/recaptcha). Follow the steps and you will have your keys.
+
 == Screenshots ==
 
 1. The Resume Submissions lets you view or edit submitted user resumes. Can also sort by job or keyword.
