@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/resume-submissions-job-"
 "postings\n"
-"POT-Creation-Date: 2012-02-27 17:12:56+00:00\n"
+"POT-Creation-Date: 2012-02-27 17:42:53+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,16 +22,6 @@ msgstr ""
 msgid "First"
 msgstr ""
 
-#: includes/display-jobs.php:67 includes/job-postings.php:318
-#: includes/submissions.php:241
-msgid "«"
-msgstr ""
-
-#: includes/display-jobs.php:83 includes/job-postings.php:332
-#: includes/submissions.php:255
-msgid "»"
-msgstr ""
-
 #: includes/display-jobs.php:84 includes/job-postings.php:333
 #: includes/submissions.php:256
 msgid "Last"
@@ -43,12 +33,6 @@ msgstr ""
 
 #: includes/display-jobs.php:104
 msgid "Posted:"
-msgstr ""
-
-#: includes/display-jobs.php:128
-msgid ""
-"The following are current job opportunities provided by <?php echo "
-"$siteName; ?>."
 msgstr ""
 
 #: includes/form.php:74
