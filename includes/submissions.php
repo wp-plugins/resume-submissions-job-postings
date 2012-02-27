@@ -231,7 +231,7 @@ if ( $deleteSubmit == 'Delete' ){
                     ?>
                     <div class="tablenav">
                         <div class="tablenav-pages">
-                            <span class="displaying-num"><?php _e( 'Displaying ' . $offSet + 1 . ' - ' . $offSet + count($infoQuery) . ' of ' . $numRows ); ?></span>
+                            <span class="displaying-num">Displaying <?php echo $offSet + 1; ?> - <?php echo $offSet + count($infoQuery); ?> of <?php echo $numRows; ?></span>
                             
                             
                             <?php

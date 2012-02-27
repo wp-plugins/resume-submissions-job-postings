@@ -308,7 +308,7 @@ if ( $ID ){
 				?>
 				<div class="tablenav">
 					<div class="tablenav-pages">
-						<span class="displaying-num"><?php _e( 'Displaying ' . $offset + 1 . ' - ' . $offset + count($infoQuery) . ' of ' . $numRows ); ?></span>
+						<span class="displaying-num">Displaying <?php echo $offset + 1; ?> - <?php echo $offset + count($infoQuery); ?> of <?php echo $numRows; ?></span>
 					
 					
 						<?php
