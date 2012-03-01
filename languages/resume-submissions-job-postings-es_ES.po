@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/resume-submissions-job-postings\n"
 "POT-Creation-Date: 2012-02-27 17:42:53+00:00\n"
 "PO-Revision-Date: 2012-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Brian Bercaw <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,284 +22,284 @@ msgstr ""
 #: includes/display-jobs.php:16
 #@ resume-submissions-job-postings
 msgid "Archived Job Postings"
-msgstr "Archivo de ofertas de trabajo"
+msgstr "Ofertas de trabajo archivados"
 
 #: includes/display-jobs.php:65 includes/job-postings.php:316
 #: includes/submissions.php:239
 #@ resume-submissions-job-postings
 msgid "First"
-msgstr "primero"
+msgstr "Primero"
 
 #: includes/display-jobs.php:84 includes/job-postings.php:333
 #: includes/submissions.php:256
 #@ resume-submissions-job-postings
 msgid "Last"
-msgstr ""
+msgstr "Ultima"
 
 #: includes/display-jobs.php:93
 #@ resume-submissions-job-postings
 msgid "There are no archived job postings at this time."
-msgstr ""
+msgstr "En este momento no hay ofertas archivados para trabajo"
 
 #: includes/display-jobs.php:104
 #@ resume-submissions-job-postings
 msgid "Posted:"
-msgstr ""
+msgstr "Publicado:"
 
 #: includes/form.php:74
 #@ resume-submissions-job-postings
 msgid "<b>Error:</b> Make sure all fields required are filled out correctly."
-msgstr ""
+msgstr "<b>Error:</b> Asegúrese de que todo se rellena correctamente"
 
 #: includes/form.php:228
 #@ resume-submissions-job-postings
 msgid "<b>*</b> Required"
-msgstr ""
+msgstr "<b>*</b> Obligatorio"
 
 #: includes/form.php:234 includes/submissions.php:295
 #@ resume-submissions-job-postings
 msgid "First Name:"
-msgstr ""
+msgstr "Primer Nombre:"
 
 #: includes/form.php:243 includes/submissions.php:303
 #@ resume-submissions-job-postings
 msgid "Last Name:"
-msgstr ""
+msgstr "Ultima Nombre:"
 
 #: includes/form.php:252 includes/submissions.php:311
 #@ resume-submissions-job-postings
 msgid "Address:"
-msgstr ""
+msgstr "Dirección:"
 
 #: includes/form.php:261
 #@ resume-submissions-job-postings
 msgid "Address2:"
-msgstr ""
+msgstr "Dirección2:"
 
 #: includes/form.php:270 includes/submissions.php:328
 #@ resume-submissions-job-postings
 msgid "City:"
-msgstr ""
+msgstr "Ciudad:"
 
 #: includes/form.php:279 includes/submissions.php:336
 #@ resume-submissions-job-postings
 msgid "State:"
-msgstr ""
+msgstr "Estado:"
 
 #: includes/form.php:290 includes/submissions.php:346
 #@ resume-submissions-job-postings
 msgid "Zip Code:"
-msgstr ""
+msgstr "Código postal:"
 
 #: includes/form.php:299 includes/submissions.php:358
 #@ resume-submissions-job-postings
 msgid "Primary Contact Number:"
-msgstr ""
+msgstr "Contacto Principal:"
 
 #: includes/form.php:308 includes/submissions.php:367
 #@ resume-submissions-job-postings
 msgid "Secondary Contact Number:"
-msgstr ""
+msgstr "Número de Contacto Secundario:"
 
 #: includes/form.php:317 includes/submissions.php:380
 #@ resume-submissions-job-postings
 msgid "E-Mail Address:"
-msgstr ""
+msgstr "Dirección de Correo Electrónico"
 
 #: includes/form.php:327 includes/submissions.php:387
 #@ resume-submissions-job-postings
 msgid "Regarding Job:"
-msgstr ""
+msgstr "En Cuanto a Trabajo:"
 
 #: includes/form.php:342
 #@ resume-submissions-job-postings
 msgid "<b>Cover Letter: </b>(Please submit with good formatting)"
-msgstr ""
+msgstr "<b>Carta de presentación: </b>(Por favor, envíe con el formato bueno)"
 
 #: includes/form.php:354
 #@ resume-submissions-job-postings
 msgid "<b>Resumé: </b>(Please submit with good formatting)"
-msgstr ""
+msgstr "<b>Curriculum Vitae: </b>(Por favor, envíe con el formato bueno)"
 
 #: includes/input-fields.php:31
 #@ resume-submissions-job-postings
 msgid "Input Fields have been updated."
-msgstr ""
+msgstr "Se han actualizado los campos de entrada"
 
 #: includes/input-fields.php:40 resume-submission.php:105
 #@ resume-submissions-job-postings
 msgid "Input Fields"
-msgstr ""
+msgstr "campos de entrada"
 
 #: includes/input-fields.php:43
 #@ resume-submissions-job-postings
 msgid "Select which fields you would like to display on the Resume Form."
-msgstr ""
+msgstr "Seleccione los campos que desea mostrar en el formulario de currículum vitae"
 
 #: includes/input-fields.php:48
 #@ resume-submissions-job-postings
 msgid "Field Name"
-msgstr ""
+msgstr "Nombre de Campos"
 
 #: includes/input-fields.php:49
 #@ resume-submissions-job-postings
 msgid "Display"
-msgstr ""
+msgstr "Mostrar"
 
 #: includes/input-fields.php:50
 #@ resume-submissions-job-postings
 msgid "Required"
-msgstr ""
+msgstr "Obligatorio"
 
 #: includes/input-fields.php:55
 #@ resume-submissions-job-postings
 msgid "First Name"
-msgstr ""
+msgstr "Primero Nombre"
 
 #: includes/input-fields.php:60
 #@ resume-submissions-job-postings
 msgid "Last Name"
-msgstr ""
+msgstr "Ultima Nombre"
 
 #: includes/input-fields.php:65
 #@ resume-submissions-job-postings
 msgid "Address"
-msgstr ""
+msgstr "Dirección"
 
 #: includes/input-fields.php:70
 #@ resume-submissions-job-postings
 msgid "Suite/Apt"
-msgstr ""
+msgstr "Apartamento"
 
 #: includes/input-fields.php:75
 #@ resume-submissions-job-postings
 msgid "City"
-msgstr ""
+msgstr "Ciudad"
 
 #: includes/input-fields.php:80
 #@ resume-submissions-job-postings
 msgid "State"
-msgstr ""
+msgstr "Estado"
 
 #: includes/input-fields.php:85
 #@ resume-submissions-job-postings
 msgid "Zip Code"
-msgstr ""
+msgstr "Código postal"
 
 #: includes/input-fields.php:90
 #@ resume-submissions-job-postings
 msgid "Primary Number"
-msgstr ""
+msgstr "Número Principal"
 
 #: includes/input-fields.php:95
 #@ resume-submissions-job-postings
 msgid "Secondary Number"
-msgstr ""
+msgstr "Numero Secundario"
 
 #: includes/input-fields.php:100
 #@ resume-submissions-job-postings
 msgid "Email"
-msgstr ""
+msgstr "Correo electrónico"
 
 #: includes/input-fields.php:105
 #@ resume-submissions-job-postings
 msgid "Cover Letter"
-msgstr ""
+msgstr "Carta de presentación"
 
 #: includes/input-fields.php:110
 #@ resume-submissions-job-postings
 msgid "Resume"
-msgstr ""
+msgstr "Curriculum Vitae"
 
 #: includes/job-postings.php:149 includes/job-postings.php:194
 #@ resume-submissions-job-postings
 msgid "Job Title:"
-msgstr ""
+msgstr "Titulo de Trabajo:"
 
 #: includes/job-postings.php:153 includes/job-postings.php:198
 #@ resume-submissions-job-postings
 msgid "Subtitle:"
-msgstr ""
+msgstr "Subtítulo:"
 
 #: includes/job-postings.php:157
 #@ resume-submissions-job-postings
 msgid "Copy:"
-msgstr ""
+msgstr "Copia:"
 
 #: includes/job-postings.php:168 includes/job-postings.php:206
 #@ resume-submissions-job-postings
 msgid "Archive:"
-msgstr ""
+msgstr "Archivo:"
 
 #: includes/job-postings.php:202
 #@ resume-submissions-job-postings
 msgid "Description:"
-msgstr ""
+msgstr "Descripción:"
 
 #: includes/job-postings.php:248
 #@ resume-submissions-job-postings
 msgid "Job Title"
-msgstr ""
+msgstr "Titulo de Trabajo"
 
 #: includes/job-postings.php:249
 #@ resume-submissions-job-postings
 msgid "Post Date"
-msgstr ""
+msgstr "Fecha de Contabilización"
 
 #: includes/job-postings.php:250
 #@ resume-submissions-job-postings
 msgid "Status"
-msgstr ""
+msgstr "Estatus"
 
 #: includes/job-postings.php:262
 #@ resume-submissions-job-postings
 msgid "Open"
-msgstr ""
+msgstr "Abierto"
 
 #: includes/job-postings.php:264
 #@ resume-submissions-job-postings
 msgid "Closed"
-msgstr ""
+msgstr "Cerrado"
 
 #: includes/job-postings.php:295
 #@ resume-submissions-job-postings
 msgid "There are no job postings at this time."
-msgstr ""
+msgstr "No hay ofertas de trabajo en este momento."
 
 #: includes/settings.php:44
 #@ resume-submissions-job-postings
 msgid "Settings have been updated."
-msgstr ""
+msgstr "Configuración se ha actualizado."
 
 #: includes/settings.php:53
 #@ resume-submissions-job-postings
 msgid "Resumé Settings"
-msgstr ""
+msgstr "Configuración del curriculum vitae"
 
 #: includes/settings.php:60
 #@ resume-submissions-job-postings
 msgid "Enable Captcha:"
-msgstr ""
+msgstr "Activa Captcha:"
 
 #: includes/settings.php:65
 #@ resume-submissions-job-postings
 msgid "Captcha - Private Key:"
-msgstr ""
+msgstr "Captcha - Clave privada:"
 
 #: includes/settings.php:69
 #@ resume-submissions-job-postings
 msgid "Captcha - Public Key:"
-msgstr ""
+msgstr "Captcha - Clave pública:"
 
 #: includes/settings.php:73
 #@ resume-submissions-job-postings
 msgid "Resume Form Page:"
-msgstr ""
+msgstr "Currículum página Formulario:"
 
 #: includes/settings.php:85
 #@ resume-submissions-job-postings
 msgid "Display Jobs Page:"
-msgstr ""
+msgstr "Pagina de Trabajo:"
 
 #: includes/settings.php:97
 #@ resume-submissions-job-postings
@@ -309,100 +309,100 @@ msgstr ""
 #: includes/settings.php:102
 #@ resume-submissions-job-postings
 msgid "Send Admin Email To:"
-msgstr ""
+msgstr "Enviar correo electrónico de administrador a:"
 
 #: includes/settings.php:106
 #@ resume-submissions-job-postings
 msgid "Send User Email:"
-msgstr ""
+msgstr "Enviar correo electrónico del usuario:"
 
 #: includes/settings.php:111
 #@ resume-submissions-job-postings
 msgid "Email User From:"
-msgstr ""
+msgstr "Usuario de correo electrónico de:"
 
 #: includes/settings.php:115
 #@ resume-submissions-job-postings
 msgid "User Email Subject:"
-msgstr ""
+msgstr "Asunto de correo electrónico del usuario:"
 
 #: includes/settings.php:119
 #@ resume-submissions-job-postings
 msgid "User Email Copy:"
-msgstr ""
+msgstr "Copia de correo electrónico del usuario:"
 
 #: includes/settings.php:139
 #@ resume-submissions-job-postings
 msgid "Helpful Hints"
-msgstr ""
+msgstr "Consejos de ayuda"
 
 #: includes/submissions.php:92 resume-submission.php:103
 #@ resume-submissions-job-postings
 msgid "Resumé Submissions"
-msgstr ""
+msgstr "Curriculum Presentaciones"
 
 #: includes/submissions.php:102
 #@ resume-submissions-job-postings
 msgid "Find:"
-msgstr ""
+msgstr "Buscar:"
 
 #: includes/submissions.php:121
 #@ resume-submissions-job-postings
 msgid "Show All For:"
-msgstr ""
+msgstr "mostrar todo:"
 
 #: includes/submissions.php:174
 #@ resume-submissions-job-postings
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
 #: includes/submissions.php:175
 #@ resume-submissions-job-postings
 msgid "E-Mail"
-msgstr ""
+msgstr "Correo electrónico"
 
 #: includes/submissions.php:176
 #@ resume-submissions-job-postings
 msgid "Regarding Job"
-msgstr ""
+msgstr "En cuanto a trabajo"
 
 #: includes/submissions.php:177
 #@ resume-submissions-job-postings
 msgid "Submission Date"
-msgstr ""
+msgstr "Fecha de presentación"
 
 #: includes/submissions.php:215
 #@ resume-submissions-job-postings
 msgid "There are no submissions at this time."
-msgstr ""
+msgstr "No hay envíos en este momento."
 
 #: includes/submissions.php:319
 #@ resume-submissions-job-postings
 msgid "Suite/Apt:"
-msgstr ""
+msgstr "Apartamento:"
 
 #: includes/submissions.php:397
 #@ resume-submissions-job-postings
 msgid "Cover Letter:"
-msgstr ""
+msgstr "Carta de presentación:"
 
 #: includes/submissions.php:413
 #@ resume-submissions-job-postings
 msgid "Resumé:"
-msgstr ""
+msgstr "Curriculum Vitae:"
 
 #: resume-submission.php:102
 #@ resume-submissions-job-postings
 msgid "Resumés &amp; Jobs"
-msgstr ""
+msgstr "Currículum Vitae y Empleo"
 
 #: resume-submission.php:104
 #@ resume-submissions-job-postings
 msgid "Job Postings"
-msgstr ""
+msgstr "Ofertas de Trabajo"
 
 #: resume-submission.php:106
 #@ resume-submissions-job-postings
 msgid "Settings"
-msgstr ""
+msgstr "Configuració"
 
