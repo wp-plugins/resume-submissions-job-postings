@@ -343,7 +343,17 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
                 <td></td>
             </tr>
             <tr>
-                <td><?php wp_editor( $errorCover, 'cover', setTinySetting( 'cover', '35', false, $setTinyMce, false ) ); ?></td>
+                <td>
+					<?php 
+                    if ( !function_exists( wp_editor ) ) {
+                        wp_editor( $errorCover, 'cover', setTinySetting( 'cover', '35', false, $setTinyMce, false ) ); 
+                    } else {
+                        ?>
+                        <textarea name="cover" rows="50" cols="35"><?php echo $errorCover; ?></textarea>
+                        <?php 
+                    }
+                    ?>
+                </td>
                 <td valign="top" width="5px"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'cover', 1 ) ); ?></p></td>
             </tr>	
             <?php
@@ -355,7 +365,17 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
                 <td></td>
             </tr>
             <tr>
-                <td><?php wp_editor( $errorResume, 'resume', setTinySetting( 'resume', '35', false, $setTinyMce, false ) ); ?></td>
+                <td>
+					<?php 
+                    if ( function_exists( wp_editor ) ) {
+                        wp_editor( $errorResume, 'resume', setTinySetting( 'resume', '35', false, $setTinyMce, false ) ); 
+                    } else {
+                        ?>
+                        <textarea name="resume" rows="50" cols="35"><?php echo $errorResume; ?></textarea>
+                        <?php
+                    }
+                    ?>
+                </td>
                 <td valign="top" width="5px"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'resume', 1 ) ); ?></p></td>
             </tr>	
         	<?php

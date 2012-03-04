@@ -44,7 +44,14 @@ if ( $update ) {
 	$message = '<div class="updated fade" id="message"><p> ' . _e( 'Settings have been updated.' ) . '</p></div>';
 }
 
-
+// If the wp_editor is not there, do not show the TinyMCE
+if ( !function_exists( wp_editor ) ) {
+	$tinymceOff = 'disabled="disabled"';
+	$tinymceOffText = '<span style="font-size:10px; color:#CCC; font-style:italic; padding-left:10px;">Please upgrade to at least version 3.3 to use this feature.</span>';
+} else {
+	$tinymceOff = '';
+	$tinymceOffText = '';
+}
 ?>
 
 <div class="wrap alternate">
@@ -104,8 +111,8 @@ if ( $update ) {
         </tr>
         <tr>
         	<td><p><b><?php _e( 'Send User Email:' ); ?> </b></p></td>
-            <td align="left"><input type="radio" name="sendEmailToUser" value="Enabled"  <?php echo checkIt( get_option( 'resume_send_email_to_user' ), 'Enabled', 'radio' ); ?> />Enabled 
-            				 <input type="radio" name="sendEmailToUser" value="Disabled" <?php echo checkIt( get_option( 'resume_send_email_to_user' ), 'Disabled', 'radio' ); ?> />Disabled</td>
+            <td align="left"><input type="radio" name="sendEmailToUser" value="Enabled" <?php echo $tinymceOff; ?> <?php echo checkIt( get_option( 'resume_send_email_to_user' ), 'Enabled', 'radio' ); ?> />Enabled 
+            				 <input type="radio" name="sendEmailToUser" value="Disabled" <?php echo $tinymceOff; ?> <?php echo checkIt( get_option( 'resume_send_email_to_user' ), 'Disabled', 'radio' ); ?> />Disabled <?php _e( $tinymceOffText ); ?></td>
         </tr>    
         <tr>
         	<td><p><b><?php _e( 'Email User From:' ); ?> </b></p></td>
