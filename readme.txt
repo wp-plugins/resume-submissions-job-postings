@@ -37,7 +37,7 @@ The admin may sort resumes by job, or anything else they search for.
 * Automatically fills in the first name, last name, and email fields if the user is logged in
 * Allow Admin to create input fields (coming soon)
 * Allow User attachment (coming soon)
-* Save/Download Submitted Resume as PDF or Spreadsheet (coming soon)
+* Save/Download Submitted Resume as PDF (coming soon)
 
  
 == Features ==
