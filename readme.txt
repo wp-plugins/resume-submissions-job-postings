@@ -4,9 +4,9 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Author URI: http://www.geerservices.com
 Plugin URI: http://www.geerservices.com/wordpress-plugins/resume-jobs/
 Tags: resume submission, job postings, job listing, resume, jobs 
-Requires at least: 3.2
+Requires at least: 3.3
 Tested up to: 3.3.1
-Stable tag: 1.9.5
+Stable tag: 1.9.6
 
 Allows the admin to create and show job postings. Users can submit their resume in response to a posting or for general purposes. 
 
@@ -34,9 +34,9 @@ The admin may sort resumes by job, or anything else they search for.
 * Widget to Show Job Postings
 * Give User Ability to Use TinyMCE on the Cover Letter and the Resume fields
 * Lets Admin choose what is shown and required
-* Allow Admin to create input fields (future)
-* Allow User attachment (future)
-* Save/Download Submitted Resume as PDF or Spreadsheet (future)
+* Allow Admin to create input fields (coming soon)
+* Allow User attachment (coming soon)
+* Save/Download Submitted Resume as PDF or Spreadsheet (coming soon)
 
  
 == Features ==
@@ -76,6 +76,10 @@ The Keys can be downloaded at [reCaptcha](https://www.google.com/recaptcha). Fol
 3. The Settings page where you can set Captcha or User Email.
 
 == Changelog ==
+= 1.9.6 =
+* Fixed some coding errors that were in update 1.9.5
+* Fixed permalink bug on form and widget
+
 = 1.9.5 =
 * Fixed bug where wp_editor() was showing an error if it is not present
 

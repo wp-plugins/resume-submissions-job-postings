@@ -6,6 +6,13 @@ $postingID = $_GET['postingID'];
 $siteName  = get_option('blogname'); 
 
 $range = 3;
+
+// Check to see if there are other variables
+if ( $_SERVER["QUERY_STRING"] ) {
+	$connect = '&';
+} else {
+	$connect = '?';
+}
 ?>
 
 <div id="jobPostings">
@@ -51,7 +58,7 @@ $range = 3;
 		
 		foreach ( $archivedQuery as $archived ){
 			?>
-            <li><p><b><a href="<?php echo $_SERVER['REQUEST_URI']; ?>&postingID=<?php echo $archived->id; ?>"><?php echo $archived->title; ?></a></b> - <i style="font-size:12px;">Posted: <?php echo date( 'M j, Y g:ia', strtotime( $archived->pubDate ) ); ?></i></p></li>
+            <li><p><b><a href="<?php echo $_SERVER['REQUEST_URI'] . $connect; ?>postingID=<?php echo $archived->id; ?>"><?php echo $archived->title; ?></a></b> - <i style="font-size:12px;">Posted: <?php echo date( 'M j, Y g:ia', strtotime( $archived->pubDate ) ); ?></i></p></li>
             <?php
 		}
 		
@@ -132,7 +139,7 @@ $range = 3;
         <?php
         foreach ( $jobPostingQuery as $jobPosting ){
             ?>
-            <li><p><b><a href="<?php echo $_SERVER['REQUEST_URI']; ?>?postingID=<?php echo $jobPosting->id; ?>"><?php echo $jobPosting->title; ?></a></b> - <i style="font-size:12px;">Posted: <?php echo date( 'M j, Y g:ia', strtotime( $jobPosting->pubDate ) ); ?></i></p></li>
+            <li><p><b><a href="<?php echo $_SERVER['REQUEST_URI'] . $connect; ?>postingID=<?php echo $jobPosting->id; ?>"><?php echo $jobPosting->title; ?></a></b> - <i style="font-size:12px;">Posted: <?php echo date( 'M j, Y g:ia', strtotime( $jobPosting->pubDate ) ); ?></i></p></li>
             <?php
         }
         ?>

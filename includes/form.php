@@ -345,11 +345,11 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
             <tr>
                 <td>
 					<?php 
-                    if ( !function_exists( wp_editor ) ) {
+                    if ( function_exists( wp_editor ) ) {
                         wp_editor( $errorCover, 'cover', setTinySetting( 'cover', '35', false, $setTinyMce, false ) ); 
                     } else {
                         ?>
-                        <textarea name="cover" rows="50" cols="35"><?php echo $errorCover; ?></textarea>
+                        <textarea name="cover" rows="20" cols="40"><?php echo $errorCover; ?></textarea>
                         <?php 
                     }
                     ?>
@@ -371,7 +371,7 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
                         wp_editor( $errorResume, 'resume', setTinySetting( 'resume', '35', false, $setTinyMce, false ) ); 
                     } else {
                         ?>
-                        <textarea name="resume" rows="50" cols="35"><?php echo $errorResume; ?></textarea>
+                        <textarea name="resume" rows="20" cols="40"><?php echo $errorResume; ?></textarea>
                         <?php
                     }
                     ?>

@@ -41,7 +41,7 @@ if ( $update ) {
 	update_option( 'resume_user_email_subject', $userEmailSubject );
 	update_option( 'resume_user_email_copy', $userEmailCopy );
 	
-	$message = '<div class="updated fade" id="message"><p> ' . _e( 'Settings have been updated.' ) . '</p></div>';
+	$message = '<div class="updated fade" id="message"><p>Settings have been updated.</p></div>';
 }
 
 // If the wp_editor is not there, do not show the TinyMCE

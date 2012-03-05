@@ -3,7 +3,7 @@
 Plugin Name: Resumé Submissions & Job Postings
 Plugin URI: http://www.geerservices.com/wordpress-plugins/resume-jobs/
 Description: Allows the admin to create and show job postings. Users can submit their resume in response to a posting or for general purposes. 
-Version: 1.9.5
+Version: 1.9.6
 Author: Keith Andrews (GSI)
 Author URI: http://www.geerservices.com
 License: GPL2
@@ -78,8 +78,14 @@ class resume_job_postings {
         <ul>
         	<?php
 			foreach ($jobs as $job){
+				// Check to see if there are other variables
+				if ( strpos( get_option( 'resume_jobs_page' ), '?' ) ) {
+					$connect = '&';
+				} else {
+					$connect = '?';
+				}
 				?>
-                <li><a href="<?php echo get_option( 'resume_jobs_page' ); ?>?postingID=<?php echo $job->id; ?>"><?php echo $job->title; ?></a><br />
+                <li><a href="<?php echo get_option( 'resume_jobs_page' ) . $connect; ?>postingID=<?php echo $job->id; ?>"><?php echo $job->title; ?></a><br />
                 &nbsp;&nbsp; - <i style="font-size:10px;">Posted: <?php echo date( 'M j, Y', strtotime( $job->pubDate ) ); ?></i></li>
                 <?php
 			}
