@@ -34,6 +34,7 @@ The admin may sort resumes by job, or anything else they search for.
 * Widget to Show Job Postings
 * Give User Ability to Use TinyMCE on the Cover Letter and the Resume fields
 * Lets Admin choose what is shown and required
+* Automatically fills in the first name, last name, and email fields if the user is logged in
 * Allow Admin to create input fields (coming soon)
 * Allow User attachment (coming soon)
 * Save/Download Submitted Resume as PDF or Spreadsheet (coming soon)
@@ -48,6 +49,7 @@ The admin may sort resumes by job, or anything else they search for.
 5. Widget to Show Job Postings
 6. Give User Ability to Use TinyMCE on the Cover Letter and the Resume fields
 7. Lets Admin choose what is shown and required
+8. Automatically fills in the first name, last name, and email fields if the user is logged in
 
 
 == Installation ==
