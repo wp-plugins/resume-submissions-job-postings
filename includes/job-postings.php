@@ -112,7 +112,7 @@ if ( $ID ){
 
 <div class="wrap alternate">
 	
-    <div id="icon-edit-comments" class="icon32"></div>	
+    <div id="icon-rsjp-postings" class="icon32"></div>	
     <h2><?php _e( 'Job Postings' . $subName ); ?></h2>
     <?php echo $message; ?>
     <br class="a_break" style="clear: both;"/>
@@ -259,9 +259,9 @@ if ( $ID ){
 				foreach ( $infoQuery as $info ){
 					
 					if ( $info->archive == 0 ){
-						$isArchived = '<p style="color:#09cc09;">' . _e( 'Open' ) . '</p>';
+						$isArchived = '<p style="color:#09cc09;">Open</p>';
 					} else {
-						$isArchived = '<p style="color:#cc0909;">' . _e( 'Closed' ) . '</p>';
+						$isArchived = '<p style="color:#cc0909;">Closed</p>';
 					}
 				
 					?>
@@ -313,7 +313,7 @@ if ( $ID ){
 					
 						<?php
 						if ( $currentPage > 1 ) {
-						   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?admin.php?page=job_postings&currentPage=1">' . _e( 'First' ) . '</a> ';
+						   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?admin.php?page=job_postings&currentPage=1">First</a> ';
 						   $prevPage = $currentPage - 1;
 						   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?admin.php?page=job_postings&currentPage=' . $prevPage . '">«</a> ';
 						} 
@@ -330,7 +330,7 @@ if ( $ID ){
 						if ( $currentPage != $totalPages ) {
 						   $nextPage = $currentPage + 1;
 						   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?admin.php?page=job_postings&currentPage=' . $nextPage . '">»</a> ';
-						   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?admin.php?page=job_postings&currentPage=' . $totalPages . '">' . _e( 'Last' ) . '</a> ';
+						   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?admin.php?page=job_postings&currentPage=' . $totalPages . '">Last</a> ';
 						}
 						?>
 					</div> 

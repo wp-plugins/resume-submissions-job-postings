@@ -28,7 +28,7 @@ if ( $update ){
 	
 	update_option( 'resume_input_fields', $inputFieldsArray );
 	
-	$message = '<div class="updated fade" id="message"><p>' . _e( 'Input Fields have been updated.' ) . '</p></div>';
+	$message = '<div class="updated fade" id="message"><p>Input Fields have been updated.</p></div>';
 	
 }
 
@@ -36,7 +36,7 @@ if ( $update ){
 
 <div class="wrap alternate">
 	
-    <div id="icon-tools" class="icon32"></div>
+    <div id="icon-rsjp-input" class="icon32"></div>
     <h2><?php _e( 'Input Fields' ); ?></h2>
     <?php echo $message; ?>
     <br class="a_break" style="clear: both;"/>

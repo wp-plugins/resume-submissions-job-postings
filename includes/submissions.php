@@ -88,7 +88,7 @@ if ( $deleteSubmit == 'Delete' ){
 
 <div class="wrap alternate">
 	
-    <div id="icon-edit-pages" class="icon32"></div>
+    <div id="icon-rsjp-submissions" class="icon32"></div>
 	<h2><?php _e( 'Resumé Submissions' ); ?></h2>
 	<?php echo $message; ?>
 	<br class="a_break" style="clear: both;"/>
@@ -236,7 +236,7 @@ if ( $deleteSubmit == 'Delete' ){
                             
                             <?php
                             if ( $currentPage > 1 ) {
-                               echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=1">' . _e( 'First' ) . '</a> ';
+                               echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=1">First</a> ';
                                $prevPage = $currentPage - 1;
                                echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=' . $prevPage . '">«</a> ';
                             } 
@@ -253,7 +253,7 @@ if ( $deleteSubmit == 'Delete' ){
                             if ( $currentPage != $totalPages ) {
                                $nextPage = $currentPage + 1;
                                echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=' . $nextPage . '">»</a> ';
-                               echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=' . $totalPages . '">' . _e( 'Last' ) . '</a> ';
+                               echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=' . $totalPages . '">Last</a> ';
                             }
                             ?>
                         </div> 
@@ -270,10 +270,9 @@ if ( $deleteSubmit == 'Delete' ){
 		$single = $wpdb->get_row( $wpdb->prepare( 'SELECT * FROM ' . SUBTABLE . ' WHERE id = "' . $ID . '"' ) );
 		//$single = mysql_fetch_array($singleQuery);
 		?>
-		<table width="500px" cellpadding="0" cellspacing="0">
+		<table width="600px" cellpadding="0" cellspacing="0">
 			<tr>
-				<td><a href="javascript:window.print()"><img src="<?php echo resume_get_plugin_dir( 'go' ); ?>/images/print-icon.png" alt="Print resume" id="printResume" /></a></td>
-				<td align="right"><form name="back" method="post" id="backButton" enctype="multipart/form-data" action="<?php echo admin_url(); ?>admin.php?page=resume-submissions-job-postings/resume-submission.php">
+				<td><form name="back" method="post" id="backButton" enctype="multipart/form-data" action="<?php echo admin_url(); ?>admin.php?page=resume-submissions-job-postings/resume-submission.php">
 								      <input name="back" type="submit" value="Back" />
 								  </form>
 				</td>
@@ -350,7 +349,7 @@ if ( $deleteSubmit == 'Delete' ){
 			}
             ?>
 		</table>
-		<table width="700px" cellpadding="0" cellspacing="0">	
+		<table width="600px" cellpadding="0" cellspacing="0">	
         	<?php
             if ( grabContents( get_option( 'resume_input_fields' ), 'pnumber', 0 ) ) {	
 				?>
@@ -372,7 +371,7 @@ if ( $deleteSubmit == 'Delete' ){
 			}	
 			?>
 		</table>
-		<table width="700px" cellpadding="0" cellspacing="0">	
+		<table width="600px" cellpadding="0" cellspacing="0">	
         	<?php
             if ( grabContents( get_option( 'resume_input_fields' ), 'email', 0 ) ) {	
 				?>
@@ -389,7 +388,7 @@ if ( $deleteSubmit == 'Delete' ){
 			</tr>
 		</table>
 		<br />
-		<table width="700px;" cellpadding="0" cellspacing="0">
+		<table width="600px;" cellpadding="0" cellspacing="0">
        		<?php
             if ( grabContents( get_option( 'resume_input_fields' ), 'cover', 0 ) ) {	
 				?>
@@ -425,6 +424,14 @@ if ( $deleteSubmit == 'Delete' ){
 				<td></td>
 			</tr>
 		</table>
+        <br />
+        <br />
+        <table width="600px" cellpadding="2" cellspacing="2">
+        	<tr>
+            	<td><a href="javascript:window.print()"><img src="<?php echo resume_get_plugin_dir( 'go' ); ?>/images/print-icon.png" alt="Print Resume" id="printResume" /></a></td>
+            </tr>
+        </table>
+        
 		</div>
 		</form>
 		  

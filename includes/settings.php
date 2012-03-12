@@ -56,7 +56,7 @@ if ( !function_exists( wp_editor ) ) {
 
 <div class="wrap alternate">
 	
-    <div id="icon-options-general" class="icon32"></div>
+    <div id="icon-rsjp-settings" class="icon32"></div>
     <h2><?php _e( 'Resumé Settings' ); ?></h2>
     <?php echo $message; ?>
     <br class="a_break" style="clear: both;"/>
@@ -143,7 +143,7 @@ if ( !function_exists( wp_editor ) ) {
     <table class="widefat">
         <thead>
             <tr>
-                <th scope="col"><?php _e( 'Helpful Hints' ); ?></th>
+                <th scope="col"><img src="<?php echo resume_get_plugin_dir( 'go' ); ?>/images/icons/questions-icon-20.png" alt="Helpful Hints" /><?php _e( 'Helpful Hints' ); ?></th>
             </tr>
         </thead>
         <tbody>
