@@ -80,7 +80,7 @@ The Keys can be downloaded at [reCaptcha](https://www.google.com/recaptcha). Fol
 == Changelog ==
 = 1.9.7 =
 * Added icons to each admin page
-* Corrected a few _e() function bugs where the text was no showing in the correct place
+* Corrected a few _e() function bugs where the text was not showing in the correct place
 * Moved the print icon below the submission form on the admin side
 * Attached a stylesheet
 * Moved the widget code to includes/widget.php
