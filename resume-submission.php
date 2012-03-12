@@ -3,7 +3,7 @@
 Plugin Name: Resumé Submissions & Job Postings
 Plugin URI: http://www.geerservices.com/wordpress-plugins/resume-jobs/
 Description: Allows the admin to create and show job postings. Users can submit their resume in response to a posting or for general purposes. 
-Version: 1.9.6
+Version: 1.9.7
 Author: Keith Andrews (GSI)
 Author URI: http://www.geerservices.com
 License: GPL2
@@ -30,82 +30,14 @@ register_activation_hook( __FILE__, 'resume_install' );
 
 
 // Create widget for displaying job postings
-add_action( 'widgets_init', array( 'resume_job_postings', 'register' ) );
-register_activation_hook( __FILE__, array( 'resume_job_postings', 'activate' ) );
-register_deactivation_hook( __FILE__, array( 'resume_job_postings', 'deactivate' ) );
-class resume_job_postings {
-	function activate(){
-		$data = array( 'title' => '' ,'display' => 5 );
-		if ( !get_option( 'resume_job_postings_widget' ) ){
-			add_option( 'resume_job_postings_widget' , $data );
-		} else {
-			update_option( 'resume_job_postings_widget' , $data );
-		}
-	}
-	function deactivate(){
-		delete_option( 'resume_job_postings_widget' );
-	}
-	function control(){
-		$data          = get_option( 'widget_name' );
-		$widgetTitle   = $data['title'];
-		$widgetDisplay = $data['display'];
-		?>
-        <label for="job_display_title">Title: <input type="text" name="job_display_title" value="<?php echo $widgetTitle; ?>" size="33" /></label><br />
-        <label for="job_display_amount">Posts to Display: <input type="text" name="job_display_amount" value="<?php echo $widgetDisplay; ?>" size="5" /></label>	
-    	<?php
-		if ( isset( $_POST['job_display_title'] ) ){
-			$data['title']   = attribute_escape( $_POST['job_display_title'] );
-			$data['display'] = attribute_escape( $_POST['job_display_amount'] );
-			update_option( 'resume_job_postings_display', $data );
-		}
-    }
-	function widget( $args ){
-		global $wpdb;
-		
-		$data          = get_option( 'resume_job_postings_widget' );
-		$widgetTitle   = $data['title'];
-		$widgetDisplay = $data['display'];
-		
-		if ( !$widgetDisplay ){
-			$widgetDisplay = 5;
-		}
-		
-		echo $args['before_widget'];
-		echo $args['before_title'] . $widgetTitle . $args['after_title'];
-		
-		$jobs = $wpdb->get_results( 'SELECT id, title, pubDate FROM ' . JOBTABLE . ' ORDER BY pubDate DESC, title DESC LIMIT ' . $widgetDisplay );
-		?>
-        <ul>
-        	<?php
-			foreach ($jobs as $job){
-				// Check to see if there are other variables
-				if ( strpos( get_option( 'resume_jobs_page' ), '?' ) ) {
-					$connect = '&';
-				} else {
-					$connect = '?';
-				}
-				?>
-                <li><a href="<?php echo get_option( 'resume_jobs_page' ) . $connect; ?>postingID=<?php echo $job->id; ?>"><?php echo $job->title; ?></a><br />
-                &nbsp;&nbsp; - <i style="font-size:10px;">Posted: <?php echo date( 'M j, Y', strtotime( $job->pubDate ) ); ?></i></li>
-                <?php
-			}
-		?>
-        </ul>
-        <?php
-		echo $args['after_widget'];
-	}
-	function register(){
-		register_sidebar_widget( 'Current Job Postings', array( 'resume_job_postings', 'widget' ) );
-		register_widget_control( 'Current Job Postings', array( 'resume_job_postings', 'control' ) );
-	}
-}
+include( 'includes/widget.php' );
 
 
 // BOF Resume Submissions Menu 
 add_action( 'admin_menu', 'resume_submission_menu' );
 
 function resume_submission_menu() {		
-	add_menu_page( __( 'Resumés &amp; Jobs', 'resume_submission' ), __( 'Resumés &amp; Jobs', 'resume_submission' ), MANAGEMENT_PERMISSION, __FILE__, 'resume_view_all', resume_get_plugin_dir( 'go' ) . '/images/menu-icon.png', 25 );		
+	add_menu_page( __( 'Resumés &amp; Jobs', 'resume_submission' ), __( 'Resumés &amp; Jobs', 'resume_submission' ), MANAGEMENT_PERMISSION, __FILE__, 'resume_view_all', resume_get_plugin_dir( 'go' ) . '/images/icons/menu-icon.png', 25 );		
 	add_submenu_page( __FILE__, __( 'Resumé Submissions', 'resume_submission' ), __( 'Resumé Submissions', 'resume_submission' ), MANAGEMENT_PERMISSION, __FILE__, 'resume_view_all' );		
 	add_submenu_page( __FILE__, __( 'Job Postings', 'resume_submission' ), __( 'Job Postings', 'resume_submission' ), MANAGEMENT_PERMISSION, 'job_postings', 'resume_view_jp');		
 	add_submenu_page( __FILE__, __( 'Input Fields', 'resume_submission' ), __( 'Input Fields', 'resume_submission' ), MANAGEMENT_PERMISSION, 'input_fields', 'resume_input_fields');
@@ -151,9 +83,9 @@ function resume_load_textdomain() {
 
 // Functions for styling
 function admin_register_resume_style( $hook ) {
-	if( 'toplevel_page_resume-submissions-job-postings/resume-submission' != $hook && 'resumes-jobs_page_job_postings' != $hook )
-        return;
-    wp_enqueue_script( 'resume_custom_css', plugins_url( '/css/resume-admin-styles.css', __FILE__ ) );
+	if( $hook == 'toplevel_page_resume-submissions-job-postings/resume-submission' || $hook == 'resumes-jobs_page_job_postings'
+		|| $hook == 'resumes-jobs_page_input_fields' || $hook == 'resumes-jobs_page_settings' || $hook == 'resumes-jobs_page_extra_fields' )
+	    wp_enqueue_style( 'resume-admin-custom', plugins_url( '/css/resume-admin-styles.css', __FILE__ ) );
 }
 function addStyles (){
 	wp_enqueue_style( 'resume-style', resume_get_plugin_dir( 'go' ) . '/css/resume-styles.css' );	

@@ -1,0 +1,18 @@
+@charset "utf-8";
+/* CSS Document */
+
+#icon-rsjp-submissions {
+	background: url("../images/icons/submissions-icon-32.png") no-repeat transparent;
+}
+#icon-rsjp-postings {
+	background: url("../images/icons/postings-icon-32.png") no-repeat transparent;
+}
+#icon-rsjp-input {
+	background: url("../images/icons/input-icon-32.png") no-repeat transparent;
+}
+#icon-rsjp-settings {
+	background: url("../images/icons/settings-icon-32.png") no-repeat transparent;
+}
+#icon-rsjp-extra {
+	background: url("../images/icons/extra-icon-32.png") no-repeat transparent;
+}
