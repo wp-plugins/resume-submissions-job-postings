@@ -15,7 +15,7 @@ class resume_job_postings {
 		delete_option( 'resume_job_postings_widget' );
 	}
 	function control(){
-		$data          = get_option( 'widget_name' );
+		$data          = get_option( 'resume_job_postings_widget' );
 		$widgetTitle   = $data['title'];
 		$widgetDisplay = $data['display'];
 		?>
@@ -25,7 +25,7 @@ class resume_job_postings {
 		if ( isset( $_POST['job_display_title'] ) ){
 			$data['title']   = attribute_escape( $_POST['job_display_title'] );
 			$data['display'] = attribute_escape( $_POST['job_display_amount'] );
-			update_option( 'resume_job_postings_display', $data );
+			update_option( 'resume_job_postings_widget', $data );
 		}
     }
 	function widget( $args ){
