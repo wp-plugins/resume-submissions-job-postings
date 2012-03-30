@@ -130,4 +130,88 @@ function formErrorCheck( $fields ) {
 	return $error;	
 }
 
+// Grab Extension from file
+function getExtension( $str ) {
+	$i = strrpos( $str, '.' );
+	if ( !$i ) { 
+		return ''; 
+	}
+	$l = strlen( $str ) - $i;
+	$ext = substr( $str, $i+1, $l );
+	return $ext;
+}
+
+// Upload user attachments
+function uploadAttachments( $files, $input ){
+	$uploadDir = WP_CONTENT_DIR . '/uploads/rsjb/attachments/';
+	$count     = 1;
+	 
+	foreach( $_FILES[$input]['error'] as $key => $error ){
+		if ( $error == UPLOAD_ERR_OK ) {
+			$tmpName  = $_FILES[$input]['tmp_name'][$key];
+			$ext      = getExtension( $_FILES[$input]['name'][$key] );
+			$name     = md5( date( 'Y-m-d H:i:s' ) ) . '-' . $count . '.' . $ext;
+			$moveFile = move_uploaded_file( $tmpName, $uploadDir . $name );
+			
+			if ( $moveFile ){
+				if ( $count > 1 ) {
+					$sep = ',';
+				} else {
+					$sep = '';
+				}
+				$dbInsert .= $sep . $name;
+				$count++;
+			} else {
+				echo 'Count not upload file ' . $_FILES[$input]['name'][$key] . '.<br/>';
+			}
+		}
+	}
+	
+	return  $dbInsert;
+}
+
+// Delete file from the set folder in the rsjp in the wp-contents/uploads folder
+function deleteFileFromUpload( $files, $folder ){
+	foreach( $files as $file ){
+		if ( $file ){
+			if ( !( @unlink( WP_CONTENT_DIR . '/uploads/rsjb/' . $folder . '/' . $file ) ) ) {
+				$message = '<p style="color:#A83434;"><b>Could not delete the attached file(s).</b></p>';
+				$deleted = false;
+			} else {
+				$message = '<p style="color:#369B38;"><b>Attached file(s) were successfully deleted.</b></p>';
+				$deleted = true;
+			}
+		}
+	}	
+	
+	return array( $message, $deleted );
+}
+
+// Export Submissions List to CSV
+function exportSubToCSV() {
+	global $wpdb;
+	
+	$exportEntries = $wpdb->get_results( 'SELECT * FROM ' . SUBTABLE . ' ORDER BY lname ASC, fname ASC, pubdate DESC' );				
+	$getFile       = fopen( resume_get_plugin_dir( 'path' ) . '/base-files/submission-entries.csv', 'w' );
+	
+	fputcsv( $getFile, array( 'First Name', 'Last Name', 'Address', 'Suite/Apt', 'City', 'State', 
+							  'Zip Code', 'Primary Number', 'Secondary Number', 'Email', 'Job', 'Attachments', 'Submit Date'  ), ',' );
+	foreach ( $exportEntries as $entry ) {
+		$newline     = " \r\n";
+		$attachments = explode( ',', $entry->attachment );
+		
+		foreach ( $attachments as $attachment ) {
+			$attachedNames .= $attachment . $newline;
+		}
+		fputcsv( $getFile, array( $entry->fname, $entry->lname, $entry->address, $entry->address2, 
+								  $entry->city, $entry->state, $entry->zip, $entry->pnumber, $entry->snumber, 
+								  $entry->email, $entry->job, $attachedNames, date( 'm/d/Y', strtotime( $entry->pubdate ) ) ), ',' );
+	}
+	fclose( $getFile );
+}
+
+// Export Submission to PDF
+function exportSubToPDF( $id ) {
+	include( resume_get_plugin_dir( 'go' ) . '/includes/create-submission-pdf.php' );
+}
 ?>

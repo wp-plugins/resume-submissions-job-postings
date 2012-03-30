@@ -86,13 +86,20 @@ if ( $copy ){
 /* BOF Delete */
 $deleteSubmit = $_POST['deleteSubmit'];
 $deleteID     = $_POST['deleteID'];
-$deleteName   = $_POST['deleteName'];
 
-if ( $deleteSubmit == 'Delete' ){
-    $deleteQuery = $wpdb->query( 'DELETE FROM ' . JOBTABLE . ' WHERE id = ' . $deleteID );
-  
+if ( $deleteSubmit ){
+	$count = 0;
+	$sep = '';
+	foreach ( $deleteID as $id ) {
+		if ( $count > 0 ) 
+			$sep = ',';
+    	$deleteIDs .= $sep . $id;
+		$count++;
+	}
+    $deleteQuery = $wpdb->query( 'DELETE FROM ' . JOBTABLE . ' WHERE id IN ( ' . $deleteIDs . ' )' );
+
     if ( $deleteQuery ){
-		$message = '<div class="updated fade" id="message"><p>Job posting <b>"' . $deleteName . '"</b> has been deleted.</p></div>';
+		$message = '<div class="updated fade" id="message"><p>Job posting(s) have been deleted.</p></div>';
     }
 }
 /* EOF Delete */
@@ -123,7 +130,7 @@ if ( $ID ){
             <tr>
                 <td align="left">
                     <form method="post" name="addNew" id="addNew">
-                        <input type="submit" name="addNew" value="Add New Job Posting" />
+                        <input type="submit" name="addNew" value="Add New Job Posting" class="button-secondary" />
                     </form>
                 </td>
             </tr>
@@ -136,7 +143,7 @@ if ( $ID ){
 		$single = $wpdb->get_row( 'SELECT * FROM ' . JOBTABLE . ' WHERE id = "' . $ID . '"' );
 		?>
 		<form name="back" method="post" enctype="multipart/form-data" action="<?php echo admin_url(); ?>admin.php?page=job_postings">
-			<input name="back" type="submit" value="Back" />
+			<input name="back" type="submit" value="Back" class="button-secondary" />
 		</form>
 		<br class="a_break" style="clear: both;"/>
 		<form name='form' id='form' class='form' method='POST'>
@@ -170,7 +177,7 @@ if ( $ID ){
 			</tr>
 			<tr>
 				<td><input type='hidden' name='edit' value='Edit' /></td>
-				<td><p><input type='submit' value='Update Job Posting' name='submit' /></p></td>
+				<td><p><input type='submit' value='Update Job Posting' name='submit' class="button-primary" /></p></td>
 			</tr>
 		</table>
 		</form>
@@ -181,7 +188,7 @@ if ( $ID ){
 		
 		?>
 		<form name="back" method="post" enctype="multipart/form-data" action="<?php echo admin_url(); ?>admin.php?page=job_postings">
-			<input name="back" type="submit" value="Back" />
+			<input name="back" type="submit" value="Back" class="button-secondary" />
 		</form>
 		<br class="a_break" style="clear: both;"/>
 		<form name='form' method='post' enctype="multipart/form-data">
@@ -208,7 +215,7 @@ if ( $ID ){
 			</tr>
 			<tr>
 				<td><input type='hidden' name='add' value='Add' /></td>
-				<td><p><input type='submit' value='Add Job Posting' name='addJob' /></p></td>
+				<td><p><input type='submit' value='Add Job Posting' name='addJob' class="button-primary" /></p></td>
 			</tr>
 		</table>
 		</form>
@@ -239,22 +246,23 @@ if ( $ID ){
 		$offSet = ( $currentPage - 1 ) * $rowsPerPage;
 	  
 		$infoQuery = $wpdb->get_results( 'SELECT * FROM ' . JOBTABLE . ' ORDER BY archive ASC, pubDate DESC, title DESC LIMIT ' . $offSet . ', ' .$rowsPerPage );
-	  
 		?>
-	  
+        
+	  	<form name="deleteEntries" method="post" enctype="multipart/form-data">
 		<table class="widefat">
 			<thead>
 				<tr>
+                	<th scope="col" width="20px">&nbsp;</th>
 					<th scope="col" width="300px"><?php _e( 'Job Title' ); ?></th>
 					<th scope="col" width="300px"><?php _e( 'Post Date' ); ?></th>
 					<th scope="col" width="300px"><?php _e( 'Status' ); ?></th>
 					<th scope="col">&nbsp;</th>
 					<th scope="col">&nbsp;</th>
 					<th scope="col">&nbsp;</th>
-					<th scope="col">&nbsp;</th>
 				</tr>
 			</thead>
-			<tbody><?php 
+			<tbody>
+			<?php 
 			if ( $getNum > 0 ){
 				foreach ( $infoQuery as $info ){
 					
@@ -266,24 +274,19 @@ if ( $ID ){
 				
 					?>
 					<tr>
+                    	<td><input type="checkbox" name="deleteID[]" value="<?php echo $info->id; ?>" /></form></td>
 						<td><p><?php _e( $info->title ); ?></p></td>
 						<td><p><?php echo date( 'F j, Y g:ia', strtotime( $info->pubDate ) ); ?></p></td>
 						<td><?php echo $isArchived; ?></td>
 						<td>&nbsp;</td>
 						<td align="right" width="50px">
 						<form name="view_<?php echo $info->id; ?>" method="post" enctype="multipart/form-data" action="<?php echo admin_url(); ?>admin.php?page=job_postings&id=<?php echo $info->id; ?>">
-							<input name="view" type="submit" value="View/Edit" />
+							<input name="view" type="submit" value="View/Edit" class="button-secondary" />
 						</form></td>
 						<td align="right" width="50px">
 						<form name="copy_<?php echo $info->id; ?>" method="post" enctype="multipart/form-data" action="<?php echo admin_url(); ?>admin.php?page=job_postings">
 							<input type="hidden" name="copyID" value="<?php echo $info->id; ?>" />
-							<input name="copy" type="submit" value="Copy" />
-						</form></td>
-						<td align="left" width="50px">
-						<form name="delete_<?php echo $info->id; ?>" method="post" enctype="multipart/form-data">
-							<input name="deleteID" type="hidden" value="<?php echo $info->id; ?>" />
-							<input name="deleteName" type="hidden" value="<?php echo $info->title; ?>" />
-							<input name="deleteSubmit" type="submit" value="Delete" onClick="return( confirm( 'Are you sure you want to delete the job posting &quot;<?php echo $info->title; ?>&quot;?' ) )" />
+							<input name="copy" type="submit" value="Copy" class="button-secondary" />
 						</form></td>
 					</tr>
 					<?php
@@ -292,11 +295,11 @@ if ( $ID ){
 				
 				?>
 				<tr>
+                	<td>&nbsp;</td>
 					<td><p><?php _e( 'There are no job postings at this time.' ); ?></p></td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
 					
-					<td>&nbsp;</td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
@@ -308,7 +311,7 @@ if ( $ID ){
 				?>
 				<div class="tablenav">
 					<div class="tablenav-pages">
-						<span class="displaying-num">Displaying <?php echo $offset + 1; ?> - <?php echo $offset + count($infoQuery); ?> of <?php echo $numRows; ?></span>
+						<span class="displaying-num">Displaying <?php echo $offset + 1; ?> - <?php echo $offset + count( $infoQuery ); ?> of <?php echo $numRows; ?></span>
 					
 					
 						<?php
@@ -341,6 +344,11 @@ if ( $ID ){
 			</tbody>
 		</table>
 		<?php
+		if ( $getNum > 0 ){
+			?>
+			<input type="submit" name="deleteSubmit" value="Delete Record(s)" class="button-secondary" onClick="return( confirm( 'Are you sure you want to delete these entries?' ) )" />
+			<?php
+		}
 	}
 	?>
 </div>

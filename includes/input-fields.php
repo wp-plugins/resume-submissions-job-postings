@@ -6,22 +6,23 @@ $update  = $_POST['update'];
 $message = '';
 
 
-$setFName    = array( $_POST['fnameShow'], $_POST['fnameReq'] );
-$setLName    = array( $_POST['lnameShow'], $_POST['lnameReq'] );
-$setAddress  = array( $_POST['addressShow'], $_POST['addressReq'] );
-$setAddress2 = array( $_POST['address2Show'], $_POST['address2Req'] );
-$setCity     = array( $_POST['cityShow'], $_POST['cityReq'] );
-$setState    = array( $_POST['stateShow'], $_POST['stateReq'] );
-$setZip      = array( $_POST['zipShow'], $_POST['zipReq'] );
-$setPNumber  = array( $_POST['pnumberShow'], $_POST['pnumberReq'] );
-$setSNumber  = array( $_POST['snumberShow'], $_POST['snumberReq'] );
-$setEmail    = array( $_POST['emailShow'], $_POST['emailReq'] );
-$setCover    = array( $_POST['coverShow'], $_POST['coverReq'] );
-$setResume   = array( $_POST['resumeShow'], $_POST['resumeReq'] );
+$setFName      = array( $_POST['fnameShow'], $_POST['fnameReq'] );
+$setLName      = array( $_POST['lnameShow'], $_POST['lnameReq'] );
+$setAddress    = array( $_POST['addressShow'], $_POST['addressReq'] );
+$setAddress2   = array( $_POST['address2Show'], $_POST['address2Req'] );
+$setCity       = array( $_POST['cityShow'], $_POST['cityReq'] );
+$setState      = array( $_POST['stateShow'], $_POST['stateReq'] );
+$setZip        = array( $_POST['zipShow'], $_POST['zipReq'] );
+$setPNumber    = array( $_POST['pnumberShow'], $_POST['pnumberReq'] );
+$setSNumber    = array( $_POST['snumberShow'], $_POST['snumberReq'] );
+$setEmail      = array( $_POST['emailShow'], $_POST['emailReq'] );
+$setAttachment = array( $_POST['attachmentShow'], $_POST['attachmentReq'] );
+$setCover      = array( $_POST['coverShow'], $_POST['coverReq'] );
+$setResume     = array( $_POST['resumeShow'], $_POST['resumeReq'] );
 
 $inputFieldsArray = array( 'fname' => $setFName, 'lname' => $setLName, 'address' => $setAddress, 'address2' => $setAddress2, 
 						   'city' => $setCity, 'state' => $setState, 'zip' => $setZip, 'pnumber' => $setPNumber, 'snumber' => $setSNumber,
-						   'email' => $setEmail, 'cover' => $setCover, 'resume' => $setResume );
+						   'email' => $setEmail, 'attachment' => $setAttachment, 'cover' => $setCover, 'resume' => $setResume );
 
 
 if ( $update ){
@@ -102,6 +103,11 @@ if ( $update ){
                 <td><input type="checkbox" name="emailReq" value="1" <?php echo checkIt( grabContents( get_option( 'resume_input_fields' ), 'email', 1 ), 1, 'check' ); ?> /></td>
             </tr>
             <tr>
+            	<td><p><?php _e( 'Attachments' ); ?></p></td>
+                <td><input type="checkbox" name="attachmentShow" value="1" <?php echo checkIt( grabContents( get_option( 'resume_input_fields' ), 'attachment', 0 ), 1, 'check' ); ?> /></td>
+                <td><input type="checkbox" name="attachmentReq" value="1" <?php echo checkIt( grabContents( get_option( 'resume_input_fields' ), 'attachment', 1 ), 1, 'check' ); ?> /></td>
+            </tr>
+            <tr>
             	<td><p><?php _e( 'Cover Letter' ); ?></p></td>
                 <td><input type="checkbox" name="coverShow" value="1" <?php echo checkIt( grabContents( get_option( 'resume_input_fields' ), 'cover', 0 ), 1, 'check' ); ?> /></td>
                 <td><input type="checkbox" name="coverReq" value="1" <?php echo checkIt( grabContents( get_option( 'resume_input_fields' ), 'cover', 1 ), 1, 'check' ); ?> /></td>
@@ -117,7 +123,7 @@ if ( $update ){
              
     </table>
     <br />
-        <input type="submit" name="update" value="Update Input Fields" /></td>
+        <input type="submit" name="update" value="Save Input Fields" class="button-primary" /></td>
     </form>
     
  

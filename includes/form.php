@@ -24,6 +24,7 @@ $snumber     = $_POST['snumber'];
 $snumbertype = $_POST['snumbertype'];
 $email       = $_POST['email'];
 $job         = $_POST['job'];
+$attachment  = array($_FILES['attachment']);
 $cover       = $_POST['cover'];
 $resume      = $_POST['resume'];
 $fromPosting = $_POST['fromPosting'];
@@ -36,7 +37,7 @@ $find    = array( '\'', '\"', '"', '<', '>' );
 $replace = array( '&#39;', '&quot;', '&quot;', '&lt;', '&gt;' );
 $fields  = array( 'fname' => $fname, 'lname' => $lname, 'address' => $address, 'address2' => $address2, 'city' => $city, 'state' => $state,
 				  'zip' => $zip, 'pnumber' => $pnumber, 'pnumbertype' => $pnumbertype, 'snumber' => $snumber, 'snumbertype' => $snumbertype, 
-				  'email' => $email, 'job' => $job, 'cover' => $cover, 'resume' => $resume );
+				  'email' => $email, 'attachment' => $attachment, 'job' => $job, 'cover' => $cover, 'resume' => $resume );
 				  
 $pubDate = date('Y-m-d H:i:s');
 
@@ -77,6 +78,7 @@ if ( ( $action == 'add' ) && formErrorCheck( $fields ) == true ){
 	
 if( $action == 'add' && $formError == false ) {
 	
+	$attachFinal = uploadAttachments( $attachment, 'attachment' );
 	$insertQuery = $wpdb->query('INSERT INTO ' . SUBTABLE . ' VALUES (NULL,
 																	"' . $fname . '",
 																	"' . $lname . '",
@@ -91,6 +93,7 @@ if( $action == 'add' && $formError == false ) {
 																	"' . $snumbertype . '",
 																	"' . $email . '",
 																	"' . $job . '",
+																	"' . $attachFinal . '",
 																	"' . $cover . '",
 																	"' . $resume . '",
 																	"' . $pubDate . '")' );
@@ -123,7 +126,7 @@ if( $action == 'add' && $formError == false ) {
 		mail( $admin_to, $admin_subject, $admin_message, $admin_headers );
 	  
 	  	// Send email to the user, if enabled
-		if ( get_option( 'resume_send_email_to_user' ) ) {
+		if ( get_option( 'resume_send_email_to_user' )  == 'Enabled' ) {
 			$to      = $email; 
 			$subject = get_option( 'resume_user_email_subject' );
 			$message = '<html>
@@ -207,7 +210,6 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
 
 
 ?>
-
 <div id="resumeSubmission">
 	<?php
     // Display form message
@@ -273,12 +275,13 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
             </tr>
             <?php
 		}
-		if ( grabContents( get_option( 'resume_input_fields' ), 'state', 0 ) ) {	
+		if ( grabContents( get_option( 'resume_input_fields' ), 'state', 0 ) ) {
+			$theStateList =  get_option( 'resume_state_list' );
 			?>
             <tr>
                 <td><p><?php _e( 'State:' ); ?> </p></td>
                 <td><select name="state" id="state">
-                        <?php echo arrayToSelect( stateList(), $errorState ); ?>
+                        <?php echo arrayToSelect( $theStateList['list'], $errorState ); ?>
                     </select></td>
                 <td valign="top"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'state', 1 ) ); ?></p></td>
             </tr>
@@ -331,8 +334,23 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
                 </select></td>
              <td valign="top"><p style='color:#CC0000; font-weight:bold;'>*</p></td>
          </tr>
-                     
+     </table>
+     
+     <table width="100%" cellpadding="0" cellspacing="0">    
+         <?php
+		 if ( grabContents( get_option( 'resume_input_fields' ), 'attachment', 0 ) ) {	
+			$attachSettings = get_option( 'resume_attachments' );
+			?>
+            <tr>
+                <td valign="top" width="190px"><p><?php _e( 'Attachment(s):' ); ?> </p></td>
+                <td><input type="file" name="attachment" id="attachment" class="multi" accept="<?php echo $attachSettings['allowed']; ?>" maxlength="<?php echo $attachSettings['num']; ?>" /></td>
+                <td valign="top"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'attachment', 1 ) ); ?></p></td>
+            </tr>
+        	<?php 
+		}
+		?>
     </table>
+    
     <br />
     <table width="100%" cellpadding="0" cellspacing="0">
     	<?php
