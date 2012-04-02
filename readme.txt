@@ -144,7 +144,7 @@ The Keys can be downloaded at [reCaptcha](https://www.google.com/recaptcha). Fol
 
 
 == Upgrade Notice ==
-= 1.9.9 =
+= 2.0 =
 User can upload attachments
 Admin can download submission list to CSV and single submissions to PDF
 Admin can customize the state list
