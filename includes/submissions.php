@@ -525,7 +525,7 @@ if ( $deleteSubmit ){
 							  ?>
 							  <tr>
 								  <td width="10px"><input type="checkbox" name="attachDelete[]" value="<?php echo $attach; ?>" />
-								  <td><a href="<?php echo WP_CONTENT_URL; ?>/uploads/rsjb/attachments/<?php echo $attach; ?>" target="_blank"><?php echo $attach; ?></a></td>
+								  <td><a href="<?php echo WP_CONTENT_URL; ?>/uploads/rsjp/attachments/<?php echo $attach; ?>" target="_blank"><?php echo $attach; ?></a></td>
 							  </tr>
 							  <?php
 							  $attachCount++;

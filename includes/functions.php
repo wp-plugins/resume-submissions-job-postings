@@ -143,7 +143,7 @@ function getExtension( $str ) {
 
 // Upload user attachments
 function uploadAttachments( $files, $input ){
-	$uploadDir = WP_CONTENT_DIR . '/uploads/rsjb/attachments/';
+	$uploadDir = WP_CONTENT_DIR . '/uploads/rsjp/attachments/';
 	$count     = 1;
 	 
 	foreach( $_FILES[$input]['error'] as $key => $error ){
@@ -174,7 +174,7 @@ function uploadAttachments( $files, $input ){
 function deleteFileFromUpload( $files, $folder ){
 	foreach( $files as $file ){
 		if ( $file ){
-			if ( !( @unlink( WP_CONTENT_DIR . '/uploads/rsjb/' . $folder . '/' . $file ) ) ) {
+			if ( !( @unlink( WP_CONTENT_DIR . '/uploads/rsjp/' . $folder . '/' . $file ) ) ) {
 				$message = '<p style="color:#A83434;"><b>Could not delete the attached file(s).</b></p>';
 				$deleted = false;
 			} else {
