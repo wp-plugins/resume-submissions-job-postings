@@ -343,7 +343,7 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
 			?>
             <tr>
                 <td valign="top" width="190px"><p><?php _e( 'Attachment(s):' ); ?> </p></td>
-                <td><input type="file" name="attachment" id="attachment" class="multi" accept="<?php echo $attachSettings['allowed']; ?>" maxlength="<?php echo $attachSettings['num']; ?>" /></td>
+                <td><input type="file" name="attachment[]" id="attachment" class="multi" accept="<?php echo $attachSettings['allowed']; ?>" maxlength="<?php echo $attachSettings['num']; ?>" /></td>
                 <td valign="top"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'attachment', 1 ) ); ?></p></td>
             </tr>
         	<?php 
