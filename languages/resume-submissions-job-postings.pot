@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/resume-submissions-job-"
 "postings\n"
-"POT-Creation-Date: 2012-02-27 17:42:53+00:00\n"
+"POT-Creation-Date: 2012-04-03 14:16:31+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,312 +13,371 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: includes/display-jobs.php:16
+#: includes/display-jobs.php:23
 msgid "Archived Job Postings"
 msgstr ""
 
-#: includes/display-jobs.php:65 includes/job-postings.php:316
-#: includes/submissions.php:239
+#: includes/display-jobs.php:72
 msgid "First"
 msgstr ""
 
-#: includes/display-jobs.php:84 includes/job-postings.php:333
-#: includes/submissions.php:256
+#: includes/display-jobs.php:91
 msgid "Last"
 msgstr ""
 
-#: includes/display-jobs.php:93
+#: includes/display-jobs.php:100
 msgid "There are no archived job postings at this time."
 msgstr ""
 
-#: includes/display-jobs.php:104
+#: includes/display-jobs.php:111
 msgid "Posted:"
 msgstr ""
 
-#: includes/form.php:74
+#: includes/form.php:75
 msgid "<b>Error:</b> Make sure all fields required are filled out correctly."
 msgstr ""
 
-#: includes/form.php:228
+#: includes/form.php:230
 msgid "<b>*</b> Required"
 msgstr ""
 
-#: includes/form.php:234 includes/submissions.php:295
+#: includes/form.php:236 includes/submissions.php:368
 msgid "First Name:"
 msgstr ""
 
-#: includes/form.php:243 includes/submissions.php:303
+#: includes/form.php:245 includes/submissions.php:376
 msgid "Last Name:"
 msgstr ""
 
-#: includes/form.php:252 includes/submissions.php:311
+#: includes/form.php:254 includes/submissions.php:384
 msgid "Address:"
 msgstr ""
 
-#: includes/form.php:261
+#: includes/form.php:263
 msgid "Address2:"
 msgstr ""
 
-#: includes/form.php:270 includes/submissions.php:328
+#: includes/form.php:272 includes/submissions.php:401
 msgid "City:"
 msgstr ""
 
-#: includes/form.php:279 includes/submissions.php:336
+#: includes/form.php:282 includes/submissions.php:410
 msgid "State:"
 msgstr ""
 
-#: includes/form.php:290 includes/submissions.php:346
+#: includes/form.php:293 includes/submissions.php:420
 msgid "Zip Code:"
 msgstr ""
 
-#: includes/form.php:299 includes/submissions.php:358
+#: includes/form.php:302 includes/submissions.php:432
 msgid "Primary Contact Number:"
 msgstr ""
 
-#: includes/form.php:308 includes/submissions.php:367
+#: includes/form.php:311 includes/submissions.php:441
 msgid "Secondary Contact Number:"
 msgstr ""
 
-#: includes/form.php:317 includes/submissions.php:380
+#: includes/form.php:320 includes/submissions.php:454
 msgid "E-Mail Address:"
 msgstr ""
 
-#: includes/form.php:327 includes/submissions.php:387
+#: includes/form.php:330 includes/submissions.php:461
 msgid "Regarding Job:"
 msgstr ""
 
-#: includes/form.php:342
+#: includes/form.php:345
+msgid "Attachment(s):"
+msgstr ""
+
+#: includes/form.php:360
 msgid "<b>Cover Letter: </b>(Please submit with good formatting)"
 msgstr ""
 
-#: includes/form.php:354
+#: includes/form.php:382
 msgid "<b>Resumé: </b>(Please submit with good formatting)"
 msgstr ""
 
-#: includes/input-fields.php:31
-msgid "Input Fields have been updated."
-msgstr ""
-
-#: includes/input-fields.php:40 resume-submission.php:105
+#: includes/input-fields.php:41 resume-submission.php:45
 msgid "Input Fields"
 msgstr ""
 
-#: includes/input-fields.php:43
+#: includes/input-fields.php:44
 msgid "Select which fields you would like to display on the Resume Form."
 msgstr ""
 
-#: includes/input-fields.php:48
+#: includes/input-fields.php:49
 msgid "Field Name"
 msgstr ""
 
-#: includes/input-fields.php:49
+#: includes/input-fields.php:50
 msgid "Display"
 msgstr ""
 
-#: includes/input-fields.php:50
+#: includes/input-fields.php:51
 msgid "Required"
 msgstr ""
 
-#: includes/input-fields.php:55
+#: includes/input-fields.php:56
 msgid "First Name"
 msgstr ""
 
-#: includes/input-fields.php:60
+#: includes/input-fields.php:61
 msgid "Last Name"
 msgstr ""
 
-#: includes/input-fields.php:65
+#: includes/input-fields.php:66
 msgid "Address"
 msgstr ""
 
-#: includes/input-fields.php:70
+#: includes/input-fields.php:71
 msgid "Suite/Apt"
 msgstr ""
 
-#: includes/input-fields.php:75
+#: includes/input-fields.php:76
 msgid "City"
 msgstr ""
 
-#: includes/input-fields.php:80
+#: includes/input-fields.php:81
 msgid "State"
 msgstr ""
 
-#: includes/input-fields.php:85
+#: includes/input-fields.php:86
 msgid "Zip Code"
 msgstr ""
 
-#: includes/input-fields.php:90
+#: includes/input-fields.php:91
 msgid "Primary Number"
 msgstr ""
 
-#: includes/input-fields.php:95
+#: includes/input-fields.php:96
 msgid "Secondary Number"
 msgstr ""
 
-#: includes/input-fields.php:100
+#: includes/input-fields.php:101
 msgid "Email"
 msgstr ""
 
-#: includes/input-fields.php:105
+#: includes/input-fields.php:106 includes/settings.php:185
+msgid "Attachments"
+msgstr ""
+
+#: includes/input-fields.php:111
 msgid "Cover Letter"
 msgstr ""
 
-#: includes/input-fields.php:110
+#: includes/input-fields.php:116
 msgid "Resume"
 msgstr ""
 
-#: includes/job-postings.php:149 includes/job-postings.php:194
+#: includes/job-postings.php:156 includes/job-postings.php:201
 msgid "Job Title:"
 msgstr ""
 
-#: includes/job-postings.php:153 includes/job-postings.php:198
+#: includes/job-postings.php:160 includes/job-postings.php:205
 msgid "Subtitle:"
 msgstr ""
 
-#: includes/job-postings.php:157
+#: includes/job-postings.php:164
 msgid "Copy:"
 msgstr ""
 
-#: includes/job-postings.php:168 includes/job-postings.php:206
+#: includes/job-postings.php:175 includes/job-postings.php:213
 msgid "Archive:"
 msgstr ""
 
-#: includes/job-postings.php:202
+#: includes/job-postings.php:209
 msgid "Description:"
 msgstr ""
 
-#: includes/job-postings.php:248
+#: includes/job-postings.php:256
 msgid "Job Title"
 msgstr ""
 
-#: includes/job-postings.php:249
+#: includes/job-postings.php:257
 msgid "Post Date"
 msgstr ""
 
-#: includes/job-postings.php:250
+#: includes/job-postings.php:258
 msgid "Status"
 msgstr ""
 
-#: includes/job-postings.php:262
-msgid "Open"
-msgstr ""
-
-#: includes/job-postings.php:264
-msgid "Closed"
-msgstr ""
-
-#: includes/job-postings.php:295
+#: includes/job-postings.php:299
 msgid "There are no job postings at this time."
 msgstr ""
 
-#: includes/settings.php:44
-msgid "Settings have been updated."
-msgstr ""
-
-#: includes/settings.php:53
+#: includes/settings.php:89
 msgid "Resumé Settings"
 msgstr ""
 
-#: includes/settings.php:60
-msgid "Enable Captcha:"
+#: includes/settings.php:106
+msgid "Core Options"
 msgstr ""
 
-#: includes/settings.php:65
-msgid "Captcha - Private Key:"
-msgstr ""
-
-#: includes/settings.php:69
-msgid "Captcha - Public Key:"
-msgstr ""
-
-#: includes/settings.php:73
+#: includes/settings.php:112
 msgid "Resume Form Page:"
 msgstr ""
 
-#: includes/settings.php:85
+#: includes/settings.php:124
 msgid "Display Jobs Page:"
 msgstr ""
 
-#: includes/settings.php:97
+#: includes/settings.php:136
 msgid "Use TinyMCE:"
 msgstr ""
 
-#: includes/settings.php:102
+#: includes/settings.php:141
+msgid "PDF Base File:"
+msgstr ""
+
+#: includes/settings.php:143
+msgid "Default:"
+msgstr ""
+
+#: includes/settings.php:146
+msgid "State List:"
+msgstr ""
+
+#: includes/settings.php:153
+msgid "Custom State List:"
+msgstr ""
+
+#: includes/settings.php:155
+msgid "Seperate with | Example: Florida | New York"
+msgstr ""
+
+#: includes/settings.php:162
+msgid "reCaptcha"
+msgstr ""
+
+#: includes/settings.php:168
+msgid "Enable Captcha:"
+msgstr ""
+
+#: includes/settings.php:173
+msgid "Captcha - Private Key:"
+msgstr ""
+
+#: includes/settings.php:177
+msgid "Captcha - Public Key:"
+msgstr ""
+
+#: includes/settings.php:191
+msgid "Number of Attachments:"
+msgstr ""
+
+#: includes/settings.php:195
+msgid "Allowed Attachments:"
+msgstr ""
+
+#: includes/settings.php:197
+msgid "Seperate with | Example: pdf|docx"
+msgstr ""
+
+#: includes/settings.php:200
+msgid "Delete Attachments:"
+msgstr ""
+
+#: includes/settings.php:204
+msgid ""
+"Will delete the submission's attachment(s) when the submission is deleted"
+msgstr ""
+
+#: includes/settings.php:211
+msgid "Emailing"
+msgstr ""
+
+#: includes/settings.php:217
 msgid "Send Admin Email To:"
 msgstr ""
 
-#: includes/settings.php:106
+#: includes/settings.php:221
 msgid "Send User Email:"
 msgstr ""
 
-#: includes/settings.php:111
+#: includes/settings.php:226
 msgid "Email User From:"
 msgstr ""
 
-#: includes/settings.php:115
+#: includes/settings.php:230
 msgid "User Email Subject:"
 msgstr ""
 
-#: includes/settings.php:119
+#: includes/settings.php:234
 msgid "User Email Copy:"
 msgstr ""
 
-#: includes/settings.php:139
+#: includes/settings.php:249
 msgid "Helpful Hints"
 msgstr ""
 
-#: includes/submissions.php:92 resume-submission.php:103
+#: includes/submissions.php:133 resume-submission.php:43
 msgid "Resumé Submissions"
 msgstr ""
 
-#: includes/submissions.php:102
+#: includes/submissions.php:145
 msgid "Find:"
 msgstr ""
 
-#: includes/submissions.php:121
+#: includes/submissions.php:164
 msgid "Show All For:"
 msgstr ""
 
-#: includes/submissions.php:174
+#: includes/submissions.php:220
 msgid "Name"
 msgstr ""
 
-#: includes/submissions.php:175
+#: includes/submissions.php:221
 msgid "E-Mail"
 msgstr ""
 
-#: includes/submissions.php:176
+#: includes/submissions.php:222
 msgid "Regarding Job"
 msgstr ""
 
-#: includes/submissions.php:177
+#: includes/submissions.php:223
 msgid "Submission Date"
 msgstr ""
 
-#: includes/submissions.php:215
+#: includes/submissions.php:256
 msgid "There are no submissions at this time."
 msgstr ""
 
-#: includes/submissions.php:319
+#: includes/submissions.php:320
+msgid "Export Submissions"
+msgstr ""
+
+#: includes/submissions.php:392
 msgid "Suite/Apt:"
 msgstr ""
 
-#: includes/submissions.php:397
+#: includes/submissions.php:471
 msgid "Cover Letter:"
 msgstr ""
 
-#: includes/submissions.php:413
+#: includes/submissions.php:487
 msgid "Resumé:"
 msgstr ""
 
-#: resume-submission.php:102
+#: includes/submissions.php:516
+msgid "Submission Attachments"
+msgstr ""
+
+#: includes/submissions.php:555
+msgid "Export Submission"
+msgstr ""
+
+#: includes/widget.php:63
+msgid "View All Current Jobs"
+msgstr ""
+
+#: resume-submission.php:42
 msgid "Resumés &amp; Jobs"
 msgstr ""
 
-#: resume-submission.php:104
+#: resume-submission.php:44
 msgid "Job Postings"
 msgstr ""
 
-#: resume-submission.php:106
+#: resume-submission.php:46
 msgid "Settings"
 msgstr ""
