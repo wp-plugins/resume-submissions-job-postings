@@ -98,14 +98,14 @@ add_option( 'resume_input_fields', array( 'fname' => array( 1, 1 ), 'lname' => a
 
 
 // Create rsjb upload folder
-if( !is_dir( WP_CONTENT_DIR . '/uploads/rsjb/' ) ) {
-	mkdir( WP_CONTENT_DIR . '/uploads/rsjb/', 0777, true );
+if( !is_dir( WP_CONTENT_DIR . '/uploads/rsjp/' ) ) {
+	mkdir( WP_CONTENT_DIR . '/uploads/rsjp/', 0777, true );
 }
-if( !is_dir( WP_CONTENT_DIR . '/uploads/rsjb/attachments/' ) ) {
-	mkdir( WP_CONTENT_DIR . '/uploads/rsjb/attachments/', 0777, true );
+if( !is_dir( WP_CONTENT_DIR . '/uploads/rsjp/attachments/' ) ) {
+	mkdir( WP_CONTENT_DIR . '/uploads/rsjp/attachments/', 0777, true );
 }
-if( !is_dir( WP_CONTENT_DIR . '/uploads/rsjb/pdfs/' ) ) {
-	mkdir( WP_CONTENT_DIR . '/uploads/rsjb/pdfs/', 0777, true );
+if( !is_dir( WP_CONTENT_DIR . '/uploads/rsjp/pdfs/' ) ) {
+	mkdir( WP_CONTENT_DIR . '/uploads/rsjp/pdfs/', 0777, true );
 }
 
 
