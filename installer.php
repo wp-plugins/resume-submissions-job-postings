@@ -51,13 +51,12 @@ if( $wpdb->get_var( 'SHOW TABLES LIKE "' . JOBTABLE . '"' ) != JOBTABLE ) {
 if( $wpdb->get_var( 'SHOW TABLES LIKE "' . OLDSUBTABLE . '"' ) == OLDSUBTABLE ) {
 	$transferSUB = 'INSERT INTO ' . SUBTABLE . ' ( id, fname, lname, address, address2, city, state, zip, pnumber, pnumbertype, snumber, snumbertype, email, job, cover, resume, pubdate ) 
 					SELECT id, fname, lname, address, address2, city, state, zip, pnumber, pnumbertype, snumber, snumbertype, email, job, cover, resume, pubdate FROM ' . OLDSUBTABLE;
+	dbDelta( $transferSUB );
 }
 if( $wpdb->get_var( 'SHOW TABLES LIKE "' . OLDJOBTABLE . '"' ) == OLDJOBTABLE ) {
-	$renameOldJob = 'RENAME ' . OLDJOBTABLE . ' TO ' . JOBTABLE;
-	if (dbDelta( $renameOldJob ) ) {
-		$transferJob = 'INSERT INTO ' . JOBTABLE . ' ( id, title, subTitle, description, archive, pubDate ) 
-						SELECT id, title, subTitle, description, archive, pubDate FROM ' . OLDJOBTABLE;
-	}
+	$transferJob = 'INSERT INTO ' . JOBTABLE . ' ( id, title, subTitle, description, archive, pubDate ) 
+					SELECT id, title, subTitle, description, archive, pubDate FROM ' . OLDJOBTABLE;
+	dbDelta( $transferJob );
 }
 
 
