@@ -42,26 +42,33 @@ class resume_job_postings {
 		echo $args['before_widget'];
 		echo $args['before_title'] . $widgetTitle . $args['after_title'];
 		
-		$jobs = $wpdb->get_results( 'SELECT id, title, pubDate FROM ' . JOBTABLE . ' ORDER BY pubDate DESC, title DESC LIMIT ' . $widgetDisplay );
-		?>
-        <ul>
-        	<?php
-			foreach ($jobs as $job){
-				// Check to see if there are other variables
-				if ( strpos( get_option( 'resume_jobs_page' ), '?' ) ) {
-					$connect = '&';
-				} else {
-					$connect = '?';
-				}
-				?>
-                <li><a href="<?php echo get_option( 'resume_jobs_page' ) . $connect; ?>postingID=<?php echo $job->id; ?>"><?php echo $job->title; ?></a><br />
-                &nbsp;&nbsp; - <i style="font-size:10px;">Posted: <?php echo date( 'M j, Y', strtotime( $job->pubDate ) ); ?></i></li>
-                <?php
-			}
-		?>
-        </ul>
-        <center><a href="<?php echo get_option( 'resume_jobs_page' ); ?>"><?php _e( 'View All Current Jobs' ); ?></a></center>
-        <?php
+		$jobs = $wpdb->get_results( 'SELECT id, title, pubDate FROM ' . JOBTABLE . ' WHERE archive != 1 ORDER BY pubDate DESC, title DESC LIMIT ' . $widgetDisplay );
+		
+		if ( $jobs ){
+			?>
+        	<ul>
+				<?php
+                foreach ( $jobs as $job ){
+                    // Check to see if there are other variables
+                    if ( strpos( get_option( 'resume_jobs_page' ), '?' ) ) {
+                        $connect = '&';
+                    } else {
+                        $connect = '?';
+                    }
+                    ?>
+                    <li><a href="<?php echo get_option( 'resume_jobs_page' ) . $connect; ?>postingID=<?php echo $job->id; ?>"><?php echo $job->title; ?></a><br />
+                    &nbsp;&nbsp; - <i style="font-size:10px;">Posted: <?php echo date( 'M j, Y', strtotime( $job->pubDate ) ); ?></i></li>
+                    <?php
+                }				
+            	?>
+            </ul>
+            <center><a href="<?php echo get_option( 'resume_jobs_page' ); ?>"><?php _e( 'View All Current Jobs' ); ?></a></center>
+            <?php
+		} else {
+			?>
+            <center><i>There are no jobs currently available.</i></center>
+            <?php
+		}
 		echo $args['after_widget'];
 	}
 	function register(){

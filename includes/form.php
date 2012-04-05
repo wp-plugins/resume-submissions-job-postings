@@ -9,6 +9,7 @@ $adminEmail     = get_option( 'resume_send_admin_email_to' );
 $fromAdminEmail = get_option( 'resume_email_user_from' );
 $toUserCopy     = get_option( 'resume_user_email_copy' );
 $useTinyMce     = get_option( 'resume_use_tinymce' );
+$useTinyMceQT   = get_option( 'resume_use_tinymce_qt' );
 
 $action      = $_POST['action'];
 $fname       = $_POST['fname'];
@@ -66,6 +67,11 @@ if ( $useTinyMce == "Enabled" ){
 	$setTinyMce = true;
 } else {
 	$setTinyMce = false;
+}
+if ( $useTinyMceQT == "Enabled" && $setTinyMce ){
+	$setTinyMceQT = true;
+} else {
+	$setTinyMceQT = false;
 }
 
 
@@ -364,7 +370,7 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
                 <td>
 					<?php 
                     if ( function_exists( wp_editor ) ) {
-                        wp_editor( $errorCover, 'cover', setTinySetting( 'cover', '35', false, $setTinyMce, false ) ); 
+                        wp_editor( $errorCover, 'cover', setTinySetting( 'cover', '35', false, $setTinyMce, $setTinyMceQT ) ); 
                     } else {
                         ?>
                         <textarea name="cover" rows="20" cols="40"><?php echo $errorCover; ?></textarea>
@@ -386,7 +392,7 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
                 <td>
 					<?php 
                     if ( function_exists( wp_editor ) ) {
-                        wp_editor( $errorResume, 'resume', setTinySetting( 'resume', '35', false, $setTinyMce, false ) ); 
+                        wp_editor( $errorResume, 'resume', setTinySetting( 'resume', '35', false, $setTinyMce, $setTinyMceQT ) ); 
                     } else {
                         ?>
                         <textarea name="resume" rows="20" cols="40"><?php echo $errorResume; ?></textarea>

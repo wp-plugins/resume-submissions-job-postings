@@ -3,7 +3,7 @@
 Plugin Name: Resumé Submissions & Job Postings
 Plugin URI: http://www.geerservices.com/wordpress-plugins/resume-jobs/
 Description: Allows the admin to create and show job postings. Users can submit their resume in response to a posting or for general purposes. 
-Version: 2.0
+Version: 2.1
 Author: Keith Andrews (GSI)
 Author URI: http://www.geerservices.com
 License: GPL2
@@ -182,40 +182,58 @@ add_shortcode( 'jobPostings', 'resumeJobsDisplay_handler' );
 
 // Check for the old tables and remove
 function removeOldRSJPDBTables(){
-	global $wpdb, $current_user;	
-	$code = $_GET['rsjpaction'];
-
-	if ( current_user_can( 'install_plugins' ) ) {
+	global $wpdb, $current_user;
+		
+	$userID = $current_user->ID;
+	$code   = $_POST['rsjpaction'];
+	
+	// If dismiss, hide for that user
+	if ( isset( $_POST['removeRSJPNoticeDismiss'] ) && $_POST['removeRSJPNoticeDismiss'] == '0' ) {
+         add_user_meta( $userID, 'removeRSJPNoticeDismiss', 'true', true );
+	}
+	
+	if ( $code == 'removeOldDB' ){
+		$deleteOldSUB = 'DROP TABLE ' . OLDSUBTABLE;
+		$deleteOldJob = 'DROP TABLE ' . OLDJOBTABLE;
+		$deletedSub = $wpdb->query( $deleteOldSUB );
+		$deletedJob = $wpdb->query( $deleteOldJob );
+		if ( $deletedSub || $deletedJob ) {
+			function removedRSJPDB(){
+				echo '<div class="updated">
+				   <p>The old tables have been successfully deleted.</p>
+				</div>';
+			}
+			add_action('admin_notices', 'removedRSJPDB');
+		} else {
+			function removingRSJPDBError(){
+				echo '<div class="error">
+				   <p>There was an error deleteing the old tables.</p>
+				</div>';
+			}
+			add_action('admin_notices', 'removingRSJPDBError');
+		}
+	}
+	
+	if ( current_user_can( 'install_plugins' ) && !get_user_meta( $userID, 'removeRSJPNoticeDismiss' ) ) {
 		if( $wpdb->get_var( 'SHOW TABLES LIKE "' . OLDSUBTABLE . '"' ) == OLDSUBTABLE || $wpdb->get_var( 'SHOW TABLES LIKE "' . OLDJOBTABLE . '"' ) == OLDJOBTABLE ){
 			function oldRSJPDBNotice(){
 				echo '<div class="error">
 				   <p>Resume Submissions and Job Postings Notice: You have old tables in your database that have been updated.<br>
-				   <b>Make sure your data has transfered successfully before deleting!</b> <i>(Your data should be seen in the submissions and jobs pages... like nothing happened)</i><br>
-				   Please <a href="admin.php?page=resume-submissions-job-postings/resume-submission.php&rsjpaction=removeOldDB">click here</a> to delete.</p>
+				   <b>Make sure your data has transfered successfully before deleting!</b> <i>(Your data should be seen in the submissions and jobs pages... like nothing happened)</i><br />
+				   Either click <i>Delete</i> to remove the old tables or <i>Dismiss</i> to remove this warning and keep the tables in your database.<br />
+				   <br />
+				   <form method="post" enctype="multipart/form-data" style="float:left; clear:left; width:100px;">
+				   	   <input type="hidden" name="rsjpaction" value="removeOldDB">
+				   	   <input name="deleteDBTBLs" type="submit" value="Delete" class="button-secondary" />
+				   </form>
+				   <form method="post" enctype="multipart/form-data" style="float:left; clear:right; width:100px;">
+				       <input type="hidden" name="removeRSJPNoticeDismiss" value="0">
+				   <input name="removeRSJPNotice" type="submit" value="Dismiss" class="button-secondary" />
+				   </form></p>
+				   <br clear="all">
 				</div>';
 			}
 			add_action('admin_notices', 'oldRSJPDBNotice');
-			if ( $code == 'removeOldDB' ){
-				$deleteOldSUB = 'DROP TABLE ' . OLDSUBTABLE;
-				$deleteOldJob = 'DROP TABLE ' . OLDJOBTABLE;
-				$deletedSub = $wpdb->query( $deleteOldSUB );
-				$deletedJob = $wpdb->query( $deleteOldJob );
-				if ( $deletedSub || $deletedJob ) {
-					function removedRSJPDB(){
-						echo '<div class="updated">
-						   <p>The old tables have been successfully deleted.</p>
-						</div>';
-					}
-					add_action('admin_notices', 'removedRSJPDB');
-				} else {
-					function removingRSJPDBError(){
-						echo '<div class="error">
-						   <p>There was an error deleteing the old tables.</p>
-						</div>';
-					}
-					add_action('admin_notices', 'removingRSJPDBError');
-				}
-			}
 		}
 	}
 }

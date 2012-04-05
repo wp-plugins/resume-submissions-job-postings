@@ -7,7 +7,7 @@ if ( version_compare( $wp_version, '3.0', '<' ) ) {
 	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 }
 //***Installer variables***
-$resume_db_version = "2.0";
+$resume_db_version = "2.1";
 //***Installer****
 if( $wpdb->get_var( 'SHOW TABLES LIKE "' . SUBTABLE . '"' ) != SUBTABLE ) {
 	$sql = 'CREATE TABLE ' . SUBTABLE . ' (
@@ -72,6 +72,7 @@ add_option( 'resume_captcha_public_key', '' );
 add_option( 'resume_form_page', '' );
 add_option( 'resume_jobs_page', '' );
 add_option( 'resume_use_tinymce', 'Enabled' );
+add_option( 'resume_use_tinymce_qt', false );
 add_option( 'resume_attachments', array( 'num' => 3, 'allowed' => 'pdf|doc|docx', 'delete' => 'Enabled' ) );
 add_option( 'resume_pdf_base_file', resume_get_plugin_dir( 'path' ) . '/base-files/submission-entry.pdf' );
 add_option( 'resume_state_list', array( 'use' => 'US', 'list' => array( 'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 

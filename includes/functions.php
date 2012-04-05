@@ -212,6 +212,9 @@ function exportSubToCSV() {
 
 // Export Submission to PDF
 function exportSubToPDF( $id ) {
-	//include( resume_get_plugin_dir( 'go' ) . '/includes/create-submission-pdf.php' );
+	global $wpdb;
+	include( 'create-submission-pdf.php' );
+	
+	return $saveFile;
 }
 ?>

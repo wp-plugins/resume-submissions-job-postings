@@ -19,6 +19,7 @@ $captchaPublicKey  = $_POST['captchaPublicKey'];
 $formPage          = $_POST['formPage'];
 $jobsPage          = $_POST['jobsPage'];
 $useTinymce        = $_POST['useTinymce'];
+$useTinymceQT      = $_POST['useTinymceQT'];
 $attachments       = array( 'num' => $_POST['numAttachments'], 'allowed' => $_POST['allowedAttachments'], 'delete' => $_POST['deleteAttachments'] );
 $customPDFBase     = $_POST['customPDFBase'];
 $stateList         = array( 'use' => $_POST['useStateList'], 'list' => $saveList );
@@ -45,6 +46,7 @@ if ( $update ) {
 	update_option( 'resume_form_page', $formPage );
 	update_option( 'resume_jobs_page', $jobsPage );
 	update_option( 'resume_use_tinymce', $useTinymce );
+	update_option( 'resume_use_tinymce_qt', $useTinymceQT );
 	update_option( 'resume_attachments', $attachments );
 	update_option( 'resume_pdf_base_file', $customPDFBase );
 	update_option( 'resume_state_list', $stateList );
@@ -137,11 +139,16 @@ foreach ( $stateListOptions['list'] as $state ){
                     <td align="left"><input type="radio" name="useTinymce" value="Enabled" <?php echo checkIt( get_option( 'resume_use_tinymce' ), 'Enabled', 'radio' ); ?> />Enabled 
                                      <input type="radio" name="useTinymce" value="Disabled" <?php echo checkIt( get_option( 'resume_use_tinymce' ), 'Disabled', 'radio' ); ?> />Disabled</td>
                 </tr>
-                <!--<tr>
+                <tr>
+                    <td><p><b><?php _e( 'Use TinyMCE Quick Tags:' ); ?> </b></p></td>
+                    <td align="left"><input type="radio" name="useTinymceQT" value="true" <?php echo checkIt( get_option( 'resume_use_tinymce' ), 'true', 'radio' ); ?> />Enabled 
+                                     <input type="radio" name="useTinymceQT" value="false" <?php echo checkIt( get_option( 'resume_use_tinymce' ), 'false', 'radio' ); ?> />Disabled</td>
+                </tr>
+                <tr>
                     <td valign="top"><p><b><?php _e( 'PDF Base File:' ); ?> </b></p></td>
                     <td align="left"><input type='text' name='customPDFBase' size='100' value="<?php echo get_option( 'resume_pdf_base_file' ); ?>" /><br />
                                      <i style="font-size:10px;"><?php _e( 'Default:' ); ?> <?php echo resume_get_plugin_dir( 'path' ) . '/base-files/submission-entry.pdf'; ?></i></td>
-                </tr>-->
+                </tr>
                 <tr>
                     <td valign="top"><p><b><?php _e( 'State List:' ); ?> </b></p></td>
                     <td align="left"><select name="useStateList" id="useStateList" onchange='jsOpenCustomList(this)'>
@@ -294,7 +301,11 @@ foreach ( $stateListOptions['list'] as $state ){
                             <br />
                             <p><b>Problem:</b> There is an error when downloading a Submission as a PDF.</p>
                             <p><i><b>Solution:</b> Make sure that the <b>PDF Base File</b> setting is calling the Document Root path and not the URL path.</i></p>
-                            <br />                      
+                            
+                            <br /> 
+                            <p><b>Problem:</b> When looking at a submission, I get a FPDI Error in the downloads box.</p>
+                            <p><i><b>Solution:</b> The PDF that you use for the base file MUST be saved in the PDF/A format.</i></p>
+                            <br />                     
                             
                             <h3>Report Bugs and Features Request</h3>
                             <p>If you would like to report any bugs or new features, please go to <a href="http://www.geerservices.com/wordpress-plugins/resume-jobs" target="_blank">

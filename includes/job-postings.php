@@ -7,7 +7,7 @@ $addNew      = $_POST['addNew'];
 $add         = $_POST['add'];
 $edit        = $_POST['edit'];
 $copy        = $_POST['copy'];
-$copyID      = $_POST['copyID'];
+$copyID      = $_GET['copyID'];
 $title       = $_POST['title'];
 $subTitle    = $_POST['subTitle'];
 $description = $_POST['description'];
@@ -64,7 +64,7 @@ if ( $edit ){
 // EOF View/Edit 
 
 // Copy Entry
-if ( $copy ){
+if ( $copyID ){
 	
 	$copyFrom = $wpdb->get_row( 'SELECT * FROM ' . JOBTABLE . ' WHERE id = "' . $copyID . '"' );
 	
@@ -207,7 +207,7 @@ if ( $ID ){
 			</tr>
 			<tr>
 				<td valign="top"><p><b><?php _e( 'Description:' ); ?> </b></p></td>
-				<td align="left"><p><?php wp_editor( 'description', 'description', setTinySetting( 'description', '15', true, true, true ) ); ?></p><br /></td>
+				<td align="left"><p><?php wp_editor( '', 'description', setTinySetting( 'description', '15', true, true, true ) ); ?></p><br /></td>
 			</tr>
 			<tr>
 				<td><p><b><?php _e( 'Archive:' ); ?> </b></p></td>
@@ -248,7 +248,7 @@ if ( $ID ){
 		$infoQuery = $wpdb->get_results( 'SELECT * FROM ' . JOBTABLE . ' ORDER BY archive ASC, pubDate DESC, title DESC LIMIT ' . $offSet . ', ' .$rowsPerPage );
 		?>
         
-	  	<form name="deleteEntries" method="post" enctype="multipart/form-data">
+	  	<form name="deleteEntries" method="post" enctype="multipart/form-data" action="<?php echo admin_url(); ?>admin.php?page=job_postings">
 		<table class="widefat">
 			<thead>
 				<tr>
@@ -274,20 +274,17 @@ if ( $ID ){
 				
 					?>
 					<tr>
-                    	<td><input type="checkbox" name="deleteID[]" value="<?php echo $info->id; ?>" /></form></td>
+                    	<td><input type="checkbox" name="deleteID[]" value="<?php echo $info->id; ?>" /></td>
 						<td><p><?php _e( $info->title ); ?></p></td>
 						<td><p><?php echo date( 'F j, Y g:ia', strtotime( $info->pubDate ) ); ?></p></td>
 						<td><?php echo $isArchived; ?></td>
 						<td>&nbsp;</td>
 						<td align="right" width="50px">
-						<form name="view_<?php echo $info->id; ?>" method="post" enctype="multipart/form-data" action="<?php echo admin_url(); ?>admin.php?page=job_postings&id=<?php echo $info->id; ?>">
-							<input name="view" type="submit" value="View/Edit" class="button-secondary" />
-						</form></td>
+                        	<input name="view" type="button" value="View/Edit" class="button-secondary" onclick="location.href='<?php echo admin_url(); ?>admin.php?page=job_postings&id=<?php echo $info->id; ?>'" />
+						</td>
 						<td align="right" width="50px">
-						<form name="copy_<?php echo $info->id; ?>" method="post" enctype="multipart/form-data" action="<?php echo admin_url(); ?>admin.php?page=job_postings">
-							<input type="hidden" name="copyID" value="<?php echo $info->id; ?>" />
-							<input name="copy" type="submit" value="Copy" class="button-secondary" />
-						</form></td>
+                            <input name="copy" type="button" value="Copy" class="button-secondary" onclick="location.href='<?php echo admin_url(); ?>admin.php?page=job_postings&copyID=<?php echo $info->id; ?>'" />
+						</td>
 					</tr>
 					<?php
 				}
@@ -346,7 +343,8 @@ if ( $ID ){
 		<?php
 		if ( $getNum > 0 ){
 			?>
-			<input type="submit" name="deleteSubmit" value="Delete Record(s)" class="button-secondary" onClick="return( confirm( 'Are you sure you want to delete these entries?' ) )" />
+				<input type="submit" name="deleteSubmit" value="Delete Record(s)" class="button-secondary" onClick="return( confirm( 'Are you sure you want to delete these entries?' ) )" />
+            </form>
 			<?php
 		}
 	}

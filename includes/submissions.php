@@ -231,16 +231,14 @@ if ( $deleteSubmit ){
 								
 								?>
 								<tr>
-									<td><input type="checkbox" name="deleteID[]" value="<?php echo $info->id; ?>" /></form></td>
+									<td><input type="checkbox" name="deleteID[]" value="<?php echo $info->id; ?>" /></td>
 									<td><p><?php echo $info->fname; ?> <?php echo $info->lname; ?></p></td>
 									<td><p><?php echo $info->email; ?></p></td>
 									<td><p><?php echo $info->job; ?></p></td>
 									<td><p><?php echo date( 'F j, Y g:ia', strtotime( $info->pubdate ) ); ?></p></td>
 									<td>&nbsp;</td>
 									<td align="right" width="50px">
-										<form name="view_<?php echo $info->id; ?>" method="post" enctype="multipart/form-data" action="<?php echo admin_url(); ?>admin.php?page=resume-submissions-job-postings/resume-submission.php&id=<?php echo $info->id; ?>">
-											<input name="view" type="submit" value="View/Edit" class="button-secondary" />
-										</form></td>
+										<input name="view" type="button" value="View/Edit" class="button-secondary" onclick="location.href='<?php echo admin_url(); ?>admin.php?page=resume-submissions-job-postings/resume-submission.php&id=<?php echo $info->id; ?>'" /></td>
 								</tr>
 								<?php
 							}
@@ -260,6 +258,7 @@ if ( $deleteSubmit ){
 									
 									<td>&nbsp;</td>
 									<td>&nbsp;</td>
+                                    <td>&nbsp;</td>
 								</tr>
 							<?php
 							
@@ -306,7 +305,8 @@ if ( $deleteSubmit ){
 			<?php
 			if ( $getNum > 0 ){
 				?>
-				<input type="submit" name="deleteSubmit" value="Delete Record(s)" class="button-secondary" onClick="return( confirm( 'Are you sure you want to delete these entries?' ) )" />
+					<input type="submit" name="deleteSubmit" value="Delete Record(s)" class="button-secondary" onClick="return( confirm( 'Are you sure you want to delete these entries?' ) )" />
+                </form>
 				<?php
 			}
 			?>
@@ -541,7 +541,7 @@ if ( $deleteSubmit ){
 					  ?>    
 				  </tbody>
 			  </table>
-			  <input type="submit" name="deleteAttach" value="Delete Attachment(s)" class="button-secondary" onClick="return( confirm( 'Are you sure you want to delete these attachments?' ) )" />
+			      <input type="submit" name="deleteAttach" value="Delete Attachment(s)" class="button-secondary" onClick="return( confirm( 'Are you sure you want to delete these attachments?' ) )" />
 			  </form>
 			  </div>
 			  <?php
@@ -559,13 +559,13 @@ if ( $deleteSubmit ){
 				  <tr>
 					  <td>
 						  <?php
-						  // Export to CSV
-						  //exportSubToPDF( $single->id );
+						  // Export to PDF
+						  $pdfLink = @exportSubToPDF( $single->id );
 						  ?>
 						  <table cellpadding="2" cellspacing="2">
 							  <tr>
 								  <td><a href="javascript:window.print()"><img src="<?php echo resume_get_plugin_dir( 'go' ); ?>/images/icons/printing-icon-32.png" alt="Print Resume" title="Print Resume" id="printResume" /></a></a>
-								  <?php /* <td><input type="image" name="subToPDF" src="<?php echo resume_get_plugin_dir( 'go' ); ?>/images/icons/pdf-icon.png" onclick="exportSubToPDF()" alt="Download to PDF" title="Download to PDF" /></td>*/ ?>
+								  <td><a href="<?php echo WP_CONTENT_URL . '/uploads/rsjp/pdfs/' . $pdfLink; ?>" target="_blank"><img src="<?php echo resume_get_plugin_dir( 'go' ); ?>/images/icons/pdf-icon.png" alt="Download to PDF" title="Download to PDF" /></a></td>
 							  </tr>
 						  </table>
 					  </td>
