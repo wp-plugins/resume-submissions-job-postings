@@ -6,22 +6,19 @@ Plugin URI: http://www.geerservices.com/wordpress-plugins/resume-jobs/
 Tags: resume submission, job postings, job listing, resume, jobs 
 Requires at least: 3.3
 Tested up to: 3.3.1
-Stable tag: 2.0
+Stable tag: 2.1
 
 Allows the admin to create and show job postings. Users can submit their resume in response to a posting or for general purposes. 
 
 == Description ==
 
-The Resume Submissions & Job Postings plugin will allow an admin to post jobs for their business. 
+The Resume Submissions & Job Postings plugin will allow an admin to post jobs on their website.
 
 
-If the job is no longer active, it can be set to archive, and will no longer be shown on the listings page and widget.
+When there are open jobs, users can go in and look at each one. They may also submit their resume for any job or for general purposes.
 
 
-When there are open jobs, users can go in and look at each one. They may also submit their resume for any job.
-
-
-Once the user submits his/her information, the admin may look at or edit the submitted resume.
+Once the user submits his/her information, the admin may look at, edit, or delete the submitted resume.
 
 
 The admin may sort resumes by job, or anything else they search for.
@@ -38,8 +35,8 @@ The admin may sort resumes by job, or anything else they search for.
 * Allow User attachment
 * Set the amount of allowed attachments and type of attachments
 * Customize State list
-* Save/Download Submitted Resume as PDF (Almost complete)
-* Allow Admin to create extra input fields (coming soon)
+* Save/Download Submitted Resume as PDF
+* Allow Admin to create extra input fields (Coming Soon)
 
  
 == Features ==
@@ -63,23 +60,37 @@ The admin may sort resumes by job, or anything else they search for.
 == Frequently Asked Questions ==
 
 = I click on "Submit Resume for this Job", but nothing happens or the page is not found. =
-
 Make sure to have the "Resume Form Page" field filled out to go to the page that has the Form shortcode in it.
 
 = I cannot get the Captcha to work correctly. =
-
 You must make sure that the Captcha Key fields are correctly filled out. Also, make sure that the url for those keys is the same url as this site.
 
 = Where can I get the Captcha Keys? =
 The Keys can be downloaded at [reCaptcha](https://www.google.com/recaptcha). Follow the steps and you will have your keys.
 
+= There is an error when downloading a Submission as a PDF. =
+Make sure that the PDF Base File setting is calling the Document Root path and not the URL path.
+
+= When looking at a submission, I get a FPDI Error in the downloads box. =
+The PDF that you use for the base file MUST be saved in the PDF/A format.
+
 == Screenshots ==
 
 1. The Resume Submissions lets you view or edit submitted user resumes. Can also sort by job or keyword.
-2. The Job Posting screen where you can add, edit, delete, or archive jobs.
-3. The Settings page where you can set Captcha or User Email.
+2. The Job Posting screen where you can add, edit, delete, copy, or archive jobs.
+3. The Settings page where you can set the Core Settings, reCaptcha, Attachments, and Emailing.
+4. The Input Fields page where you can set which fields are display and/or required.
 
 == Changelog ==
+= 2.1 =
+* Add the ability to download a submission to a PDF
+* Fixed the attachements bug
+* Fixed IE table view on the Submissions and Job Postings pages
+* Fixed Widget bug that would display archived Job Postings
+* Added text to the Widget if there are no jobs to display
+* Fixed Job Postings data transfer to new table
+* Allowed admin to set Quick Tags on the TinyMce
+
 = 2.0 =
 * Updated database tables
 * Added the option to allow multiple uploads
@@ -144,9 +155,12 @@ The Keys can be downloaded at [reCaptcha](https://www.google.com/recaptcha). Fol
 
 
 == Upgrade Notice ==
+= 2.1 =
+Admins can now download single submissions as a PDF
+
 = 2.0 =
 User can upload attachments
-Admin can download submission list to CSV and single submissions to PDF
+Admin can download submission list to CSV
 Admin can customize the state list
 Admin can bulk delete submissions and job postings
 
