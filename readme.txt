@@ -90,6 +90,7 @@ The PDF that you use for the base file MUST be saved in the PDF/A format.
 * Added text to the Widget if there are no jobs to display
 * Fixed Job Postings data transfer to new table
 * Allowed admin to set Quick Tags on the TinyMce
+* Ability to dismiss the notice of old database tables
 
 = 2.0 =
 * Updated database tables
