@@ -84,7 +84,7 @@ The PDF that you use for the base file MUST be saved in the PDF/A format.
 == Changelog ==
 = 2.1 =
 * Add the ability to download a submission to a PDF
-* Fixed the attachements bug
+* Fixed the attachments bug
 * Fixed IE table view on the Submissions and Job Postings pages
 * Fixed Widget bug that would display archived Job Postings
 * Added text to the Widget if there are no jobs to display
