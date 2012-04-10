@@ -313,24 +313,24 @@ if ( $ID ){
 					
 						<?php
 						if ( $currentPage > 1 ) {
-						   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?admin.php?page=job_postings&currentPage=1">First</a> ';
+						   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=job_postings&currentPage=1">First</a> ';
 						   $prevPage = $currentPage - 1;
-						   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?admin.php?page=job_postings&currentPage=' . $prevPage . '">«</a> ';
+						   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=job_postings&currentPage=' . $prevPage . '">«</a> ';
 						} 
 						
 						for ( $x = ( $currentPage - $range ); $x < ( ( $currentPage + $range ) + 1 ); $x++ ) {
 						   
 						   if ( ( $x > 0 ) && ( $x <= $totalPages ) ) {
 							  if ( $x != $currentPage ) {
-								 echo ' <a href="' . $_SERVER['PHP_SELF'] . '?admin.php?page=job_postings&currentPage=' . $x . '">' . $x . '</a> ';
+								 echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=job_postings&currentPage=' . $x . '">' . $x . '</a> ';
 							  } 
 						   } 
 						}
 										 
 						if ( $currentPage != $totalPages ) {
 						   $nextPage = $currentPage + 1;
-						   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?admin.php?page=job_postings&currentPage=' . $nextPage . '">»</a> ';
-						   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?admin.php?page=job_postings&currentPage=' . $totalPages . '">Last</a> ';
+						   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=job_postings&currentPage=' . $nextPage . '">»</a> ';
+						   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=job_postings&currentPage=' . $totalPages . '">Last</a> ';
 						}
 						?>
 					</div> 
