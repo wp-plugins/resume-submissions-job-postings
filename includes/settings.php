@@ -22,6 +22,7 @@ $useTinymce        = $_POST['useTinymce'];
 $useTinymceQT      = $_POST['useTinymceQT'];
 $attachments       = array( 'num' => $_POST['numAttachments'], 'allowed' => $_POST['allowedAttachments'], 'delete' => $_POST['deleteAttachments'] );
 $customPDFBase     = $_POST['customPDFBase'];
+$thankYouText      = $_POST['thankYouText'];
 $stateList         = array( 'use' => $_POST['useStateList'], 'list' => $saveList );
 $sendAdminEmailTo  = $_POST['sendAdminEmailTo'];
 $emailUserFrom     = $_POST['emailUserFrom'];
@@ -49,6 +50,7 @@ if ( $update ) {
 	update_option( 'resume_use_tinymce_qt', $useTinymceQT );
 	update_option( 'resume_attachments', $attachments );
 	update_option( 'resume_pdf_base_file', $customPDFBase );
+	update_option( 'resume_thank_you_text', $thankYouText );
 	update_option( 'resume_state_list', $stateList );
 	update_option( 'resume_send_admin_email_to', $sendAdminEmailTo );
 	update_option( 'resume_email_user_from', $emailUserFrom );
@@ -141,8 +143,8 @@ foreach ( $stateListOptions['list'] as $state ){
                 </tr>
                 <tr>
                     <td><p><b><?php _e( 'Use TinyMCE Quick Tags:' ); ?> </b></p></td>
-                    <td align="left"><input type="radio" name="useTinymceQT" value="true" <?php echo checkIt( get_option( 'resume_use_tinymce' ), 'true', 'radio' ); ?> />Enabled 
-                                     <input type="radio" name="useTinymceQT" value="false" <?php echo checkIt( get_option( 'resume_use_tinymce' ), 'false', 'radio' ); ?> />Disabled</td>
+                    <td align="left"><input type="radio" name="useTinymceQT" value="true" <?php echo checkIt( get_option( 'resume_use_tinymce_qt' ), 'true', 'radio' ); ?> />Enabled 
+                                     <input type="radio" name="useTinymceQT" value="false" <?php echo checkIt( get_option( 'resume_use_tinymce_qt' ), 'false', 'radio' ); ?> />Disabled</td>
                 </tr>
                 <tr>
                     <td valign="top"><p><b><?php _e( 'PDF Base File:' ); ?> </b></p></td>
@@ -160,6 +162,10 @@ foreach ( $stateListOptions['list'] as $state ){
                     <td valign="top"><p><b><?php _e( 'Custom State List:' ); ?> </b></p></td>
                     <td align="left"><input type='text' name='customStateList' size='100' <?php if ( $stateListOptions['use'] != 'US' ) echo 'value="' . $displayStateList . '"'; ?> /><br />
                                      <i style="font-size:10px;"><?php _e( 'Seperate with | Example: Florida | New York' ); ?></i></td>
+                </tr>
+                <tr>
+                    <td valign="top"><p><b><?php _e( 'Thank You Text:' ); ?> </b></p></td>
+                    <td align="left" height="250px"><?php wp_editor( get_option( 'resume_thank_you_text' ), 'thankYouText', setTinySetting( 'thankYouText', '15', false, true, true ) ); ?></td>
                 </tr>
             </tbody>
         </table>

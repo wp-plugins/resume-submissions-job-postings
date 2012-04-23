@@ -148,9 +148,7 @@ if( $action == 'add' && $formError == false ) {
 			$headers .= 'From: "' . $siteName . '"<' . $fromAdminEmail . '>' . "\r\n";
 			mail( $to, $subject, $message, $headers );
 		}
-		$formMessage = '<p style="color:#008f07;"><b>Thank you for your submission.</b></p>
-						<p style="color:#008f07;">Your resumé is now stored in our database for future reference.</p>
-						<p style="color:#008f07;">If you have any questions, please feel free to contact us.</p>';
+		$formMessage = get_option( 'resume_thank_you_text' );
 		
 	}
 }
@@ -332,13 +330,16 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
 		
 		$currentJobs = $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM ' . JOBTABLE . ' WHERE archive != "1" ORDER BY title DESC' ) );
 		?>
+    </table>
+        
+    <table width="100%" cellpadding="0" cellspacing="0">
         <tr>
-            <td><p><?php _e( 'Regarding Job:' ); ?> </p></td>
+            <td width="190px"><p><?php _e( 'Regarding Job:' ); ?> </p></td>
             <td><select name="job">                            	
 					<?php echo arrayToSelect( $currentJobs, $errorJob ); ?>
                     <option value="General Purpose" <?php if ( $errorJob == 'General Purpose' ){ echo 'selected="selected"'; } ?>>General Purpose</option>    
                 </select></td>
-             <td valign="top"><p style='color:#CC0000; font-weight:bold;'>*</p></td>
+            <td valign="top"><p style='color:#CC0000; font-weight:bold;'>*</p></td>
          </tr>
      </table>
      
