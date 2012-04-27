@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/resume-submissions-job-"
 "postings\n"
-"POT-Creation-Date: 2012-04-23 15:13:15+00:00\n"
+"POT-Creation-Date: 2012-04-27 17:33:12+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -15,6 +15,11 @@ msgstr ""
 
 #: includes/display-jobs.php:23
 msgid "Archived Job Postings"
+msgstr ""
+
+#: includes/display-jobs.php:61 includes/display-jobs.php:111
+#: includes/display-jobs.php:139
+msgid "Posted:"
 msgstr ""
 
 #: includes/display-jobs.php:72
@@ -29,72 +34,93 @@ msgstr ""
 msgid "There are no archived job postings at this time."
 msgstr ""
 
-#: includes/display-jobs.php:111
-msgid "Posted:"
+#: includes/display-jobs.php:119
+msgid "Submit Resume For This Job"
 msgstr ""
 
 #: includes/form.php:81
 msgid "<b>Error:</b> Make sure all fields required are filled out correctly."
 msgstr ""
 
-#: includes/form.php:234
-msgid "<b>*</b> Required"
+#: includes/form.php:234 includes/input-fields.php:51
+msgid "Required"
 msgstr ""
 
-#: includes/form.php:240 includes/submissions.php:368
-msgid "First Name:"
+#: includes/form.php:240 includes/input-fields.php:56
+#: includes/submissions.php:372
+msgid "First Name"
 msgstr ""
 
-#: includes/form.php:249 includes/submissions.php:376
-msgid "Last Name:"
+#: includes/form.php:249 includes/input-fields.php:61
+#: includes/submissions.php:380
+msgid "Last Name"
 msgstr ""
 
-#: includes/form.php:258 includes/submissions.php:384
-msgid "Address:"
+#: includes/form.php:258 includes/input-fields.php:66
+#: includes/submissions.php:388
+msgid "Address"
 msgstr ""
 
 #: includes/form.php:267
-msgid "Address2:"
+msgid "Address2"
 msgstr ""
 
-#: includes/form.php:276 includes/submissions.php:401
-msgid "City:"
+#: includes/form.php:276 includes/input-fields.php:76
+#: includes/submissions.php:405
+msgid "City"
 msgstr ""
 
-#: includes/form.php:286 includes/submissions.php:410
-msgid "State:"
+#: includes/form.php:286 includes/input-fields.php:81
+#: includes/submissions.php:414
+msgid "State"
 msgstr ""
 
-#: includes/form.php:297 includes/submissions.php:420
-msgid "Zip Code:"
+#: includes/form.php:297 includes/input-fields.php:86
+#: includes/submissions.php:424
+msgid "Zip Code"
 msgstr ""
 
-#: includes/form.php:306 includes/submissions.php:432
-msgid "Primary Contact Number:"
+#: includes/form.php:306 includes/submissions.php:436
+msgid "Primary Contact Number"
 msgstr ""
 
-#: includes/form.php:315 includes/submissions.php:441
-msgid "Secondary Contact Number:"
+#: includes/form.php:315 includes/submissions.php:445
+msgid "Secondary Contact Number"
 msgstr ""
 
-#: includes/form.php:324 includes/submissions.php:454
-msgid "E-Mail Address:"
+#: includes/form.php:324 includes/submissions.php:458
+msgid "E-Mail Address"
 msgstr ""
 
-#: includes/form.php:337 includes/submissions.php:461
-msgid "Regarding Job:"
+#: includes/form.php:337 includes/submissions.php:226
+#: includes/submissions.php:465
+msgid "Regarding Job"
+msgstr ""
+
+#: includes/form.php:340 includes/submissions.php:170
+msgid "General Purpose"
 msgstr ""
 
 #: includes/form.php:352
 msgid "Attachment(s):"
 msgstr ""
 
-#: includes/form.php:367
-msgid "<b>Cover Letter: </b>(Please submit with good formatting)"
+#: includes/form.php:367 includes/input-fields.php:111
+#: includes/submissions.php:475
+msgid "Cover Letter"
 msgstr ""
 
-#: includes/form.php:389
-msgid "<b>Resumé: </b>(Please submit with good formatting)"
+#: includes/form.php:367 includes/form.php:389
+msgid "(Please submit with good formatting)"
+msgstr ""
+
+#: includes/form.php:389 includes/input-fields.php:116
+#: includes/submissions.php:491
+msgid "Resume"
+msgstr ""
+
+#: includes/form.php:423
+msgid "Submit Resume"
 msgstr ""
 
 #: includes/input-fields.php:41 resume-submission.php:45
@@ -109,40 +135,12 @@ msgstr ""
 msgid "Field Name"
 msgstr ""
 
-#: includes/input-fields.php:50
+#: includes/input-fields.php:50 includes/submissions.php:172
 msgid "Display"
 msgstr ""
 
-#: includes/input-fields.php:51
-msgid "Required"
-msgstr ""
-
-#: includes/input-fields.php:56
-msgid "First Name"
-msgstr ""
-
-#: includes/input-fields.php:61
-msgid "Last Name"
-msgstr ""
-
-#: includes/input-fields.php:66
-msgid "Address"
-msgstr ""
-
-#: includes/input-fields.php:71
+#: includes/input-fields.php:71 includes/submissions.php:396
 msgid "Suite/Apt"
-msgstr ""
-
-#: includes/input-fields.php:76
-msgid "City"
-msgstr ""
-
-#: includes/input-fields.php:81
-msgid "State"
-msgstr ""
-
-#: includes/input-fields.php:86
-msgid "Zip Code"
 msgstr ""
 
 #: includes/input-fields.php:91
@@ -161,52 +159,99 @@ msgstr ""
 msgid "Attachments"
 msgstr ""
 
-#: includes/input-fields.php:111
-msgid "Cover Letter"
+#: includes/job-postings.php:77
+msgid "The job posting was succesfully copied."
 msgstr ""
 
-#: includes/input-fields.php:116
-msgid "Resume"
+#: includes/job-postings.php:80
+msgid "Sorry, the job posting could not be copied. Please try again."
 msgstr ""
 
-#: includes/job-postings.php:156 includes/job-postings.php:201
-msgid "Job Title:"
+#: includes/job-postings.php:104
+msgid "Job posting(s) have been deleted."
 msgstr ""
 
-#: includes/job-postings.php:160 includes/job-postings.php:205
-msgid "Subtitle:"
+#: includes/job-postings.php:114 includes/job-postings.php:286
+#: includes/submissions.php:245
+msgid "View/Edit"
 msgstr ""
 
-#: includes/job-postings.php:164
-msgid "Copy:"
+#: includes/job-postings.php:116
+msgid "Add New"
 msgstr ""
 
-#: includes/job-postings.php:175 includes/job-postings.php:213
-msgid "Archive:"
+#: includes/job-postings.php:126 resume-submission.php:44
+msgid "Job Postings"
 msgstr ""
 
-#: includes/job-postings.php:209
-msgid "Description:"
+#: includes/job-postings.php:136
+msgid "Add New Job Posting"
 msgstr ""
 
-#: includes/job-postings.php:256
+#: includes/job-postings.php:149 includes/job-postings.php:194
+#: includes/submissions.php:354
+msgid "Back"
+msgstr ""
+
+#: includes/job-postings.php:159 includes/job-postings.php:204
+#: includes/job-postings.php:259
 msgid "Job Title"
 msgstr ""
 
-#: includes/job-postings.php:257
+#: includes/job-postings.php:163 includes/job-postings.php:208
+msgid "Subtitle"
+msgstr ""
+
+#: includes/job-postings.php:167 includes/job-postings.php:289
+msgid "Copy"
+msgstr ""
+
+#: includes/job-postings.php:178 includes/job-postings.php:216
+msgid "Archive"
+msgstr ""
+
+#: includes/job-postings.php:182
+msgid "Edit"
+msgstr ""
+
+#: includes/job-postings.php:183
+msgid "Update Job Posting"
+msgstr ""
+
+#: includes/job-postings.php:212
+msgid "Description"
+msgstr ""
+
+#: includes/job-postings.php:220
+msgid "Add"
+msgstr ""
+
+#: includes/job-postings.php:221
+msgid "Add Job Posting"
+msgstr ""
+
+#: includes/job-postings.php:260
 msgid "Post Date"
 msgstr ""
 
-#: includes/job-postings.php:258
+#: includes/job-postings.php:261
 msgid "Status"
 msgstr ""
 
-#: includes/job-postings.php:296
+#: includes/job-postings.php:299
 msgid "There are no job postings at this time."
 msgstr ""
 
+#: includes/job-postings.php:349
+msgid "Delete Record(s)"
+msgstr ""
+
+#: includes/job-postings.php:349 includes/submissions.php:312
+msgid "Are you sure you want to delete these entries?"
+msgstr ""
+
 #: includes/settings.php:93
-msgid "Resumé Settings"
+msgid "Resume Settings"
 msgstr ""
 
 #: includes/settings.php:110
@@ -214,35 +259,39 @@ msgid "Core Options"
 msgstr ""
 
 #: includes/settings.php:116
-msgid "Resume Form Page:"
+msgid "Resume Form Page"
 msgstr ""
 
 #: includes/settings.php:128
-msgid "Display Jobs Page:"
+msgid "Display Jobs Page"
 msgstr ""
 
 #: includes/settings.php:140
-msgid "Use TinyMCE:"
+msgid "Use TinyMCE"
 msgstr ""
 
 #: includes/settings.php:145
-msgid "Use TinyMCE Quick Tags:"
+msgid "Use TinyMCE Quick Tags"
 msgstr ""
 
 #: includes/settings.php:150
-msgid "PDF Base File:"
+msgid "PDF Base File"
 msgstr ""
 
 #: includes/settings.php:152
-msgid "Default:"
+msgid "Default"
 msgstr ""
 
 #: includes/settings.php:155
-msgid "State List:"
+msgid "State List"
+msgstr ""
+
+#: includes/settings.php:158
+msgid "Custom"
 msgstr ""
 
 #: includes/settings.php:162
-msgid "Custom State List:"
+msgid "Custom State List"
 msgstr ""
 
 #: includes/settings.php:164
@@ -250,7 +299,7 @@ msgid "Seperate with | Example: Florida | New York"
 msgstr ""
 
 #: includes/settings.php:167
-msgid "Thank You Text:"
+msgid "Thank You Text"
 msgstr ""
 
 #: includes/settings.php:175
@@ -258,23 +307,23 @@ msgid "reCaptcha"
 msgstr ""
 
 #: includes/settings.php:181
-msgid "Enable Captcha:"
+msgid "Enable reCaptcha"
 msgstr ""
 
 #: includes/settings.php:186
-msgid "Captcha - Private Key:"
+msgid "reCaptcha - Private Key"
 msgstr ""
 
 #: includes/settings.php:190
-msgid "Captcha - Public Key:"
+msgid "reCaptcha - Public Key"
 msgstr ""
 
 #: includes/settings.php:204
-msgid "Number of Attachments:"
+msgid "Number of Attachments"
 msgstr ""
 
 #: includes/settings.php:208
-msgid "Allowed Attachments:"
+msgid "Allowed Attachments"
 msgstr ""
 
 #: includes/settings.php:210
@@ -282,7 +331,7 @@ msgid "Seperate with | Example: pdf|docx"
 msgstr ""
 
 #: includes/settings.php:213
-msgid "Delete Attachments:"
+msgid "Delete Attachments"
 msgstr ""
 
 #: includes/settings.php:217
@@ -295,95 +344,163 @@ msgid "Emailing"
 msgstr ""
 
 #: includes/settings.php:230
-msgid "Send Admin Email To:"
+msgid "Send Admin Email To"
 msgstr ""
 
 #: includes/settings.php:234
-msgid "Send User Email:"
+msgid "Send User Email"
 msgstr ""
 
 #: includes/settings.php:239
-msgid "Email User From:"
+msgid "Email User From"
 msgstr ""
 
 #: includes/settings.php:243
-msgid "User Email Subject:"
+msgid "User Email Subject"
 msgstr ""
 
 #: includes/settings.php:247
-msgid "User Email Copy:"
+msgid "User Email Copy"
 msgstr ""
 
 #: includes/settings.php:262
 msgid "Helpful Hints"
 msgstr ""
 
-#: includes/submissions.php:133 resume-submission.php:43
-msgid "Resumé Submissions"
+#: includes/submissions.php:34
+msgid "The submission has updated successfully."
 msgstr ""
 
-#: includes/submissions.php:145
+#: includes/submissions.php:36
+msgid "The submission could not be updated."
+msgstr ""
+
+#: includes/submissions.php:87
+msgid "The submission was succesfully updated."
+msgstr ""
+
+#: includes/submissions.php:90
+msgid "Sorry, the submission could not be updated."
+msgstr ""
+
+#: includes/submissions.php:91
+msgid "There may not have been any change to he entry."
+msgstr ""
+
+#: includes/submissions.php:126
+msgid "Submission(s) have been deleted."
+msgstr ""
+
+#: includes/submissions.php:137
+msgid "Resume Submissions"
+msgstr ""
+
+#: includes/submissions.php:149
 msgid "Find:"
 msgstr ""
 
-#: includes/submissions.php:164
+#: includes/submissions.php:149
+msgid "Search"
+msgstr ""
+
+#: includes/submissions.php:156
+msgid "Show All"
+msgstr ""
+
+#: includes/submissions.php:168
 msgid "Show All For:"
 msgstr ""
 
-#: includes/submissions.php:220
+#: includes/submissions.php:224
 msgid "Name"
 msgstr ""
 
-#: includes/submissions.php:221
+#: includes/submissions.php:225
 msgid "E-Mail"
 msgstr ""
 
-#: includes/submissions.php:222
-msgid "Regarding Job"
-msgstr ""
-
-#: includes/submissions.php:223
+#: includes/submissions.php:227
 msgid "Submission Date"
 msgstr ""
 
 #: includes/submissions.php:254
+msgid "There are no submissions that contain"
+msgstr ""
+
+#: includes/submissions.php:256
+msgid "There are no submissions for the job posting"
+msgstr ""
+
+#: includes/submissions.php:258
 msgid "There are no submissions at this time."
 msgstr ""
 
-#: includes/submissions.php:320
+#: includes/submissions.php:324
 msgid "Export Submissions"
 msgstr ""
 
-#: includes/submissions.php:392
-msgid "Suite/Apt:"
+#: includes/submissions.php:336
+msgid "Download as CSV"
 msgstr ""
 
-#: includes/submissions.php:471
-msgid "Cover Letter:"
+#: includes/submissions.php:502
+msgid "Update Resume"
 msgstr ""
 
-#: includes/submissions.php:487
-msgid "Resumé:"
-msgstr ""
-
-#: includes/submissions.php:516
+#: includes/submissions.php:520
 msgid "Submission Attachments"
 msgstr ""
 
-#: includes/submissions.php:555
+#: includes/submissions.php:541
+msgid "No attachments for this submission."
+msgstr ""
+
+#: includes/submissions.php:548
+msgid "Delete Attachment(s)"
+msgstr ""
+
+#: includes/submissions.php:548
+msgid "Are you sure you want to delete these attachments?"
+msgstr ""
+
+#: includes/submissions.php:559
 msgid "Export Submission"
+msgstr ""
+
+#: includes/submissions.php:571
+msgid "Print Resume"
+msgstr ""
+
+#: includes/submissions.php:572
+msgid "Download to PDF"
+msgstr ""
+
+#: includes/widget.php:22
+msgid "Title"
+msgstr ""
+
+#: includes/widget.php:23
+msgid "Posts to Display"
+msgstr ""
+
+#: includes/widget.php:60
+msgid "Posted"
 msgstr ""
 
 #: includes/widget.php:65
 msgid "View All Current Jobs"
 msgstr ""
 
+#: includes/widget.php:69
+msgid "There are no jobs currently available."
+msgstr ""
+
 #: resume-submission.php:42
 msgid "Resumés &amp; Jobs"
 msgstr ""
 
-#: resume-submission.php:44
-msgid "Job Postings"
+#: resume-submission.php:43
+msgid "Resumé Submissions"
 msgstr ""
 
 #: resume-submission.php:46
