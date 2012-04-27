@@ -31,12 +31,12 @@ if ( $deleteAttach ){
 		
 		$updateSub = $wpdb->query( 'UPDATE ' . SUBTABLE . ' SET attachment = "' . $updatedAttachments . '" WHERE id = "' . $ID . '"');
 		if ( $updateSub ){
-			$updatedRecordMessage = '<p>The submission has updated successfully.</p>';
+			$updatedRecordMessage = __( 'The submission has updated successfully.' );
 		} else {
-			$updatedRecordMessage = '<p>The submission could not be updated.</p>';
+			$updatedRecordMessage = __( 'The submission could not be updated.' );
 		}
 	}
-	$message = '<div class="updated fade" id="message">' . $updatedRecordMessage . $attachMessage . '</div>';
+	$message = '<div class="updated fade" id="message"><p>' . $updatedRecordMessage . $attachMessage . '</p></div>';
 }
 
 // BOF View/Edit Submission 
@@ -84,9 +84,12 @@ if ( isset( $ID ) ){
 		
 		// What to display 
 		if( $updateQuery ){
-			$message = '<div class="updated fade" id="message"><p>The submission was succesfully updated.</p></div>';
+			$updateText = __( 'The submission was succesfully updated.' );
+			$message    = '<div class="updated fade" id="message"><p>' . $updateText . '</p></div>';
 		} else {
-			$message = '<div class="updated fade" id="message"><p>Sorry, the submission could not be updated. <br />There may not have been any change to he entry.</p></div>';
+			$updateText  = __( 'Sorry, the submission could not be updated.' );
+			$updateText2 = __( 'There may not have been any change to he entry.' );
+			$message     = '<div class="updated fade" id="message"><p>' . $updateText . ' <br />' . $updateText2 . '</p></div>';
 		}
 	}
 }
@@ -120,7 +123,8 @@ if ( $deleteSubmit ){
   	
 	// Display message after delete
     if ( $deleteQuery ){
-		$message = '<div class="updated fade" id="message"><p>Submission(s) have been deleted.</p>' . $deleteMessage . '</div>';
+		$deleteText = __( 'Submission(s) have been deleted.' ); 
+		$message    = '<div class="updated fade" id="message"><p>' . $deleteText . '</p>' . $deleteMessage . '</div>';
     }
 }
 // EOF Delete
@@ -130,7 +134,7 @@ if ( $deleteSubmit ){
 <div class="wrap alternate">
 	
     <div id="icon-rsjp-submissions" class="icon32"></div>
-	<h2><?php _e( 'Resumé Submissions' ); ?></h2>
+	<h2><?php _e( 'Resume Submissions' ); ?></h2>
 	<?php echo $message; ?>
 	<br class="a_break" style="clear: both;"/>
     
@@ -142,14 +146,14 @@ if ( $deleteSubmit ){
                 <tr>
                     <td width="280px" align="left">
                     <form method="post" name="search" id="search">
-                        <p><?php _e( 'Find:' ); ?> <input type="text" name="searchFor" /> <input type="submit" name="search" value="Search" class="button-secondary" /></p>
+                        <p><?php _e( 'Find:' ); ?> <input type="text" name="searchFor" /> <input type="submit" name="search" value="<?php _e( 'Search' ); ?>" class="button-secondary" /></p>
                     </form>
                     </td>
                     <td width="280px" align="left">
                     <?php 
                     if ( $searchFor != '' || $showAllFor != '' ){ ?>
                         <form name="showall" method="post" enctype="multipart/form-data" action="<?php echo admin_url(); ?>admin.php?page=resume-submissions-job-postings/resume-submission.php">
-                            <input name="showall" type="submit" value="Show All" class="button-secondary" />
+                            <input name="showall" type="submit" value="<?php _e( 'Show All' ); ?>" class="button-secondary" />
                         </form>
                         <?php
                     }
@@ -163,9 +167,9 @@ if ( $deleteSubmit ){
                     <form method="post" name="showfor" id="showfor">
                         <p><?php _e( 'Show All For:' ); ?> <select name="showAllFor">                            	
                             <?php echo arrayToSelect($showFor, $showFor->title); ?>
-                            <option value="General Purpose" <?php if ( $showFor->title == 'General Purpose' ){ echo 'selected="selected"'; } ?>>General Purpose</option>    
+                            <option value="General Purpose" <?php if ( $showFor->title == 'General Purpose' ){ echo 'selected="selected"'; } ?>><?php _e( 'General Purpose' ); ?></option>    
                         </select>
-                        <input type="submit" name="showFor" value="Display" class="button-secondary" /></p>
+                        <input type="submit" name="showFor" value="<?php _e( 'Display' ); ?>" class="button-secondary" /></p>
                     </form>
                     </td>
                 </tr>
@@ -238,7 +242,7 @@ if ( $deleteSubmit ){
 									<td><p><?php echo date( 'F j, Y g:ia', strtotime( $info->pubdate ) ); ?></p></td>
 									<td>&nbsp;</td>
 									<td align="right" width="50px">
-										<input name="view" type="button" value="View/Edit" class="button-secondary" onclick="location.href='<?php echo admin_url(); ?>admin.php?page=resume-submissions-job-postings/resume-submission.php&id=<?php echo $info->id; ?>'" /></td>
+										<input name="view" type="button" value="<?php _e( 'View/Edit' ); ?>" class="button-secondary" onclick="location.href='<?php echo admin_url(); ?>admin.php?page=resume-submissions-job-postings/resume-submission.php&id=<?php echo $info->id; ?>'" /></td>
 								</tr>
 								<?php
 							}
@@ -247,9 +251,9 @@ if ( $deleteSubmit ){
 								<tr>
 									<td>&nbsp;</td>
 									<td><?php if ( $searchFor != '' ){ ?>
-											<p><?php _e( 'There are no submissions that contain &quot;<b>' . $searchFor . '</b>&quot;.' ); ?></p>
+											<p><?php _e( 'There are no submissions that contain' ); ?> &quot;<b><?php echo $searchFor; ?></b>&quot;.</p>
 										<?php } elseif( $showAllFor != '' ){ ?> 
-											<p><?php _e( 'There are no submissions for the job posting &quot;<b>' . $showAllFor . '</b>&quot;.' ); ?></p> 
+											<p><?php _e( 'There are no submissions for the job posting' ); ?> &quot;<b><?php echo $showAllFor; ?></b>&quot;.</p> 
 										<?php } else { ?> 
 											<p><?php _e( 'There are no submissions at this time.' ); ?></p> 
 										<?php }?></td>
@@ -305,7 +309,7 @@ if ( $deleteSubmit ){
 			<?php
 			if ( $getNum > 0 ){
 				?>
-					<input type="submit" name="deleteSubmit" value="Delete Record(s)" class="button-secondary" onClick="return( confirm( 'Are you sure you want to delete these entries?' ) )" />
+					<input type="submit" name="deleteSubmit" value="Delete Record(s)" class="button-secondary" onClick="return( confirm( '<?php _e( 'Are you sure you want to delete these entries?' ); ?>' ) )" />
                 </form>
 				<?php
 			}
@@ -317,7 +321,7 @@ if ( $deleteSubmit ){
                 <table class="widefat">
                     <thead>
                         <tr>
-                            <th scope="col"><img src="<?php echo resume_get_plugin_dir( 'go' ); ?>/images/icons/download-icon-20.png" alt="Export Submissions" /><?php _e( 'Export Submissions' ); ?></th>
+                            <th scope="col"><img src="<?php echo resume_get_plugin_dir( 'go' ); ?>/images/icons/download-icon-20.png" alt="<?php _e( 'Export Submissions' ); ?>" /><?php _e( 'Export Submissions' ); ?></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -329,7 +333,7 @@ if ( $deleteSubmit ){
                                 ?>
                                 <table cellpadding="2" cellspacing="2">
                                     <tr>
-                                        <td><a href="<?php echo resume_get_plugin_dir( 'go' ); ?>/base-files/submission-entries.csv"><img src="<?php echo resume_get_plugin_dir( 'go' ); ?>/images/icons/csv-icon.gif" border="0" alt="Download as CSV" title="Download as CSV" /></a></td>
+                                        <td><a href="<?php echo resume_get_plugin_dir( 'go' ); ?>/base-files/submission-entries.csv"><img src="<?php echo resume_get_plugin_dir( 'go' ); ?>/images/icons/csv-icon.gif" border="0" alt="<?php _e( 'Download as CSV' ); ?>" title="<?php _e( 'Download as CSV' ); ?>" /></a></td>
                                     </tr>
                                 </table>
                             </td>
@@ -347,7 +351,7 @@ if ( $deleteSubmit ){
 		  <table width="100%" cellpadding="0" cellspacing="0">
 			  <tr>
 				  <td><form name="back" method="post" id="backButton" enctype="multipart/form-data" action="<?php echo admin_url(); ?>admin.php?page=resume-submissions-job-postings/resume-submission.php">
-										<input name="back" type="submit" value="Back" class="button-secondary" />
+										<input name="back" type="submit" value="<?php _e( 'Back' ); ?>" class="button-secondary" />
 									</form>
 				  </td>
 			  </tr>
@@ -365,7 +369,7 @@ if ( $deleteSubmit ){
 			  if ( grabContents( get_option( 'resume_input_fields' ), 'fname', 0 ) ) {	
 				  ?>
 				  <tr>
-					  <td><p><?php _e( 'First Name:' ); ?> </p></td>
+					  <td><p><?php _e( 'First Name' ); ?>: </p></td>
 					  <td><input type='text' name='fname' size='40'value='<?php echo $single->fname; ?>' /></td>
 				  </tr>
 				  <?php
@@ -373,7 +377,7 @@ if ( $deleteSubmit ){
 			  if ( grabContents( get_option( 'resume_input_fields' ), 'lname', 0 ) ) {	
 				  ?>
 				  <tr>
-					  <td><p><?php _e( 'Last Name:' ); ?> </p></td>
+					  <td><p><?php _e( 'Last Name' ); ?>: </p></td>
 					  <td><input type='text' name='lname' size='40' value='<?php echo $single->lname; ?>' /></td>
 				  </tr>
 				  <?php
@@ -381,7 +385,7 @@ if ( $deleteSubmit ){
 			  if ( grabContents( get_option( 'resume_input_fields' ), 'address', 0 ) ) {	
 				  ?>
 				  <tr>
-					  <td><p><?php _e( 'Address:' ); ?> </p></td>
+					  <td><p><?php _e( 'Address' ); ?>: </p></td>
 					  <td><input type='text' name='address' size='40' value='<?php echo $single->address; ?>' /></td>
 				  </tr>
 				  <?php
@@ -389,7 +393,7 @@ if ( $deleteSubmit ){
 			  if ( grabContents( get_option( 'resume_input_fields' ), 'address2', 0 ) ) {	
 				  ?>
 				  <tr>
-					  <td><p><?php _e( 'Suite/Apt:' ); ?> </p></td>
+					  <td><p><?php _e( 'Suite/Apt' ); ?>: </p></td>
 					  <td><input type='text' name='address2' size='40' value='<?php echo $single->address2; ?>' /></td>
 					  <td valign="top"></td>
 				  </tr>
@@ -398,7 +402,7 @@ if ( $deleteSubmit ){
 			  if ( grabContents( get_option( 'resume_input_fields' ), 'city', 0 ) ) {	
 				  ?>
 				  <tr>
-					  <td><p><?php _e( 'City:' ); ?> </p></td>
+					  <td><p><?php _e( 'City' ); ?>: </p></td>
 					  <td><input type='text' name='city' size='40' value='<?php echo $single->city; ?>' /></td>
 				  </tr>
 				  <?php
@@ -407,7 +411,7 @@ if ( $deleteSubmit ){
 				  $theStateList =  get_option( 'resume_state_list' );
 				  ?>
 				  <tr>
-					  <td><p><?php _e( 'State:' ); ?> </p></td>
+					  <td><p><?php _e( 'State' ); ?>: </p></td>
 					  <td><select name="state" id="state">
 							  <?php echo arrayToSelect( $theStateList['list'], $single->state ); ?>
 						  </select></td>
@@ -417,7 +421,7 @@ if ( $deleteSubmit ){
 			  if ( grabContents( get_option( 'resume_input_fields' ), 'zip', 0 ) ) {	
 				  ?>
 				  <tr>
-					  <td><p><?php _e( 'Zip Code:' ); ?> </p></td>
+					  <td><p><?php _e( 'Zip Code' ); ?>: </p></td>
 					  <td><input type='text' name='zip' size='10' value='<?php echo $single->zip; ?>' /></td>
 				  </tr>
 				  <?php
@@ -429,7 +433,7 @@ if ( $deleteSubmit ){
 			  if ( grabContents( get_option( 'resume_input_fields' ), 'pnumber', 0 ) ) {	
 				  ?>
 				  <tr>
-					  <td width="190px"><p><?php _e( 'Primary Contact Number:' ); ?> </p></td>
+					  <td width="190px"><p><?php _e( 'Primary Contact Number' ); ?>: </p></td>
 					  <td width="160px"><input type='text' name='pnumber' size='25' value='<?php echo $single->pnumber; ?>' /></td>
 					  <td valign="top"><p><input type='text' name='pnumbertype' size='5' value='<?php echo $single->pnumbertype; ?>' /></p></td>
 				  </tr>
@@ -438,7 +442,7 @@ if ( $deleteSubmit ){
 			  if ( grabContents( get_option( 'resume_input_fields' ), 'snumber', 0 ) ) {	
 				  ?>
 				  <tr>
-					  <td><p><?php _e( 'Secondary Contact Number:' ); ?> </p></td>
+					  <td><p><?php _e( 'Secondary Contact Number' ); ?>: </p></td>
 					  <td><input type='text' name='snumber' size='25' value='<?php echo $single->snumber; ?>' /></td>
 					  <td valign="top"><p><input type='text' name='snumbertype' size='5' value='<?php echo $single->snumbertype; ?>' /></p></td>
 				  </tr>
@@ -451,14 +455,14 @@ if ( $deleteSubmit ){
 			  if ( grabContents( get_option( 'resume_input_fields' ), 'email', 0 ) ) {	
 				  ?>
 				  <tr>
-					  <td width="115px"><p><?php _e( 'E-Mail Address:' ); ?> </p></td>
+					  <td width="115px"><p><?php _e( 'E-Mail Address' ); ?>: </p></td>
 					  <td align="left"><input type='text' name='email' size='60' value='<?php echo $single->email; ?>' /></td>
 				  </tr>
 				  <?php
 			  }
 			  ?>
 			  <tr>
-				  <td><p><?php _e( 'Regarding Job:' ); ?> </p></td>
+				  <td><p><?php _e( 'Regarding Job' ); ?>: </p></td>
 				  <td><input type='text' name='job' size='60' value='<?php echo $single->job; ?>' readonly="readonly" /></td>
 			  </tr>
 		  </table>
@@ -468,7 +472,7 @@ if ( $deleteSubmit ){
 			  if ( grabContents( get_option( 'resume_input_fields' ), 'cover', 0 ) ) {	
 				  ?>
 				  <tr>
-					  <td><p><b><?php _e( 'Cover Letter:' ); ?> </b></p></td>
+					  <td><p><b><?php _e( 'Cover Letter' ); ?>: </b></p></td>
 					  <td></td> 
 				  </tr>
 				  <tr>
@@ -484,7 +488,7 @@ if ( $deleteSubmit ){
 			  if ( grabContents( get_option( 'resume_input_fields' ), 'resume', 0 ) ) {	
 				  ?>
 				  <tr>
-					  <td><p><b><?php _e( 'Resumé:'); ?></b></p></td>
+					  <td><p><b><?php _e( 'Resume' ); ?>:</b></p></td>
 					  <td></td>
 				  </tr>
 				  <tr>
@@ -495,7 +499,7 @@ if ( $deleteSubmit ){
 			  ?>
 			  <tr>
 				  <td><input type='hidden' name='edit' value='Edit' />
-					  <p><input type='submit' value='Update Resume' name='submit' class="button-primary" /></p></td>
+					  <p><input type='submit' value='<?php _e( 'Update Resume' ); ?>' name='submit' class="button-primary" /></p></td>
 				  <td></td>
 			  </tr>
 		  </table>       
@@ -513,7 +517,7 @@ if ( $deleteSubmit ){
 				  <thead>
 					  <tr>
 						  <th scope="col">&nbsp;</th>
-						  <th scope="col"><img src="<?php echo resume_get_plugin_dir( 'go' ); ?>/images/icons/attachments-icon-20.png" alt="Submission Attachments" /><?php _e( 'Submission Attachments' ); ?></th>
+						  <th scope="col"><img src="<?php echo resume_get_plugin_dir( 'go' ); ?>/images/icons/attachments-icon-20.png" alt="<?php _e( 'Submission Attachments' ); ?>" /><?php _e( 'Submission Attachments' ); ?></th>
 					  </tr>
 				  </thead>
 				  <tbody>
@@ -534,14 +538,14 @@ if ( $deleteSubmit ){
 						  ?>
                           <tr>
                               <td width="10px">&nbsp;</td>
-                              <td><p>No attachments for this submission.</p></td>
+                              <td><p><?php _e( 'No attachments for this submission.' ); ?></p></td>
                           </tr>
                           <?php
 					  }
 					  ?>    
 				  </tbody>
 			  </table>
-			      <input type="submit" name="deleteAttach" value="Delete Attachment(s)" class="button-secondary" onClick="return( confirm( 'Are you sure you want to delete these attachments?' ) )" />
+			      <input type="submit" name="deleteAttach" value="<?php _e( 'Delete Attachment(s)' ); ?>" class="button-secondary" onClick="return( confirm( '<?php _e( 'Are you sure you want to delete these attachments?' );?>' ) )" />
 			  </form>
 			  </div>
 			  <?php
@@ -552,7 +556,7 @@ if ( $deleteSubmit ){
 		  <table class="widefat">
 			  <thead>
 				  <tr>
-					  <th scope="col"><img src="<?php echo resume_get_plugin_dir( 'go' ); ?>/images/icons/download-icon-20.png" alt="Export Submission" /><?php _e( 'Export Submission' ); ?></th>
+					  <th scope="col"><img src="<?php echo resume_get_plugin_dir( 'go' ); ?>/images/icons/download-icon-20.png" alt="<?php _e( 'Export Submission' ); ?>" /><?php _e( 'Export Submission' ); ?></th>
 				  </tr>
 			  </thead>
 			  <tbody>
@@ -564,8 +568,8 @@ if ( $deleteSubmit ){
 						  ?>
 						  <table cellpadding="2" cellspacing="2">
 							  <tr>
-								  <td><a href="javascript:window.print()"><img src="<?php echo resume_get_plugin_dir( 'go' ); ?>/images/icons/printing-icon-32.png" alt="Print Resume" title="Print Resume" id="printResume" /></a></a>
-								  <td><a href="<?php echo WP_CONTENT_URL . '/uploads/rsjp/pdfs/' . $pdfLink; ?>" target="_blank"><img src="<?php echo resume_get_plugin_dir( 'go' ); ?>/images/icons/pdf-icon.png" alt="Download to PDF" title="Download to PDF" /></a></td>
+								  <td><a href="javascript:window.print()"><img src="<?php echo resume_get_plugin_dir( 'go' ); ?>/images/icons/printing-icon-32.png" alt="<?php _e( 'Print Resume' ); ?>" title="<?php _e( 'Print Resume' ); ?>" id="printResume" /></a></a>
+								  <td><a href="<?php echo WP_CONTENT_URL . '/uploads/rsjp/pdfs/' . $pdfLink; ?>" target="_blank"><img src="<?php echo resume_get_plugin_dir( 'go' ); ?>/images/icons/pdf-icon.png" alt="<?php _e( 'Download to PDF' ); ?>" title="<?php _e( 'Download to PDF' ); ?>" /></a></td>
 							  </tr>
 						  </table>
 					  </td>

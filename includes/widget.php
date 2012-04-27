@@ -19,8 +19,8 @@ class resume_job_postings {
 		$widgetTitle   = $data['title'];
 		$widgetDisplay = $data['display'];
 		?>
-        <label for="job_display_title">Title: <input type="text" name="job_display_title" value="<?php echo $widgetTitle; ?>" size="33" /></label><br />
-        <label for="job_display_amount">Posts to Display: <input type="text" name="job_display_amount" value="<?php echo $widgetDisplay; ?>" size="5" /></label>	
+        <label for="job_display_title"><?php _e( 'Title' ); ?>: <input type="text" name="job_display_title" value="<?php echo $widgetTitle; ?>" size="33" /></label><br />
+        <label for="job_display_amount"><?php _e( 'Posts to Display' ); ?>: <input type="text" name="job_display_amount" value="<?php echo $widgetDisplay; ?>" size="5" /></label>	
     	<?php
 		if ( isset( $_POST['job_display_title'] ) ){
 			$data['title']   = attribute_escape( $_POST['job_display_title'] );
@@ -57,7 +57,7 @@ class resume_job_postings {
                     }
                     ?>
                     <li><a href="<?php echo get_option( 'resume_jobs_page' ) . $connect; ?>postingID=<?php echo $job->id; ?>"><?php echo $job->title; ?></a><br />
-                    &nbsp;&nbsp; - <i style="font-size:10px;">Posted: <?php echo date( 'M j, Y', strtotime( $job->pubDate ) ); ?></i></li>
+                    &nbsp;&nbsp; - <i style="font-size:10px;"><?php _e( 'Posted' ); ?>: <?php echo date( 'M j, Y', strtotime( $job->pubDate ) ); ?></i></li>
                     <?php
                 }				
             	?>
@@ -66,7 +66,7 @@ class resume_job_postings {
             <?php
 		} else {
 			?>
-            <center><i>There are no jobs currently available.</i></center>
+            <center><i><?php _e( 'There are no jobs currently available.' ); ?></i></center>
             <?php
 		}
 		echo $args['after_widget'];

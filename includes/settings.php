@@ -90,7 +90,7 @@ foreach ( $stateListOptions['list'] as $state ){
 <div class="wrap alternate">
 	
     <div id="icon-rsjp-settings" class="icon32"></div>
-    <h2><?php _e( 'Resumé Settings' ); ?></h2>
+    <h2><?php _e( 'Resume Settings' ); ?></h2>
     <?php echo $message; ?>
     <br class="a_break" style="clear: both;"/>
 	
@@ -113,7 +113,7 @@ foreach ( $stateListOptions['list'] as $state ){
             </thead>
             <tbody>
                 <tr>
-                    <td><p><b><?php _e( 'Resume Form Page:' ); ?> </b></p></td>
+                    <td><p><b><?php _e( 'Resume Form Page' ); ?>: </b></p></td>
                     <td align="left"><select name="formPage">
                                          <option value=""> -- Select -- </option>
                                          <?php 
@@ -125,7 +125,7 @@ foreach ( $stateListOptions['list'] as $state ){
                                      </select></td>
                 </tr>
                 <tr>
-                    <td width="150px"><p><b><?php _e( 'Display Jobs Page:' ); ?> </b></p></td>
+                    <td width="150px"><p><b><?php _e( 'Display Jobs Page' ); ?>: </b></p></td>
                     <td align="left"><select name="jobsPage">
                                          <option value=""> -- Select -- </option>
                                          <?php 
@@ -137,34 +137,34 @@ foreach ( $stateListOptions['list'] as $state ){
                                      </select></td>
                 </tr>
                 <tr>
-                    <td><p><b><?php _e( 'Use TinyMCE:' ); ?> </b></p></td>
+                    <td><p><b><?php _e( 'Use TinyMCE' ); ?>: </b></p></td>
                     <td align="left"><input type="radio" name="useTinymce" value="Enabled" <?php echo checkIt( get_option( 'resume_use_tinymce' ), 'Enabled', 'radio' ); ?> />Enabled 
                                      <input type="radio" name="useTinymce" value="Disabled" <?php echo checkIt( get_option( 'resume_use_tinymce' ), 'Disabled', 'radio' ); ?> />Disabled</td>
                 </tr>
                 <tr>
-                    <td><p><b><?php _e( 'Use TinyMCE Quick Tags:' ); ?> </b></p></td>
+                    <td><p><b><?php _e( 'Use TinyMCE Quick Tags' ); ?>: </b></p></td>
                     <td align="left"><input type="radio" name="useTinymceQT" value="true" <?php echo checkIt( get_option( 'resume_use_tinymce_qt' ), 'true', 'radio' ); ?> />Enabled 
                                      <input type="radio" name="useTinymceQT" value="false" <?php echo checkIt( get_option( 'resume_use_tinymce_qt' ), 'false', 'radio' ); ?> />Disabled</td>
                 </tr>
                 <tr>
-                    <td valign="top"><p><b><?php _e( 'PDF Base File:' ); ?> </b></p></td>
+                    <td valign="top"><p><b><?php _e( 'PDF Base File' ); ?>: </b></p></td>
                     <td align="left"><input type='text' name='customPDFBase' size='100' value="<?php echo get_option( 'resume_pdf_base_file' ); ?>" /><br />
-                                     <i style="font-size:10px;"><?php _e( 'Default:' ); ?> <?php echo resume_get_plugin_dir( 'path' ) . '/base-files/submission-entry.pdf'; ?></i></td>
+                                     <i style="font-size:10px;"><?php _e( 'Default' ); ?>: <?php echo resume_get_plugin_dir( 'path' ) . '/base-files/submission-entry.pdf'; ?></i></td>
                 </tr>
                 <tr>
-                    <td valign="top"><p><b><?php _e( 'State List:' ); ?> </b></p></td>
+                    <td valign="top"><p><b><?php _e( 'State List' ); ?>: </b></p></td>
                     <td align="left"><select name="useStateList" id="useStateList" onchange='jsOpenCustomList(this)'>
                                          <option value="US" <?php if ( $stateListOptions['use'] == 'US' ) echo 'selected="selected"';?>>US</option>
-                                         <option value="Custom" <?php if ( $stateListOptions['use'] == 'Custom' ) echo 'selected="selected"';?>>Custom</option>
+                                         <option value="<?php _e( 'Custom' ); ?>" <?php if ( $stateListOptions['use'] == 'Custom' ) echo 'selected="selected"';?>><?php _e( 'Custom' ); ?></option>
                                      </select></td>
                 </tr>
                 <tr id="customStateList">
-                    <td valign="top"><p><b><?php _e( 'Custom State List:' ); ?> </b></p></td>
+                    <td valign="top"><p><b><?php _e( 'Custom State List' ); ?>: </b></p></td>
                     <td align="left"><input type='text' name='customStateList' size='100' <?php if ( $stateListOptions['use'] != 'US' ) echo 'value="' . $displayStateList . '"'; ?> /><br />
                                      <i style="font-size:10px;"><?php _e( 'Seperate with | Example: Florida | New York' ); ?></i></td>
                 </tr>
                 <tr>
-                    <td valign="top"><p><b><?php _e( 'Thank You Text:' ); ?> </b></p></td>
+                    <td valign="top"><p><b><?php _e( 'Thank You Text' ); ?>: </b></p></td>
                     <td align="left" height="250px"><?php wp_editor( get_option( 'resume_thank_you_text' ), 'thankYouText', setTinySetting( 'thankYouText', '15', false, true, true ) ); ?></td>
                 </tr>
             </tbody>
@@ -178,16 +178,16 @@ foreach ( $stateListOptions['list'] as $state ){
             </thead>
             <tbody>
                 <tr>
-                    <td width="150px"><p><b><?php _e( 'Enable Captcha:' ); ?> </b></p></td>
+                    <td width="150px"><p><b><?php _e( 'Enable reCaptcha' ); ?>: </b></p></td>
                     <td align="left"><input type="radio" name="captchaUse" value="Enabled" <?php echo checkIt( get_option( 'resume_captcha' ), 'Enabled', 'radio' ); ?> />Enabled 
                                      <input type="radio" name="captchaUse" value="Disabled" <?php echo checkIt( get_option( 'resume_captcha' ), 'Disabled', 'radio' ); ?> />Disabled</td>
                 </tr>
                 <tr>
-                    <td><p><b><?php _e( 'Captcha - Private Key:' ); ?> </b></p></td>
+                    <td><p><b><?php _e( 'reCaptcha - Private Key' ); ?>: </b></p></td>
                     <td align="left"><input type='text' name='captchaPrivateKey' size='60' value='<?php echo get_option( 'resume_captcha_private_key' ); ?>' /></td>
                 </tr>
                 <tr>
-                    <td><p><b><?php _e( 'Captcha - Public Key:' ); ?> </b></p></td>
+                    <td><p><b><?php _e( 'reCaptcha - Public Key' ); ?>: </b></p></td>
                     <td align="left"><input type='text' name='captchaPublicKey' size='60' value='<?php echo get_option( 'resume_captcha_public_key' ); ?>' /></td>
                 </tr>
             </tbody>
@@ -201,16 +201,16 @@ foreach ( $stateListOptions['list'] as $state ){
             </thead>
             <tbody>
                 <tr>
-                    <td width="150px"><p><b><?php _e( 'Number of Attachments:' ); ?> </b></p></td>
+                    <td width="150px"><p><b><?php _e( 'Number of Attachments' ); ?>: </b></p></td>
                     <td align="left"><input type='text' name='numAttachments' size='40' value='<?php echo $attachOptions['num']; ?>' /></td>
                 </tr>
                 <tr>
-                    <td valign="top"><p><b><?php _e( 'Allowed Attachments:' ); ?> </b></p></td>
+                    <td valign="top"><p><b><?php _e( 'Allowed Attachments' ); ?>: </b></p></td>
                     <td align="left"><input type='text' name='allowedAttachments' size='40' value='<?php echo $attachOptions['allowed']; ?>' /><br />
                                      <i style="font-size:10px;"><?php _e( 'Seperate with | Example: pdf|docx' ); ?></i></td>
                 </tr>
                 <tr>
-                    <td valign="top"><p><b><?php _e( 'Delete Attachments:' ); ?> </b></p></td>
+                    <td valign="top"><p><b><?php _e( 'Delete Attachments' ); ?>: </b></p></td>
                     <td align="left"><input type="radio" name="deleteAttachments" value="Enabled" <?php echo checkIt( $attachOptions['delete'], 'Enabled', 'radio' ); ?> />Enabled 
         
                                      <input type="radio" name="deleteAttachments" value="Disabled" <?php echo checkIt( $attachOptions['delete'], 'Disabled', 'radio' ); ?> />Disabled
@@ -227,24 +227,24 @@ foreach ( $stateListOptions['list'] as $state ){
             </thead>
             <tbody>
                 <tr>
-                    <td width="150px"><p><b><?php _e( 'Send Admin Email To:' ); ?> </b></p></td>
+                    <td width="150px"><p><b><?php _e( 'Send Admin Email To' ); ?>: </b></p></td>
                     <td align="left"><input type='text' name='sendAdminEmailTo' size='40' value='<?php echo get_option( 'resume_send_admin_email_to' ); ?>' /></td>
                 </tr>
                 <tr>
-                    <td><p><b><?php _e( 'Send User Email:' ); ?> </b></p></td>
+                    <td><p><b><?php _e( 'Send User Email' ); ?>: </b></p></td>
                     <td align="left"><input type="radio" name="sendEmailToUser" value="Enabled" <?php echo $tinymceOff; ?> <?php echo checkIt( get_option( 'resume_send_email_to_user' ), 'Enabled', 'radio' ); ?> />Enabled 
                                      <input type="radio" name="sendEmailToUser" value="Disabled" <?php echo $tinymceOff; ?> <?php echo checkIt( get_option( 'resume_send_email_to_user' ), 'Disabled', 'radio' ); ?> />Disabled <?php _e( $tinymceOffText ); ?></td>
                 </tr>    
                 <tr>
-                    <td><p><b><?php _e( 'Email User From:' ); ?> </b></p></td>
+                    <td><p><b><?php _e( 'Email User From' ); ?>: </b></p></td>
                     <td align="left"><input type='text' name='emailUserFrom' size='40' value='<?php echo get_option( 'resume_email_user_from' ); ?>' /></td>
                 </tr>
                 <tr>
-                    <td><p><b><?php _e( 'User Email Subject:' ); ?> </b></p></td>
+                    <td><p><b><?php _e( 'User Email Subject' ); ?>: </b></p></td>
                     <td align="left"><input type='text' name='userEmailSubject' size='40' value='<?php echo get_option( 'resume_user_email_subject' ); ?>' /></td>
                 </tr>
                 <tr>
-                    <td valign="top"><p><b><?php _e( 'User Email Copy:' ); ?> </b></p></td>
+                    <td valign="top"><p><b><?php _e( 'User Email Copy' ); ?>: </b></p></td>
                     <td align="left" height="250px"><?php wp_editor( get_option( 'resume_user_email_copy' ), 'userEmailCopy', setTinySetting( 'userEmailCopy', '15', false, true, true ) ); ?></td>
                 </tr>       
             </tbody>
@@ -267,9 +267,9 @@ foreach ( $stateListOptions['list'] as $state ){
                     <td>
                         <div id="resumeHints">
                         
-                            <h3>Adding Resumé Form and Job Postings List to a Page</h3>
+                            <h3>Adding Resume Form and Job Postings List to a Page</h3>
                             <p>In order to use this plugin correctly, the following shortcodes must be added to a page of your choosing.</p>
-                            <p><b>To add the Resumé Form:</b><br />
+                            <p><b>To add the Resume Form:</b><br />
                             <code>[resumeForm]</code></p>
                             <p><b>To add the Job Post Listings:</b><br />
                             <code>[jobPostings]</code></p>

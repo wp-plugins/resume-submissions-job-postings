@@ -74,9 +74,11 @@ if ( $copyID ){
 																	"' . $copyFrom->archive . '",
 																	"' . $pubDate . '")' );
 	if( $copyQuery ){
-		$message = '<div class="updated fade" id="message"><p>The job posting was succesfully copied.</p></div>';
+		$copyText = __( 'The job posting was succesfully copied.' );
+		$message  = '<div class="updated fade" id="message"><p>' . $copyText . '</p></div>';
 	} else {
-		$message = '<div class="updated fade" id="message"><p>Sorry, the job posting could not be copied. Please try again.</p></div>';
+		$copyText = __( 'Sorry, the job posting could not be copied. Please try again.' );
+		$message = '<div class="updated fade" id="message"><p>' . $copyText . '</p></div>';
 	}
 	
 }
@@ -99,7 +101,8 @@ if ( $deleteSubmit ){
     $deleteQuery = $wpdb->query( 'DELETE FROM ' . JOBTABLE . ' WHERE id IN ( ' . $deleteIDs . ' )' );
 
     if ( $deleteQuery ){
-		$message = '<div class="updated fade" id="message"><p>Job posting(s) have been deleted.</p></div>';
+		$deleteText = __( 'Job posting(s) have been deleted.' );
+		$message    = '<div class="updated fade" id="message"><p>' . $deleteText . '</p></div>';
     }
 }
 /* EOF Delete */
@@ -108,9 +111,9 @@ if ( $deleteSubmit ){
 
 <?php 
 if ( $ID ){
-	$subName = ' - View/Edit';
+	$subName = ' - ' . __( 'View/Edit' );
 } elseif ( $addNew ){
-	$subName = ' - Add New';
+	$subName = ' - ' . __( 'Add New' );
 } else {
 	$subName = '';
 }
@@ -120,7 +123,7 @@ if ( $ID ){
 <div class="wrap alternate">
 	
     <div id="icon-rsjp-postings" class="icon32"></div>	
-    <h2><?php _e( 'Job Postings' . $subName ); ?></h2>
+    <h2><?php _e( 'Job Postings' ) . $subName; ?></h2>
     <?php echo $message; ?>
     <br class="a_break" style="clear: both;"/>
     <?php
@@ -130,7 +133,7 @@ if ( $ID ){
             <tr>
                 <td align="left">
                     <form method="post" name="addNew" id="addNew">
-                        <input type="submit" name="addNew" value="Add New Job Posting" class="button-secondary" />
+                        <input type="submit" name="addNew" value="<?php _e( 'Add New Job Posting' ); ?>" class="button-secondary" />
                     </form>
                 </td>
             </tr>
@@ -143,7 +146,7 @@ if ( $ID ){
 		$single = $wpdb->get_row( 'SELECT * FROM ' . JOBTABLE . ' WHERE id = "' . $ID . '"' );
 		?>
 		<form name="back" method="post" enctype="multipart/form-data" action="<?php echo admin_url(); ?>admin.php?page=job_postings">
-			<input name="back" type="submit" value="Back" class="button-secondary" />
+			<input name="back" type="submit" value="<?php _e( 'Back' ); ?>" class="button-secondary" />
 		</form>
 		<br class="a_break" style="clear: both;"/>
 		<form name='form' id='form' class='form' method='POST'>
@@ -153,15 +156,15 @@ if ( $ID ){
 				<td></td>
 			</tr>
 			<tr>
-				<td><p><b><?php _e( 'Job Title:' ); ?> </b></p></td>
+				<td><p><b><?php _e( 'Job Title' ); ?>: </b></p></td>
 				<td align="left"><input type='text' name='title' size='30' id='title' value='<?php echo $single->title; ?>' /></td>
 			</tr>
 			<tr>
-				<td><p><b><?php _e( 'Subtitle:' ); ?> </b></p></td>
+				<td><p><b><?php _e( 'Subtitle' ); ?>: </b></p></td>
 				<td align="left"><input type='text' name='subTitle' size='25' id='subTitle' value='<?php echo $single->subTitle; ?>' /></td>
 			</tr>
 			<tr>
-				<td valign="top"><p><b><?php _e( 'Copy:' ); ?> </b></p></td>
+				<td valign="top"><p><b><?php _e( 'Copy' ); ?>: </b></p></td>
 				<td align="left"><p><?php wp_editor( $single->description, 'description', setTinySetting( 'description', '15', true, true, true ) ); ?></p><br /></td>
 			</tr>
 		<?php
@@ -172,12 +175,12 @@ if ( $ID ){
 		}
 		?>
 			<tr>
-				<td><p><b><?php _e( 'Archive:' ); ?> </b></p></td>
+				<td><p><b><?php _e( 'Archive' ); ?>: </b></p></td>
 				<td align="left"><input type="checkbox" name="archive" value="1" <?php echo $archiveChecked; ?> /></td>
 			</tr>
 			<tr>
-				<td><input type='hidden' name='edit' value='Edit' /></td>
-				<td><p><input type='submit' value='Update Job Posting' name='submit' class="button-primary" /></p></td>
+				<td><input type='hidden' name='edit' value='<?php _e( 'Edit' ); ?>' /></td>
+				<td><p><input type='submit' value='<?php _e( 'Update Job Posting' );?>' name='submit' class="button-primary" /></p></td>
 			</tr>
 		</table>
 		</form>
@@ -188,7 +191,7 @@ if ( $ID ){
 		
 		?>
 		<form name="back" method="post" enctype="multipart/form-data" action="<?php echo admin_url(); ?>admin.php?page=job_postings">
-			<input name="back" type="submit" value="Back" class="button-secondary" />
+			<input name="back" type="submit" value="<?php _e( 'Back' ); ?>" class="button-secondary" />
 		</form>
 		<br class="a_break" style="clear: both;"/>
 		<form name='form' method='post' enctype="multipart/form-data">
@@ -198,24 +201,24 @@ if ( $ID ){
 				<td></td>
 			</tr>
 			<tr>
-				<td><p><b><?php _e( 'Job Title:' ); ?> </b></p></td>
+				<td><p><b><?php _e( 'Job Title' ); ?>: </b></p></td>
 				<td align="left"><input type='text' name='title' size='30' id='title' value='' /></td>
 			</tr>
 			<tr>
-				<td><p><b><?php _e( 'Subtitle:' ); ?> </b></p></td>
+				<td><p><b><?php _e( 'Subtitle' ); ?>: </b></p></td>
 				<td align="left"><input type='text' name='subTitle' size='25' id='subTitle' value='' /></td>
 			</tr>
 			<tr>
-				<td valign="top"><p><b><?php _e( 'Description:' ); ?> </b></p></td>
+				<td valign="top"><p><b><?php _e( 'Description' ); ?>: </b></p></td>
 				<td align="left"><p><?php wp_editor( '', 'description', setTinySetting( 'description', '15', true, true, true ) ); ?></p><br /></td>
 			</tr>
 			<tr>
-				<td><p><b><?php _e( 'Archive:' ); ?> </b></p></td>
+				<td><p><b><?php _e( 'Archive' ); ?>: </b></p></td>
 				<td align="left"><input type="checkbox" name="archive" value="1" /></td>
 			</tr>
 			<tr>
-				<td><input type='hidden' name='add' value='Add' /></td>
-				<td><p><input type='submit' value='Add Job Posting' name='addJob' class="button-primary" /></p></td>
+				<td><input type='hidden' name='add' value='<?php _e( 'Add' ); ?>' /></td>
+				<td><p><input type='submit' value='<?php _e( 'Add Job Posting' ); ?>' name='addJob' class="button-primary" /></p></td>
 			</tr>
 		</table>
 		</form>
@@ -280,10 +283,10 @@ if ( $ID ){
 						<td><?php echo $isArchived; ?></td>
 						<td>&nbsp;</td>
 						<td align="right" width="50px">
-                        	<input name="view" type="button" value="View/Edit" class="button-secondary" onclick="location.href='<?php echo admin_url(); ?>admin.php?page=job_postings&id=<?php echo $info->id; ?>'" />
+                        	<input name="view" type="button" value="<?php _e( 'View/Edit' ); ?>" class="button-secondary" onclick="location.href='<?php echo admin_url(); ?>admin.php?page=job_postings&id=<?php echo $info->id; ?>'" />
 						</td>
 						<td align="right" width="50px">
-                            <input name="copy" type="button" value="Copy" class="button-secondary" onclick="location.href='<?php echo admin_url(); ?>admin.php?page=job_postings&copyID=<?php echo $info->id; ?>'" />
+                            <input name="copy" type="button" value="<?php _e( 'Copy' ); ?>" class="button-secondary" onclick="location.href='<?php echo admin_url(); ?>admin.php?page=job_postings&copyID=<?php echo $info->id; ?>'" />
 						</td>
 					</tr>
 					<?php
@@ -343,7 +346,7 @@ if ( $ID ){
 		<?php
 		if ( $getNum > 0 ){
 			?>
-				<input type="submit" name="deleteSubmit" value="Delete Record(s)" class="button-secondary" onClick="return( confirm( 'Are you sure you want to delete these entries?' ) )" />
+				<input type="submit" name="deleteSubmit" value="<?php _e( 'Delete Record(s)' ); ?>" class="button-secondary" onClick="return( confirm( '<?php _e( 'Are you sure you want to delete these entries?' ); ?>' ) )" />
             </form>
 			<?php
 		}

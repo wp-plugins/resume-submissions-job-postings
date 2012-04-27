@@ -58,7 +58,7 @@ if ( $_SERVER["QUERY_STRING"] ) {
 		
 		foreach ( $archivedQuery as $archived ){
 			?>
-            <li><p><b><a href="<?php echo $_SERVER['REQUEST_URI'] . $connect; ?>postingID=<?php echo $archived->id; ?>"><?php echo $archived->title; ?></a></b> - <i style="font-size:12px;">Posted: <?php echo date( 'M j, Y g:ia', strtotime( $archived->pubDate ) ); ?></i></p></li>
+            <li><p><b><a href="<?php echo $_SERVER['REQUEST_URI'] . $connect; ?>postingID=<?php echo $archived->id; ?>"><?php echo $archived->title; ?></a></b> - <i style="font-size:12px;"><?php _e( 'Posted:' ); ?> <?php echo date( 'M j, Y g:ia', strtotime( $archived->pubDate ) ); ?></i></p></li>
             <?php
 		}
 		
@@ -106,8 +106,8 @@ if ( $_SERVER["QUERY_STRING"] ) {
 		// Display the single job
         $jobPosting = $wpdb->get_row( 'SELECT * FROM ' . JOBTABLE . ' WHERE id = ' . $postingID );
         ?>
-        <h2><?php _e( $jobPosting->title ); ?></h2>
-        <p style="padding:0; margin:0;"><?php _e( $jobPosting->subTitle ); ?></p>
+        <h2><?php echo $jobPosting->title; ?></h2>
+        <p style="padding:0; margin:0;"><?php echo $jobPosting->subTitle; ?></p>
         <p><i style="font-size:12px;"><?php _e( 'Posted:' ); ?> <?php echo date( 'M j, Y g:ia', strtotime( $jobPosting->pubDate ) ); ?></i></p>
         <p><?php echo $jobPosting->description; ?></p>
         <br />
@@ -116,7 +116,7 @@ if ( $_SERVER["QUERY_STRING"] ) {
 			?>
             <form method="post" name="goToResume" action="<?php echo get_option( 'resume_form_page' ); ?>">
                 <input type="hidden" name="fromPosting" value="<?php echo $jobPosting->title; ?>" />
-                <input type="submit" name="fromPostingSubmit" value="Submit Resumé For This Job" />
+                <input type="submit" name="fromPostingSubmit" value="<?php _e( 'Submit Resume For This Job' ); ?>" />
             </form>
             <?php
 		}
@@ -131,15 +131,12 @@ if ( $_SERVER["QUERY_STRING"] ) {
 		// Display all the current jobs 
         $jobPostingQuery = $wpdb->get_results( 'SELECT * FROM ' . JOBTABLE . ' WHERE archive != 1 ORDER BY pubDate DESC' );
         ?>
-        
-        <p><?php _e( 'The following are current job opportunities provided by ' . $siteName . '.' ); ?></p>
-    
-        
+                
         <ul>
         <?php
         foreach ( $jobPostingQuery as $jobPosting ){
             ?>
-            <li><p><b><a href="<?php echo $_SERVER['REQUEST_URI'] . $connect; ?>postingID=<?php echo $jobPosting->id; ?>"><?php echo $jobPosting->title; ?></a></b> - <i style="font-size:12px;">Posted: <?php echo date( 'M j, Y g:ia', strtotime( $jobPosting->pubDate ) ); ?></i></p></li>
+            <li><p><b><a href="<?php echo $_SERVER['REQUEST_URI'] . $connect; ?>postingID=<?php echo $jobPosting->id; ?>"><?php echo $jobPosting->title; ?></a></b> - <i style="font-size:12px;"><?php _e( 'Posted:' ); ?> <?php echo date( 'M j, Y g:ia', strtotime( $jobPosting->pubDate ) ); ?></i></p></li>
             <?php
         }
         ?>
