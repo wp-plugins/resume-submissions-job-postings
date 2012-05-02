@@ -142,6 +142,12 @@ if ( $_SERVER["QUERY_STRING"] ) {
         ?>
         </ul>
         <?php
+		
+		if ( !$jobPostingQuery ){
+			?>
+            <p><i><?php _e( 'There are no jobs available at this time.' ); ?></i></p>
+            <?php
+		}
     }
     ?>
 </div>

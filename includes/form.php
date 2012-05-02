@@ -57,7 +57,7 @@ if ( get_option( 'resume_captcha') == 'Enabled' ) {
 											$_POST['recaptcha_response_field'] );
 						
 	if ( !$resp->is_valid && $action == 'add' ) {
-		$formMessage = '<p style="color:#CC0000;"><b>Error:</b> The reCAPTCHA was not entered correctly. Please try it again.</p>';
+		$formMessage = '<p style="color:#CC0000;"><b>' . __( 'Error' ) . ':</b> ' . __( 'The reCAPTCHA was not entered correctly. Please try it again.' ) . '</p>';
 		$formError   = true;
 	}
 }
@@ -68,7 +68,7 @@ if ( $useTinyMce == "Enabled" ){
 } else {
 	$setTinyMce = false;
 }
-if ( $useTinyMceQT == "Enabled" && $setTinyMce ){
+if ( $useTinyMceQT == "true" ){
 	$setTinyMceQT = true;
 } else {
 	$setTinyMceQT = false;
@@ -78,7 +78,7 @@ if ( $useTinyMceQT == "Enabled" && $setTinyMce ){
 // Error Checking
 if ( ( $action == 'add' ) && formErrorCheck( $fields ) == true ){
 	$formError = true;
-	$formMessage = '<p style="color:#CC0000;"> ' . _e( '<b>Error:</b> Make sure all fields required are filled out correctly.' ) . '</p>';
+	$formMessage = '<p style="color:#CC0000;"><b>' . __( 'Error' ) . ':</b> ' . __( 'Make sure all fields required are filled out correctly.' ) . '</p>';
 }
 
 	
@@ -366,7 +366,7 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
             <tr>
                 <td><p><b><?php _e( 'Cover Letter' );?>:</b> <?php _e( '(Please submit with good formatting)' ); ?></p></td>
                 <td></td>
-            </tr>
+            </tr> 
             <tr>
                 <td>
 					<?php 

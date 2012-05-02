@@ -66,7 +66,7 @@ class resume_job_postings {
             <?php
 		} else {
 			?>
-            <center><i><?php _e( 'There are no jobs currently available.' ); ?></i></center>
+            <center><i><?php _e( 'There are no jobs available at this time.' ); ?></i></center>
             <?php
 		}
 		echo $args['after_widget'];

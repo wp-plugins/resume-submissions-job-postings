@@ -22,19 +22,19 @@ $useTinymce        = $_POST['useTinymce'];
 $useTinymceQT      = $_POST['useTinymceQT'];
 $attachments       = array( 'num' => $_POST['numAttachments'], 'allowed' => $_POST['allowedAttachments'], 'delete' => $_POST['deleteAttachments'] );
 $customPDFBase     = $_POST['customPDFBase'];
-$thankYouText      = $_POST['thankYouText'];
+$thankyoutext      = $_POST['thankyoutext'];
 $stateList         = array( 'use' => $_POST['useStateList'], 'list' => $saveList );
 $sendAdminEmailTo  = $_POST['sendAdminEmailTo'];
 $emailUserFrom     = $_POST['emailUserFrom'];
 $sendEmailToUser   = $_POST['sendEmailToUser'];
 $userEmailSubject  = $_POST['userEmailSubject'];
-$userEmailCopy     = $_POST['userEmailCopy'];
+$useremailcopy     = $_POST['useremailcopy'];
 
 $editorSettings    = array(
 					'wpautop' => true,
 					'media_buttons' => false,
 					'textarea_rows' => '15',
-					'textarea_name' => 'userEmailCopy',
+					'textarea_name' => 'useremailcopy',
 					'teeny' => false,
 					'tinymce' => true,
 					'quicktags' => true
@@ -50,13 +50,13 @@ if ( $update ) {
 	update_option( 'resume_use_tinymce_qt', $useTinymceQT );
 	update_option( 'resume_attachments', $attachments );
 	update_option( 'resume_pdf_base_file', $customPDFBase );
-	update_option( 'resume_thank_you_text', $thankYouText );
+	update_option( 'resume_thank_you_text', $thankyoutext );
 	update_option( 'resume_state_list', $stateList );
 	update_option( 'resume_send_admin_email_to', $sendAdminEmailTo );
 	update_option( 'resume_email_user_from', $emailUserFrom );
 	update_option( 'resume_send_email_to_user', $sendEmailToUser );
 	update_option( 'resume_user_email_subject', $userEmailSubject );
-	update_option( 'resume_user_email_copy', $userEmailCopy );
+	update_option( 'resume_user_email_copy', $useremailcopy );
 	
 	$message = '<div class="updated fade" id="message"><p>Settings have been updated.</p></div>';
 }
@@ -165,7 +165,7 @@ foreach ( $stateListOptions['list'] as $state ){
                 </tr>
                 <tr>
                     <td valign="top"><p><b><?php _e( 'Thank You Text' ); ?>: </b></p></td>
-                    <td align="left" height="250px"><?php wp_editor( get_option( 'resume_thank_you_text' ), 'thankYouText', setTinySetting( 'thankYouText', '15', false, true, true ) ); ?></td>
+                    <td align="left" height="250px"><?php wp_editor( get_option( 'resume_thank_you_text' ), 'thankyoutext', setTinySetting( 'thankyoutext', '15', false, true, true ) ); ?></td>
                 </tr>
             </tbody>
         </table>
@@ -245,7 +245,7 @@ foreach ( $stateListOptions['list'] as $state ){
                 </tr>
                 <tr>
                     <td valign="top"><p><b><?php _e( 'User Email Copy' ); ?>: </b></p></td>
-                    <td align="left" height="250px"><?php wp_editor( get_option( 'resume_user_email_copy' ), 'userEmailCopy', setTinySetting( 'userEmailCopy', '15', false, true, true ) ); ?></td>
+                    <td align="left" height="250px"><?php wp_editor( get_option( 'resume_user_email_copy' ), 'useremailcopy', setTinySetting( 'useremailcopy', '15', false, true, true ) ); ?></td>
                 </tr>       
             </tbody>
         </table>
@@ -273,6 +273,11 @@ foreach ( $stateListOptions['list'] as $state ){
                             <code>[resumeForm]</code></p>
                             <p><b>To add the Job Post Listings:</b><br />
                             <code>[jobPostings]</code></p>
+                            <p><b>To show Resume Submissions:</b><br />
+                            <code>[resumeDisplay]</code></p>
+                            <p>The following options can be applied to the resumeDisplay shortcode</p>
+                            <p>These will allow the admin to select which submissions they whould like to display. (Only choose one out of email, id and job to use)</p>
+                            <p><i><code>email=''</code>, <code>id=''</code>, <code>job=''</code>, <code>limit=''</code></i></p> 
                             <br />
                                            
                             <h3>User Email Copy Shortcodes</h3>

@@ -3,7 +3,7 @@
 Plugin Name: Resumé Submissions & Job Postings
 Plugin URI: http://www.geerservices.com/wordpress-plugins/resume-jobs/
 Description: Allows the admin to create and show job postings. Users can submit their resume in response to a posting or for general purposes. 
-Version: 2.1.4
+Version: 2.1.5
 Author: Keith Andrews (GSI)
 Author URI: http://www.geerservices.com
 License: GPL2
@@ -160,7 +160,7 @@ function resumeForm_handler(){
 }
 
 // Jobs Page
-function resumeJobsDisplay_handler(){
+function jobsDisplay_handler(){
 	ob_start();
 	
 	function rsjpJobsInclude(){
@@ -175,9 +175,40 @@ function resumeJobsDisplay_handler(){
 	return $output;
 }
 
+// Resume Display Page
+function resumeDisplay_handler( $atts ){
+	ob_start();
+	
+	extract( shortcode_atts( array (
+			 'email' => '',
+			 'id'    => '',
+			 'job' => '',
+			 'limit' => 1000
+    ), $atts ) );
+	
+	if ( $email )
+		$condition = 'WHERE email = "' . $email . '"';
+	if ( $id )
+		$condition = 'WHERE id = "' . $email . '"';
+	if ( $job )
+		$condition = 'WHERE job = "' . $job . '"';
+	
+	function rsjpDisplayInclude( $condition, $limit ){
+		include( 'includes/display-resumes.php' );
+	}
+	
+	rsjpDisplayInclude( $condition, $limit );
+	
+	$output = ob_get_contents();;
+	ob_end_clean();
+	
+	return $output;
+}
+
 // Add the shortcodes
 add_shortcode( 'resumeForm', 'resumeForm_handler' );
-add_shortcode( 'jobPostings', 'resumeJobsDisplay_handler' );
+add_shortcode( 'jobPostings', 'jobsDisplay_handler' );
+add_shortcode( 'resumeDisplay', 'resumeDisplay_handler' );
 
 
 // Check for the old tables and remove

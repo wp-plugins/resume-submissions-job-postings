@@ -6,7 +6,7 @@ Plugin URI: http://www.geerservices.com/wordpress-plugins/resume-jobs/
 Tags: resume submission, job postings, job listing, resume, jobs 
 Requires at least: 3.3
 Tested up to: 3.3.2
-Stable tag: 2.1.4
+Stable tag: 2.1.5
 
 Allows the admin to create and show job postings. Users can submit their resume in response to a posting or for general purposes. 
 
@@ -36,6 +36,7 @@ The admin may sort resumes by job, or anything else they search for.
 * Set the amount of allowed attachments and type of attachments
 * Customize State list
 * Save/Download Submitted Resume as PDF
+* Display Submitted Resumes in posts or pages
 * Allow Admin to create extra input fields (Coming Soon)
 
  
@@ -55,7 +56,7 @@ The admin may sort resumes by job, or anything else they search for.
 
 1. Upload the folder `resume-submissions-job-postings` to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Place the shortcodes `[resumeForm]` and `[jobPostings]` in their respected pages
+3. Place the shortcodes `[resumeForm]`, `[jobPostings]`, and `[resumeDisplay]` in their respected pages
 
 == Frequently Asked Questions ==
 
@@ -82,6 +83,11 @@ The PDF that you use for the base file MUST be saved in the PDF/A format.
 4. The Input Fields page where you can set which fields are display and/or required.
 
 == Changelog ==
+= 2.1.5 =
+* Added a new shortcode that gives the ability to display submitted resumes in a page or post
+* Fixed TinyMCE setting bug
+* Added the text "There are no jobs available at this time." to the job postings list 
+
 = 2.1.4 =
 * Removed the "The following are current job opportunities provided by" text in the Job Postings list
 * Corrected some coding for I18n
@@ -170,6 +176,9 @@ The PDF that you use for the base file MUST be saved in the PDF/A format.
 
 
 == Upgrade Notice ==
+= 2.1.5 =
+* Shortcode `[resumeDisplay]` added to display resumes in posts or pages
+
 = 2.1 =
 Admins can now download single submissions as a PDF
 
