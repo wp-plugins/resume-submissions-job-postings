@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/resume-submissions-job-"
 "postings\n"
-"POT-Creation-Date: 2012-04-27 17:33:12+00:00\n"
+"POT-Creation-Date: 2012-05-02 19:29:27+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -38,8 +38,20 @@ msgstr ""
 msgid "Submit Resume For This Job"
 msgstr ""
 
+#: includes/display-jobs.php:148 includes/widget.php:69
+msgid "There are no jobs available at this time."
+msgstr ""
+
+#: includes/form.php:60 includes/form.php:81
+msgid "Error"
+msgstr ""
+
+#: includes/form.php:60
+msgid "The reCAPTCHA was not entered correctly. Please try it again."
+msgstr ""
+
 #: includes/form.php:81
-msgid "<b>Error:</b> Make sure all fields required are filled out correctly."
+msgid "Make sure all fields required are filled out correctly."
 msgstr ""
 
 #: includes/form.php:234 includes/input-fields.php:51
@@ -391,7 +403,7 @@ msgstr ""
 msgid "Submission(s) have been deleted."
 msgstr ""
 
-#: includes/submissions.php:137
+#: includes/submissions.php:137 resume-submission.php:43
 msgid "Resume Submissions"
 msgstr ""
 
@@ -491,16 +503,8 @@ msgstr ""
 msgid "View All Current Jobs"
 msgstr ""
 
-#: includes/widget.php:69
-msgid "There are no jobs currently available."
-msgstr ""
-
 #: resume-submission.php:42
-msgid "Resumés &amp; Jobs"
-msgstr ""
-
-#: resume-submission.php:43
-msgid "Resumé Submissions"
+msgid "Resumes &amp; Jobs"
 msgstr ""
 
 #: resume-submission.php:46
