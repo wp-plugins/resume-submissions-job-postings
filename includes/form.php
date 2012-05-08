@@ -229,17 +229,16 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
     <form id='formSubmission' method='POST' action="" enctype="multipart/form-data">
     <table width="100%" cellpadding="0" cellspacing="5">
         <tr>
-            <td width="190px"></td>
-            <td width="145px"></td>
-            <td><p style='color:#CC0000;'><b>*</b> <?php _e( 'Required' ); ?></p></td>
+            <td width="190px"><p style='color:#CC0000;'><b>*</b> <?php _e( 'Required' ); ?></p></td>
+            <td>&nbsp;</td>
         </tr>
         <?php
 		if ( grabContents( get_option( 'resume_input_fields' ), 'fname', 0 ) ) {	
 			?>
             <tr>
                 <td><p><?php _e( 'First Name' ); ?>: </p></td>
-                <td><input type='text' name='fname' size='20' value='<?php if ( $errorFName == '' ) echo $current_user->user_firstname; else echo $errorFName; ?>' /></td>
-                <td valign="top"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'fname', 1 ) ); ?></p></td>
+                <td valign="top" align="left"><input type='text' name='fname' size='30' value='<?php if ( $errorFName == '' ) echo $current_user->user_firstname; else echo $errorFName; ?>' />
+                	<sup><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'fname', 1 ) ); ?></sup></td>
             </tr>
             <?php
 		}
@@ -247,8 +246,8 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
 			?>
             <tr>
                 <td><p><?php _e( 'Last Name' ); ?>: </p></td>
-                <td><input type='text' name='lname' size='20' value='<?php if ( $errorLName == '' ) echo $current_user->user_lastname; else echo $errorLName; ?>' /></td>
-                <td valign="top"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'lname', 1 ) ); ?></p></td>
+                <td valign="top" align="left"><input type='text' name='lname' size='30' value='<?php if ( $errorLName == '' ) echo $current_user->user_lastname; else echo $errorLName; ?>' />
+                	<supp><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'lname', 1 ) ); ?></sup></td>
             </tr>
             <?php
 		}
@@ -256,8 +255,8 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
 			?>
             <tr>
                 <td><p><?php _e( 'Address' ); ?>: </p></td>
-                <td><input type='text' name='address' size='20' value='<?php echo $errorAddress; ?>' /></td>
-                <td valign="top"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'address', 1 ) ); ?></p></td>
+                <td valign="top" align="left"><input type='text' name='address' size='30' value='<?php echo $errorAddress; ?>' />
+                	<sup><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'address', 1 ) ); ?></sup></td>
             </tr>
             <?php
 		}
@@ -265,8 +264,8 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
 			?>
 			<tr>
 				<td><p><?php _e( 'Address2' ); ?>: </p></td>
-				<td><input type='text' name='address2' size='20' value='<?php echo $errorAddress2; ?>' /></td>
-				<td valign="top"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'address2', 1 ) ); ?></p></td>
+				<td valign="top" align="left"><input type='text' name='address2' size='30' value='<?php echo $errorAddress2; ?>' />
+                	<sup><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'address2', 1 ) ); ?></sup></td>
 			</tr>
             <?php
 		}
@@ -274,8 +273,8 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
 			?>
             <tr>
                 <td><p><?php _e( 'City' ); ?>: </p></td>
-                <td><input type='text' name='city' size='20' value='<?php echo $errorCity; ?>' /></td>
-                <td valign="top"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'city', 1 ) ); ?></p></td>
+                <td valign="top" align="left"><input type='text' name='city' size='30' value='<?php echo $errorCity; ?>' />
+                	<sup><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'city', 1 ) ); ?></sup></td>
             </tr>
             <?php
 		}
@@ -284,10 +283,10 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
 			?>
             <tr>
                 <td><p><?php _e( 'State' ); ?>: </p></td>
-                <td><select name="state" id="state">
+                <td valign="top" align="left"><select name="state" id="state">
                         <?php echo arrayToSelect( $theStateList['list'], $errorState ); ?>
-                    </select></td>
-                <td valign="top"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'state', 1 ) ); ?></p></td>
+                    </select>
+                    <sup><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'state', 1 ) ); ?></sup></td>
             </tr>
             <?php
 		}
@@ -295,26 +294,27 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
 			?>
             <tr>
                 <td><p><?php _e( 'Zip Code' ); ?>: </p></td>
-                <td><input type='text' name='zip' size='20' value='<?php echo $errorZip; ?>' /></td>
-                <td valign="top"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'zip', 1 ) ); ?></p></td>
+                <td valign="top" align="left"><input type='text' name='zip' size='20' value='<?php echo $errorZip; ?>' /> <sup><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'zip', 1 ) ); ?></sup></td>
             </tr>
             <?php
 		}
 		if ( grabContents( get_option( 'resume_input_fields' ), 'pnumber', 0 ) ) {	
 			?>
             <tr>
-                <td><p><?php _e( 'Primary Contact Number' ); ?>: </p></td>
-                <td><input type='text' name='pnumber' size='15' value='<?php echo $errorPNumber; ?>' /></td>
-                <td valign="top"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'pnumber', 1 ) ); ?><?php echo $pType; ?></p></td>
+                <td valign="top"><p><?php _e( 'Primary Contact Number' ); ?>: </p></td>
+                <td valign="top" align="left"><input type='text' name='pnumber' size='25' value='<?php echo $errorPNumber; ?>' />
+                	<sup><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'pnumber', 1 ) ); ?></sup><br />
+                    <?php echo $pType; ?></td>
             </tr>
             <?php
 		}
 		if ( grabContents( get_option( 'resume_input_fields' ), 'snumber', 0 ) ) {	
 			?>
             <tr>
-                <td><p><?php _e( 'Secondary Contact Number' ); ?>: </p></td>
-                <td><input type='text' name='snumber' size='15' value='<?php echo $errorSNumber; ?>' /></td>
-                <td valign="top"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'snumber', 1 ) ); ?><?php echo $sType; ?></p></td>
+                <td valign="top"><p><?php _e( 'Secondary Contact Number' ); ?>: </p></td>
+                <td valign="top" align="left"><input type='text' name='snumber' size='25' value='<?php echo $errorSNumber; ?>' />
+                	<sup><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'snumber', 1 ) ); ?></sup><br />
+					<?php echo $sType; ?></td>
             </tr>
             <?php
 		}
@@ -322,8 +322,8 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
 			?>
             <tr>
                 <td><p><?php _e( 'E-Mail Address' ); ?>: </p></td>
-                <td><input type='text' name='email' size='20' value='<?php if ( $errorEmail == '' ) echo $current_user->user_email; else echo $errorEmail; ?>' /></td>
-                <td valign="top"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'email', 1 ) ); ?></p></td>
+                <td valign="top" align="left"><input type='text' name='email' size='30' value='<?php if ( $errorEmail == '' ) echo $current_user->user_email; else echo $errorEmail; ?>' />
+                	<sup><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'email', 1 ) ); ?></sup></td>
             </tr>
         	<?php 
 		}
@@ -335,11 +335,11 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
     <table width="100%" cellpadding="0" cellspacing="0">
         <tr>
             <td width="190px"><p><?php _e( 'Regarding Job' ); ?>: </p></td>
-            <td><select name="job">                            	
+            <td valign="top" align="left"><select name="job">                            	
 					<?php echo arrayToSelect( $currentJobs, $errorJob ); ?>
                     <option value="General Purpose" <?php if ( $errorJob == 'General Purpose' ){ echo 'selected="selected"'; } ?>><?php _e( 'General Purpose' ); ?></option>    
-                </select></td>
-            <td valign="top"><p style='color:#CC0000; font-weight:bold;'>*</p></td>
+                </select>
+                <sup style='color:#CC0000; font-weight:bold;'>*</sup></td>
          </tr>
      </table>
      
@@ -350,8 +350,8 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
 			?>
             <tr>
                 <td valign="top" width="190px"><p><?php _e( 'Attachment(s):' ); ?> </p></td>
-                <td><input type="file" name="attachment[]" id="attachment" class="multi" accept="<?php echo $attachSettings['allowed']; ?>" maxlength="<?php echo $attachSettings['num']; ?>" /></td>
-                <td valign="top"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'attachment', 1 ) ); ?></p></td>
+                <td valign="top" align="left"><input type="file" name="attachment[]" id="attachment" class="multi" accept="<?php echo $attachSettings['allowed']; ?>" maxlength="<?php echo $attachSettings['num']; ?>" />
+                	<sup><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'attachment', 1 ) ); ?></sup></td>
             </tr>
         	<?php 
 		}
@@ -364,8 +364,7 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
 		if ( grabContents( get_option( 'resume_input_fields' ), 'cover', 0 ) ) {	
 			?>
             <tr>
-                <td><p><b><?php _e( 'Cover Letter' );?>:</b> <?php _e( '(Please submit with good formatting)' ); ?></p></td>
-                <td></td>
+                <td><p><b><?php _e( 'Cover Letter' );?>:</b> <?php _e( '(Please submit with good formatting)' ); ?> <sup><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'cover', 1 ) ); ?></sup></p></td>
             </tr> 
             <tr>
                 <td>
@@ -379,15 +378,13 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
                     }
                     ?>
                 </td>
-                <td valign="top" width="5px"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'cover', 1 ) ); ?></p></td>
             </tr>	
             <?php
 		}
 		if ( grabContents( get_option( 'resume_input_fields' ), 'resume', 0 ) ) {	
 			?>
             <tr>
-                <td><p><b><?php _e( 'Resume' ); ?>:</b> <?php _e( '(Please submit with good formatting)' ); ?></p></td>
-                <td></td>
+                <td><p><b><?php _e( 'Resume' ); ?>:</b> <?php _e( '(Please submit with good formatting)' ); ?> <sup><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'resume', 1 ) ); ?></sup></p></td>
             </tr>
             <tr>
                 <td>
@@ -401,7 +398,6 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
                     }
                     ?>
                 </td>
-                <td valign="top" width="5px"><p><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'resume', 1 ) ); ?></p></td>
             </tr>	
         	<?php
 		}
@@ -413,7 +409,6 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
                 <td><p><?php require_once( 'recaptchalib.php' ); 
                         $publicKey = get_option( 'resume_captcha_public_key' );
                         echo recaptcha_get_html( $publicKey ); ?></p></td>
-                <td></td>
             </tr>
             <?php
         }
@@ -421,7 +416,6 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
         <input type='hidden' name='action' value='add' />
         <tr>
             <td><p><input type='submit' value='<?php _e( 'Submit Resume' );?>' name='submit' /></p></td>
-            <td></td>
         </tr>
     </table>
     </form>

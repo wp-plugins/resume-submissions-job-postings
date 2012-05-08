@@ -6,7 +6,7 @@ Plugin URI: http://www.geerservices.com/wordpress-plugins/resume-jobs/
 Tags: resume submission, job postings, job listing, resume, jobs 
 Requires at least: 3.3
 Tested up to: 3.3.2
-Stable tag: 2.1.5
+Stable tag: 2.1.6
 
 Allows the admin to create and show job postings. Users can submit their resume in response to a posting or for general purposes. 
 
@@ -83,6 +83,9 @@ The PDF that you use for the base file MUST be saved in the PDF/A format.
 4. The Input Fields page where you can set which fields are display and/or required.
 
 == Changelog ==
+= 2.1.6 = 
+* Reformatted the table on the form.php page so that it displays better into site designs
+
 = 2.1.5 =
 * Added a new shortcode that gives the ability to display submitted resumes in a page or post
 * Fixed TinyMCE setting bug
