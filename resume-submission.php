@@ -108,13 +108,14 @@ function admin_register_resume_style( $hook ) {
 		|| $hook == 'resumes-jobs_page_input_fields' || $hook == 'resumes-jobs_page_settings' || $hook == 'resumes-jobs_page_extra_fields' )
 	    wp_enqueue_style( 'resume-admin-custom', plugins_url( '/css/resume-admin-styles.css', __FILE__ ) );
 }
-function addStyles (){
+function addStyles ( $hook ){
+	echo $hook;
 	wp_enqueue_style( 'resume-style', resume_get_plugin_dir( 'go' ) . '/css/resume-styles.css' );	
 }
 
 // Add functions to head
 add_action( 'admin_enqueue_scripts', 'admin_register_resume_style' );
-add_action( 'resume_css', 'addStyles' );
+add_action( 'wp_enqueue_scripts', 'addStyles' );
 add_action( 'wp_enqueue_scripts', 'multiFileScript' );
 if( $hook == 'resumes-jobs_page_settings' )
 	add_action( 'wp_footer', 'rsjpSettingsScript' );

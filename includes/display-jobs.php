@@ -3,7 +3,7 @@ global $wpdb;
 
 $view      = $_GET['view'];
 $postingID = $_GET['postingID'];
-$siteName  = get_option('blogname'); 
+$siteName  = get_option( 'blogname' ); 
 
 $range = 3;
 
@@ -128,12 +128,37 @@ if ( $_SERVER["QUERY_STRING"] ) {
         <?php
     } else {
 		
+		$search = $_POST['rsjpSearch'];
+		
+		if ( $search && get_option( 'resume_show_job_search' ) == "Enabled" ) {
+			$modQuery = ' AND ( title LIKE "%' . $search . '%" OR subTitle LIKE "%' . $search . '%" OR description LIKE "%' . $search . '%" )';
+		} else {
+			$modQuery = '';
+		}
 		// Display all the current jobs 
-        $jobPostingQuery = $wpdb->get_results( 'SELECT * FROM ' . JOBTABLE . ' WHERE archive != 1 ORDER BY pubDate DESC' );
-        ?>
+        $jobPostingQuery = $wpdb->get_results( 'SELECT * FROM ' . JOBTABLE . ' WHERE archive != 1' . $modQuery . ' ORDER BY pubDate DESC' );
+        
+		// Add search ability
+		if ( get_option( 'resume_show_job_search' ) == "Enabled" ){
+			?>
+            <div id="rsjpSearch">
+            <form method="post" name="rsjpSearch" enctype="multipart/form-data">
+            	<input type="text" name="rsjpSearch" value="" />
+                <input type="submit" name="submitSearch" value="<?php _e( 'Search' ); ?>" />
+            </form> 
+            </div>
+            <?php
+			
+		}
+		
+		?>
+        
                 
         <ul>
         <?php
+		if ( $search ) {
+			echo '<p><b>' . __( 'Showing results for' ) . ':</b> &quot;' . $search . '&quot;</p>';
+		}
         foreach ( $jobPostingQuery as $jobPosting ){
             ?>
             <li><p><b><a href="<?php echo $_SERVER['REQUEST_URI'] . $connect; ?>postingID=<?php echo $jobPosting->id; ?>"><?php echo $jobPosting->title; ?></a></b> - <i style="font-size:12px;"><?php _e( 'Posted:' ); ?> <?php echo date( 'M j, Y g:ia', strtotime( $jobPosting->pubDate ) ); ?></i></p></li>
@@ -144,9 +169,15 @@ if ( $_SERVER["QUERY_STRING"] ) {
         <?php
 		
 		if ( !$jobPostingQuery ){
-			?>
-            <p><i><?php _e( 'There are no jobs available at this time.' ); ?></i></p>
-            <?php
+			if ( $search ) {
+				?>
+                <p><i><?php _e( 'Sorry, there were no jobs where found.' ); ?></i></p>
+                <?php
+			} else {
+				?>
+                <p><i><?php _e( 'There are no jobs available at this time.' ); ?></i></p>
+                <?php
+			}
 		}
     }
     ?>

@@ -71,6 +71,7 @@ add_option( 'resume_captcha_private_key', '' );
 add_option( 'resume_captcha_public_key', '' );
 add_option( 'resume_form_page', '' );
 add_option( 'resume_jobs_page', '' );
+add_option( 'resume_show_job_search', 'Enabled' );
 add_option( 'resume_use_tinymce', 'Enabled' );
 add_option( 'resume_use_tinymce_qt', false );
 add_option( 'resume_thank_you_text', '<p style="color:#008f07;"><b>Thank you for your submission.</b></p>
@@ -118,7 +119,7 @@ if( $installed_ver != $resume_db_version ) {
 	
 	update_option( 'resume_db_version', $resume_db_version );
 	
-	add_option( 'resume_input_fields', array( 'fname' => array( 1, 1 ), 'lname' => array( 1, 1 ), 'address' => array( 1, 1 ), 'address2' => array( 1, 1 ), 
+	update_option( 'resume_input_fields', array( 'fname' => array( 1, 1 ), 'lname' => array( 1, 1 ), 'address' => array( 1, 1 ), 'address2' => array( 1, 1 ), 
 											  'city' => array( 1, 1 ), 'state' => array( 1, 1 ), 'zip' => array( 1, 1 ), 'pnumber' => array( 1, 1 ), 'snumber' => array( 1, 1 ),
 											  'email' => array( 1, 1 ), 'attachment' => array( 1, 0 ), 'cover' => array( 1, 1 ), 'resume' => array( 1, 1 ) ) );
 	

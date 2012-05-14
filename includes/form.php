@@ -284,7 +284,7 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
             <tr>
                 <td><p><?php _e( 'State' ); ?>: </p></td>
                 <td valign="top" align="left"><select name="state" id="state">
-                        <?php echo arrayToSelect( $theStateList['list'], $errorState ); ?>
+                        <?php echo arrayToSelect( $theStateList['list'], $errorState, '', true ); ?>
                     </select>
                     <sup><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'state', 1 ) ); ?></sup></td>
             </tr>
@@ -336,7 +336,7 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
         <tr>
             <td width="190px"><p><?php _e( 'Regarding Job' ); ?>: </p></td>
             <td valign="top" align="left"><select name="job">                            	
-					<?php echo arrayToSelect( $currentJobs, $errorJob ); ?>
+					<?php echo arrayToSelect( $currentJobs, $errorJob, '', false ); ?>
                     <option value="General Purpose" <?php if ( $errorJob == 'General Purpose' ){ echo 'selected="selected"'; } ?>><?php _e( 'General Purpose' ); ?></option>    
                 </select>
                 <sup style='color:#CC0000; font-weight:bold;'>*</sup></td>

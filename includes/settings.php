@@ -18,17 +18,18 @@ $captchaPrivateKey = $_POST['captchaPrivateKey'];
 $captchaPublicKey  = $_POST['captchaPublicKey'];
 $formPage          = $_POST['formPage'];
 $jobsPage          = $_POST['jobsPage'];
+$showJobSearch     = $_POST['showJobSearch'];
 $useTinymce        = $_POST['useTinymce'];
 $useTinymceQT      = $_POST['useTinymceQT'];
 $attachments       = array( 'num' => $_POST['numAttachments'], 'allowed' => $_POST['allowedAttachments'], 'delete' => $_POST['deleteAttachments'] );
 $customPDFBase     = $_POST['customPDFBase'];
-$thankyoutext      = $_POST['thankyoutext'];
+$thankyoutext      = stripslashes_deep( $_POST['thankyoutext'] );
 $stateList         = array( 'use' => $_POST['useStateList'], 'list' => $saveList );
 $sendAdminEmailTo  = $_POST['sendAdminEmailTo'];
 $emailUserFrom     = $_POST['emailUserFrom'];
 $sendEmailToUser   = $_POST['sendEmailToUser'];
 $userEmailSubject  = $_POST['userEmailSubject'];
-$useremailcopy     = $_POST['useremailcopy'];
+$useremailcopy     = stripslashes_deep( $_POST['useremailcopy'] );
 
 $editorSettings    = array(
 					'wpautop' => true,
@@ -46,6 +47,7 @@ if ( $update ) {
 	update_option( 'resume_captcha_public_key', $captchaPublicKey );
 	update_option( 'resume_form_page', $formPage );
 	update_option( 'resume_jobs_page', $jobsPage );
+	update_option( 'resume_show_job_search', $showJobSearch );
 	update_option( 'resume_use_tinymce', $useTinymce );
 	update_option( 'resume_use_tinymce_qt', $useTinymceQT );
 	update_option( 'resume_attachments', $attachments );
@@ -135,6 +137,11 @@ foreach ( $stateListOptions['list'] as $state ){
                                              }
                                          ?>
                                      </select></td>
+                </tr>
+                <tr>
+                    <td><p><b><?php _e( 'Show Job Search' ); ?>: </b></p></td>
+                    <td align="left"><input type="radio" name="showJobSearch" value="Enabled" <?php echo checkIt( get_option( 'resume_show_job_search' ), 'Enabled', 'radio' ); ?> />Enabled 
+                                     <input type="radio" name="showJobSearch" value="Disabled" <?php echo checkIt( get_option( 'resume_show_job_search' ), 'Disabled', 'radio' ); ?> />Disabled</td>
                 </tr>
                 <tr>
                     <td><p><b><?php _e( 'Use TinyMCE' ); ?>: </b></p></td>

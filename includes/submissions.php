@@ -166,7 +166,7 @@ if ( $deleteSubmit ){
                     ?>
                     <form method="post" name="showfor" id="showfor">
                         <p><?php _e( 'Show All For:' ); ?> <select name="showAllFor">                            	
-                            <?php echo arrayToSelect($showFor, $showFor->title); ?>
+                            <?php echo arrayToSelect($showFor, $showFor->title, '', true); ?>
                             <option value="General Purpose" <?php if ( $showFor->title == 'General Purpose' ){ echo 'selected="selected"'; } ?>><?php _e( 'General Purpose' ); ?></option>    
                         </select>
                         <input type="submit" name="showFor" value="<?php _e( 'Display' ); ?>" class="button-secondary" /></p>

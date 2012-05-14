@@ -15,8 +15,9 @@ function stateList(){
 }
 
 // Put a list into selection  
-function arrayToSelect( $options, $selected = '', $optgroup = NULL ){
-	echo '<option value="">- - Select - -</option>';
+function arrayToSelect( $options, $selected = '', $optgroup = NULL, $blank ){
+	if ( $blank )
+		echo '<option value="">- - Select - -</option>';
 	foreach ( $options as $value ) {
 		if ( is_object( $value ) ){
 			$optValue = $value->title;
@@ -105,24 +106,62 @@ function displayRequired( $value ){
 function formErrorCheck( $fields ) {
 	
 	$array = get_option( 'resume_input_fields' );
-	
+
 	foreach ( $array as $item => $key) {
-		foreach ( $fields as $field => $sub ) {
-			if ( $field == $item && $key[1] == 1 ){
-				if ( !$sub ) {
-					return $error = true;
-				} else {
-					$error = false;
-				}
-			} elseif ( ( ( $item == 'pnumber' && $key[1] == 1 ) && $field == 'pnumbertype' ) || ( ( $item == 'snumber' && $key[1] == 1 ) && $field == 'snumbertype' ) ){
-				if ( !$sub ) {
-					return $error = true;
-				} 
-			} elseif ( $field == 'job' ){
-				if ( !$sub ) {
-					return $error = true;
-				}
-			} 
+		
+		switch($item){
+			case 'fname':
+						if ( !$fields['fname'] && $key[1] == 1 )
+							$error = true;
+						break;
+			case 'lname':
+						if ( !$fields['lname'] && $key[1] == 1 )
+							$error = true;
+						break;
+			case 'address':
+						if ( !$fields['address'] && $key[1] == 1 )
+							$error = true;
+						break;
+			case 'address2':
+						if ( !$fields['address2'] && $key[1] == 1 )
+							$error = true;
+						break;
+			case 'city':
+						if ( !$fields['city'] && $key[1] == 1 )
+							$error = true;
+						break;
+			case 'state':
+						if ( !$fields['state'] && $key[1] == 1 )
+							$error = true;
+						break;
+			case 'zip':
+						if ( !$fields['zip'] && $key[1] == 1 )
+							$error = true;
+						break;
+			case 'pnumber':
+						if ( ( !$fields['pnumber'] || !$fields['pnumbertype'] ) && $key[1] == 1 )
+							$error = true;
+						break;
+			case 'snumber':
+						if ( ( !$fields['snumber'] || !$fields['snumbertype'] ) && $key[1] == 1 )
+							$error = true;
+						break;
+			case 'email':
+						if ( !$fields['email'] && $key[1] == 1 )
+							$error = true;
+						break;
+			case 'attachment':
+						if ( !$fields['attachment'][0]['name'][0] && $key[1] == 1 )
+							$error = true;
+						break;
+			case 'cover':
+						if ( !$fields['cover'] && $key[1] == 1 )
+							$error = true;
+						break;
+			case 'resume':
+						if ( !$fields['resume'] && $key[1] == 1 )
+							$error = true;
+						break;
 		}
 		
 	}
