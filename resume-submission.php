@@ -3,7 +3,7 @@
 Plugin Name: Resumé Submissions & Job Postings
 Plugin URI: http://www.geerservices.com/wordpress-plugins/resume-jobs/
 Description: Allows the admin to create and show job postings. Users can submit their resume in response to a posting or for general purposes. 
-Version: 2.1.7
+Version: 2.1.8
 Author: Keith Andrews (GSI)
 Author URI: http://www.geerservices.com
 License: GPL2
@@ -39,11 +39,11 @@ include( 'includes/widget.php' );
 add_action( 'admin_menu', 'resume_submission_menu' );
 
 function resume_submission_menu() {		
-	add_menu_page( __( 'Resumes &amp; Jobs', 'resume_submission' ), __( 'Resumes &amp; Jobs', 'resume_submission' ), MANAGEMENT_PERMISSION, __FILE__, 'resume_view_all', resume_get_plugin_dir( 'go' ) . '/images/icons/menu-icon.png', 25 );		
-	add_submenu_page( __FILE__, __( 'Resume Submissions', 'resume_submission' ), __( 'Resume Submissions', 'resume_submission' ), MANAGEMENT_PERMISSION, __FILE__, 'resume_view_all' );		
-	add_submenu_page( __FILE__, __( 'Job Postings', 'resume_submission' ), __( 'Job Postings', 'resume_submission' ), MANAGEMENT_PERMISSION, 'job_postings', 'resume_view_jp');		
-	add_submenu_page( __FILE__, __( 'Input Fields', 'resume_submission' ), __( 'Input Fields', 'resume_submission' ), MANAGEMENT_PERMISSION, 'input_fields', 'resume_input_fields');
-	add_submenu_page( __FILE__, __( 'Settings', 'resume_submission' ), __( 'Settings', 'resume_submission' ), MANAGEMENT_PERMISSION, 'settings', 'resume_settings');
+	add_menu_page( __( 'Resumes &amp; Jobs' ), __( 'Resumes &amp; Jobs' ), MANAGEMENT_PERMISSION, 'rsjp-submissions', 'resume_view_all', resume_get_plugin_dir( 'go' ) . '/images/icons/menu-icon.png', 25 );		
+	add_submenu_page( 'rsjp-submissions', __( 'Resume Submissions' ), __( 'Resume Submissions' ), MANAGEMENT_PERMISSION, 'rsjp-submissions', 'resume_view_all' );		
+	add_submenu_page( 'rsjp-submissions', __( 'Job Postings' ), __( 'Job Postings' ), MANAGEMENT_PERMISSION, 'rsjp-job-postings', 'resume_view_jp');		
+	add_submenu_page( 'rsjp-submissions', __( 'Input Fields' ), __( 'Input Fields' ), MANAGEMENT_PERMISSION, 'rsjp-input-fields', 'resume_input_fields');
+	add_submenu_page( 'rsjp-submissions', __( 'Settings' ), __( 'Settings' ), MANAGEMENT_PERMISSION, 'rsjp-settings', 'resume_settings');
 }
 
 
@@ -63,7 +63,7 @@ function resume_get_plugin_dir( $type ) {
 }
 
 function resume_add_menu_favorite( $actions ) {
-	$actions['admin.php?page=resume-submissions-job-postings/resume-submission.php'] = array( 'Resumé Submission', 'manage_options' );
+	$actions['admin.php?page=rsjp-submissions'] = array( 'Resume Submission', 'manage_options' );
 	return $actions;
 }
 
@@ -77,8 +77,7 @@ if ( is_admin() ) {
 	
 // Set i18n
 function resume_load_textdomain() {
-	$pluginDir = basename(dirname(__FILE__));
-	load_plugin_textdomain( 'resume-submissions-job-postings', false, $pluginDir . '/languages/' );
+	load_plugin_textdomain( 'resume-submissions-job-postings', false, resume_get_plugin_dir( 'path' ) . '/languages/' );
 }
 add_action('init', 'resume_load_textdomain');
 
@@ -92,6 +91,19 @@ function multiFileScript() {
 	//}
 } 
 
+
+// Add widget to Dashboard
+function rsjp_dashboard_widget_function() {
+	include( 'includes/dashboard-widget.php' );
+} 
+
+function rsjp_dashboard() {
+	wp_add_dashboard_widget( 'rsjp_dashboard_widget', __( 'RSJP - Recently Submitted Resumes' ), 'rsjp_dashboard_widget_function' );	
+} 
+
+add_action('wp_dashboard_setup', 'rsjp_dashboard' );
+
+
 // Function for adding the settings script
 function rsjpSettingsScript() {
 	//if ( is_page( get_option( 'resume_form_page' ) ) ){
@@ -104,12 +116,11 @@ function rsjpSettingsScript() {
 
 // Functions for styling
 function admin_register_resume_style( $hook ) {
-	if( $hook == 'toplevel_page_resume-submissions-job-postings/resume-submission' || $hook == 'resumes-jobs_page_job_postings'
-		|| $hook == 'resumes-jobs_page_input_fields' || $hook == 'resumes-jobs_page_settings' || $hook == 'resumes-jobs_page_extra_fields' )
+	if( $hook == 'toplevel_page_rsjp-submissions' || $hook == 'resumes-jobs_page_rsjp-job_postings' || $hook == 'resumes-jobs_page_rsjp-input_fields' 
+	    || $hook == 'resumes-jobs_page_rsjp-settings' || $hook == 'resumes-jobs_page_rsjp-extra_fields' )
 	    wp_enqueue_style( 'resume-admin-custom', plugins_url( '/css/resume-admin-styles.css', __FILE__ ) );
 }
 function addStyles ( $hook ){
-	echo $hook;
 	wp_enqueue_style( 'resume-style', resume_get_plugin_dir( 'go' ) . '/css/resume-styles.css' );	
 }
 
@@ -117,7 +128,7 @@ function addStyles ( $hook ){
 add_action( 'admin_enqueue_scripts', 'admin_register_resume_style' );
 add_action( 'wp_enqueue_scripts', 'addStyles' );
 add_action( 'wp_enqueue_scripts', 'multiFileScript' );
-if( $hook == 'resumes-jobs_page_settings' )
+if( $hook == 'resumes-jobs_page_rsjp-settings' )
 	add_action( 'wp_footer', 'rsjpSettingsScript' );
 
 // Bring in the functions

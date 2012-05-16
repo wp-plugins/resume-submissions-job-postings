@@ -8,9 +8,9 @@ $add         = $_POST['add'];
 $edit        = $_POST['edit'];
 $copy        = $_POST['copy'];
 $copyID      = $_GET['copyID'];
-$title       = $_POST['title'];
-$subTitle    = $_POST['subTitle'];
-$description = $_POST['description'];
+$title       = esc_html( $_POST['title'] );
+$subTitle    = esc_html( $_POST['subTitle'] );
+$description = wp_kses_data( $_POST['description'] );
 $archive     = $_POST['archive'];
 $pubDate     = date('Y-m-d H:i:s');
 
@@ -145,7 +145,7 @@ if ( $ID ){
 	if( isset( $ID )){
 		$single = $wpdb->get_row( 'SELECT * FROM ' . JOBTABLE . ' WHERE id = "' . $ID . '"' );
 		?>
-		<form name="back" method="post" enctype="multipart/form-data" action="<?php echo admin_url(); ?>admin.php?page=job_postings">
+		<form name="back" method="post" enctype="multipart/form-data" action="<?php echo admin_url(); ?>admin.php?page=rsjp-job-postings">
 			<input name="back" type="submit" value="<?php _e( 'Back' ); ?>" class="button-secondary" />
 		</form>
 		<br class="a_break" style="clear: both;"/>
@@ -190,7 +190,7 @@ if ( $ID ){
 	} elseif( $addNew ) {
 		
 		?>
-		<form name="back" method="post" enctype="multipart/form-data" action="<?php echo admin_url(); ?>admin.php?page=job_postings">
+		<form name="back" method="post" enctype="multipart/form-data" action="<?php echo admin_url(); ?>admin.php?page=rsjp-job-postings">
 			<input name="back" type="submit" value="<?php _e( 'Back' ); ?>" class="button-secondary" />
 		</form>
 		<br class="a_break" style="clear: both;"/>
@@ -251,7 +251,7 @@ if ( $ID ){
 		$infoQuery = $wpdb->get_results( 'SELECT * FROM ' . JOBTABLE . ' ORDER BY archive ASC, pubDate DESC, title DESC LIMIT ' . $offSet . ', ' .$rowsPerPage );
 		?>
         
-	  	<form name="deleteEntries" method="post" enctype="multipart/form-data" action="<?php echo admin_url(); ?>admin.php?page=job_postings">
+	  	<form name="deleteEntries" method="post" enctype="multipart/form-data" action="<?php echo admin_url(); ?>admin.php?page=rsjp-job-postings">
 		<table class="widefat">
 			<thead>
 				<tr>
@@ -283,10 +283,10 @@ if ( $ID ){
 						<td><?php echo $isArchived; ?></td>
 						<td>&nbsp;</td>
 						<td align="right" width="50px">
-                        	<input name="view" type="button" value="<?php _e( 'View/Edit' ); ?>" class="button-secondary" onclick="location.href='<?php echo admin_url(); ?>admin.php?page=job_postings&id=<?php echo $info->id; ?>'" />
+                        	<input name="view" type="button" value="<?php _e( 'View/Edit' ); ?>" class="button-secondary" onclick="location.href='<?php echo admin_url(); ?>admin.php?page=rsjp-job-postings&id=<?php echo $info->id; ?>'" />
 						</td>
 						<td align="right" width="50px">
-                            <input name="copy" type="button" value="<?php _e( 'Copy' ); ?>" class="button-secondary" onclick="location.href='<?php echo admin_url(); ?>admin.php?page=job_postings&copyID=<?php echo $info->id; ?>'" />
+                            <input name="copy" type="button" value="<?php _e( 'Copy' ); ?>" class="button-secondary" onclick="location.href='<?php echo admin_url(); ?>admin.php?page=rsjp-job-postings&copyID=<?php echo $info->id; ?>'" />
 						</td>
 					</tr>
 					<?php
@@ -316,24 +316,24 @@ if ( $ID ){
 					
 						<?php
 						if ( $currentPage > 1 ) {
-						   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=job_postings&currentPage=1">First</a> ';
+						   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=rsjp-job-postings&currentPage=1">First</a> ';
 						   $prevPage = $currentPage - 1;
-						   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=job_postings&currentPage=' . $prevPage . '">«</a> ';
+						   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=rsjp-job-postings&currentPage=' . $prevPage . '">«</a> ';
 						} 
 						
 						for ( $x = ( $currentPage - $range ); $x < ( ( $currentPage + $range ) + 1 ); $x++ ) {
 						   
 						   if ( ( $x > 0 ) && ( $x <= $totalPages ) ) {
 							  if ( $x != $currentPage ) {
-								 echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=job_postings&currentPage=' . $x . '">' . $x . '</a> ';
+								 echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=rsjp-job-postings&currentPage=' . $x . '">' . $x . '</a> ';
 							  } 
 						   } 
 						}
 										 
 						if ( $currentPage != $totalPages ) {
 						   $nextPage = $currentPage + 1;
-						   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=job_postings&currentPage=' . $nextPage . '">»</a> ';
-						   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=job_postings&currentPage=' . $totalPages . '">Last</a> ';
+						   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=rsjp-job-postings&currentPage=' . $nextPage . '">»</a> ';
+						   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=rsjp-job-postings&currentPage=' . $totalPages . '">Last</a> ';
 						}
 						?>
 					</div> 

@@ -69,7 +69,7 @@ function replaceShortCode( $text, $array){
 // Set the TinyMce settings easily
 function setTinySetting( $name, $rows, $media, $tiny, $tags ) {
 	$settings = array(
-					'wpautop' => true,
+					'wpautop' => false,
 					'media_buttons' => $media,
 					'textarea_rows' => $rows,
 					'textarea_name' => $name,

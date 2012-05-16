@@ -7,7 +7,7 @@ if ( version_compare( $wp_version, '3.0', '<' ) ) {
 	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 }
 //***Installer variables***
-$resume_db_version = "2.1.7";
+$resume_db_version = "2.1.8";
 //***Installer****
 if( $wpdb->get_var( 'SHOW TABLES LIKE "' . SUBTABLE . '"' ) != SUBTABLE ) {
 	$sql = 'CREATE TABLE ' . SUBTABLE . ' (

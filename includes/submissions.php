@@ -5,7 +5,7 @@ plugin_basename( $file );
 // Declarations
 $message    = '';
 $searching  = $_POST['search'];
-$searchFor  = $_POST['searchFor'];
+$searchFor  = esc_html( $_POST['searchFor'] );
 $showing    = $_POST['showFor'];
 $showAllFor = $_POST['showAllFor'];
 $job        = 'General Purpose'; 
@@ -44,21 +44,21 @@ if ( isset( $ID ) ){
 	$single = $wpdb->get_results( 'SELECT * FROM ' . SUBTABLE . ' WHERE id = "' . $ID . '"' );
 	
 	$action      = $_POST['action'];
-	$fname       = $_POST['fname'];
-	$lname       = $_POST['lname'];
-	$address     = $_POST['address'];
-	$address2    = $_POST['address2'];
-	$city        = $_POST['city'];
+	$fname       = esc_html( $_POST['fname'] );
+	$lname       = esc_html( $_POST['lname'] );
+	$address     = esc_html( $_POST['address'] );
+	$address2    = esc_html( $_POST['address2'] );
+	$city        = esc_html( $_POST['city'] );
 	$state       = $_POST['state'];
-	$zip         = $_POST['zip'];
-	$pnumber     = $_POST['pnumber'];
+	$zip         = esc_html( $_POST['zip'] );
+	$pnumber     = esc_html( $_POST['pnumber'] );
 	$pnumbertype = $_POST['pnumbertype'];
-	$snumber     = $_POST['snumber'];
+	$snumber     = esc_html( $_POST['snumber'] );
 	$snumbertype = $_POST['snumbertype'];
-	$email       = $_POST['email'];
+	$email       = esc_html( $_POST['email'] );
 	$job         = $_POST['job'];
-	$cover       = $_POST['cover'];
-	$resume      = $_POST['resume'];
+	$cover       = wp_kses_data( $_POST['cover'] );
+	$resume      = wp_kses_data( $_POST['resume'] );
 	
 	$resumeSubmit = '';
 	$formError    = false;
@@ -88,7 +88,7 @@ if ( isset( $ID ) ){
 			$message    = '<div class="updated fade" id="message"><p>' . $updateText . '</p></div>';
 		} else {
 			$updateText  = __( 'Sorry, the submission could not be updated.' );
-			$updateText2 = __( 'There may not have been any change to he entry.' );
+			$updateText2 = __( 'There may not have been any change to the entry.' );
 			$message     = '<div class="updated fade" id="message"><p>' . $updateText . ' <br />' . $updateText2 . '</p></div>';
 		}
 	}
@@ -152,7 +152,7 @@ if ( $deleteSubmit ){
                     <td width="280px" align="left">
                     <?php 
                     if ( $searchFor != '' || $showAllFor != '' ){ ?>
-                        <form name="showall" method="post" enctype="multipart/form-data" action="<?php echo admin_url(); ?>admin.php?page=resume-submissions-job-postings/resume-submission.php">
+                        <form name="showall" method="post" enctype="multipart/form-data" action="<?php echo admin_url(); ?>admin.php?page=rsjp-submissions">
                             <input name="showall" type="submit" value="<?php _e( 'Show All' ); ?>" class="button-secondary" />
                         </form>
                         <?php
@@ -242,7 +242,7 @@ if ( $deleteSubmit ){
 									<td><p><?php echo date( 'F j, Y g:ia', strtotime( $info->pubdate ) ); ?></p></td>
 									<td>&nbsp;</td>
 									<td align="right" width="50px">
-										<input name="view" type="button" value="<?php _e( 'View/Edit' ); ?>" class="button-secondary" onclick="location.href='<?php echo admin_url(); ?>admin.php?page=resume-submissions-job-postings/resume-submission.php&id=<?php echo $info->id; ?>'" /></td>
+										<input name="view" type="button" value="<?php _e( 'View/Edit' ); ?>" class="button-secondary" onclick="location.href='<?php echo admin_url(); ?>admin.php?page=rsjp-submissions&id=<?php echo $info->id; ?>'" /></td>
 								</tr>
 								<?php
 							}
@@ -279,24 +279,24 @@ if ( $deleteSubmit ){
 								
 								<?php
 								if ( $currentPage > 1 ) {
-								   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=1">First</a> ';
+								   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=rsjp-submissions&currentPage=1">First</a> ';
 								   $prevPage = $currentPage - 1;
-								   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=' . $prevPage . '">«</a> ';
+								   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=rsjp-submissions&currentPage=' . $prevPage . '">«</a> ';
 								} 
 								
 								for ( $x = ( $currentPage - $range ); $x < ( ( $currentPage + $range ) + 1 ); $x++ ) {
 								   
 								   if ( ( $x > 0 ) && ( $x <= $totalPages ) ) {
 									  if ( $x != $currentPage ) {
-										 echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=' . $x . '">' . $x . '</a> ';
+										 echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=rsjp-submissions&currentPage=' . $x . '">' . $x . '</a> ';
 									  } 
 								   } 
 								}
 												 
 								if ( $currentPage != $totalPages ) {
 								   $nextPage = $currentPage + 1;
-								   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=' . $nextPage . '">»</a> ';
-								   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=resume-submissions-job-postings/resume-submission.php&currentPage=' . $totalPages . '">Last</a> ';
+								   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=rsjp-submissions&currentPage=' . $nextPage . '">»</a> ';
+								   echo ' <a href="' . $_SERVER['PHP_SELF'] . '?page=rsjp-submissions&currentPage=' . $totalPages . '">Last</a> ';
 								}
 								?>
 							</div> 
@@ -350,7 +350,7 @@ if ( $deleteSubmit ){
 	  <div id="rsjpLeftCol">
 		  <table width="100%" cellpadding="0" cellspacing="0">
 			  <tr>
-				  <td><form name="back" method="post" id="backButton" enctype="multipart/form-data" action="<?php echo admin_url(); ?>admin.php?page=resume-submissions-job-postings/resume-submission.php">
+				  <td><form name="back" method="post" id="backButton" enctype="multipart/form-data" action="<?php echo admin_url(); ?>admin.php?page=rsjp-submissions">
 										<input name="back" type="submit" value="<?php _e( 'Back' ); ?>" class="button-secondary" />
 									</form>
 				  </td>

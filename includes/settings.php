@@ -28,11 +28,11 @@ $stateList         = array( 'use' => $_POST['useStateList'], 'list' => $saveList
 $sendAdminEmailTo  = $_POST['sendAdminEmailTo'];
 $emailUserFrom     = $_POST['emailUserFrom'];
 $sendEmailToUser   = $_POST['sendEmailToUser'];
-$userEmailSubject  = $_POST['userEmailSubject'];
-$useremailcopy     = stripslashes_deep( $_POST['useremailcopy'] );
+$userEmailSubject  = esc_html( $_POST['userEmailSubject'] );
+$useremailcopy     = stripslashes_deep( wp_kses_data( $_POST['useremailcopy'] ) );
 
 $editorSettings    = array(
-					'wpautop' => true,
+					'wpautop' => false,
 					'media_buttons' => false,
 					'textarea_rows' => '15',
 					'textarea_name' => 'useremailcopy',

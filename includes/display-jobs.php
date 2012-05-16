@@ -128,7 +128,7 @@ if ( $_SERVER["QUERY_STRING"] ) {
         <?php
     } else {
 		
-		$search = $_POST['rsjpSearch'];
+		$search = esc_html( $_POST['rsjpSearch'] );
 		
 		if ( $search && get_option( 'resume_show_job_search' ) == "Enabled" ) {
 			$modQuery = ' AND ( title LIKE "%' . $search . '%" OR subTitle LIKE "%' . $search . '%" OR description LIKE "%' . $search . '%" )';

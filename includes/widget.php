@@ -23,8 +23,8 @@ class resume_job_postings {
         <label for="job_display_amount"><?php _e( 'Posts to Display' ); ?>: <input type="text" name="job_display_amount" value="<?php echo $widgetDisplay; ?>" size="5" /></label>	
     	<?php
 		if ( isset( $_POST['job_display_title'] ) ){
-			$data['title']   = attribute_escape( $_POST['job_display_title'] );
-			$data['display'] = attribute_escape( $_POST['job_display_amount'] );
+			$data['title']   = esc_html( $_POST['job_display_title'] );
+			$data['display'] = esc_html( $_POST['job_display_amount'] );
 			update_option( 'resume_job_postings_widget', $data );
 		}
     }

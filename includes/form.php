@@ -12,22 +12,22 @@ $useTinyMce     = get_option( 'resume_use_tinymce' );
 $useTinyMceQT   = get_option( 'resume_use_tinymce_qt' );
 
 $action      = $_POST['action'];
-$fname       = $_POST['fname'];
-$lname       = $_POST['lname'];
-$address     = $_POST['address'];
-$address2    = $_POST['address2'];
-$city        = $_POST['city'];
+$fname       = esc_html( $_POST['fname'] );
+$lname       = esc_html( $_POST['lname'] );
+$address     = esc_html( $_POST['address'] );
+$address2    = esc_html( $_POST['address2'] );
+$city        = esc_html( $_POST['city'] );
 $state       = $_POST['state'];
-$zip         = $_POST['zip'];
-$pnumber     = $_POST['pnumber'];
+$zip         = esc_html( $_POST['zip'] );
+$pnumber     = esc_html( $_POST['pnumber'] );
 $pnumbertype = $_POST['pnumbertype'];
-$snumber     = $_POST['snumber'];
+$snumber     = esc_html( $_POST['snumber'] );
 $snumbertype = $_POST['snumbertype'];
-$email       = $_POST['email'];
+$email       = esc_html( $_POST['email'] );
 $job         = $_POST['job'];
 $attachment  = array($_FILES['attachment']);
-$cover       = $_POST['cover'];
-$resume      = $_POST['resume'];
+$cover       = wp_kses_data( $_POST['cover'] );
+$resume      = wp_kses_data( $_POST['resume'] );
 $fromPosting = $_POST['fromPosting'];
 
 $resumeSubmit = '';
@@ -121,7 +121,7 @@ if( $action == 'add' && $formError == false ) {
 							<body>
 								<p>' . $fname . ' ' . $lname . ' has uploaded their resume into the database.</p>
 								<p>The user\'s submission is for: ' . $job . '.</p>
-								<p>Look at their resume <a href="' . admin_url() . 'admin.php?page=resume-submissions-job-postings/resume-submission.php&id=' . $upload->id . '"><b>here</b></a>.</p>
+								<p>Look at their resume <a href="' . admin_url() . 'admin.php?page=rsjp-submissions&id=' . $upload->id . '"><b>here</b></a>.</p>
 								<br/>
 							</body>
 						</html>';
