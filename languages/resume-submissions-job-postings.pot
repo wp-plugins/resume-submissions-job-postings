@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/resume-submissions-job-"
 "postings\n"
-"POT-Creation-Date: 2012-05-02 19:29:27+00:00\n"
+"POT-Creation-Date: 2012-05-16 21:31:04+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,12 +13,16 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
+#: includes/dashboard-widget.php:21
+msgid "There are no submissions at this time"
+msgstr ""
+
 #: includes/display-jobs.php:23
 msgid "Archived Job Postings"
 msgstr ""
 
 #: includes/display-jobs.php:61 includes/display-jobs.php:111
-#: includes/display-jobs.php:139
+#: includes/display-jobs.php:164
 msgid "Posted:"
 msgstr ""
 
@@ -38,7 +42,19 @@ msgstr ""
 msgid "Submit Resume For This Job"
 msgstr ""
 
-#: includes/display-jobs.php:148 includes/widget.php:69
+#: includes/display-jobs.php:147 includes/submissions.php:149
+msgid "Search"
+msgstr ""
+
+#: includes/display-jobs.php:160
+msgid "Showing results for"
+msgstr ""
+
+#: includes/display-jobs.php:174
+msgid "Sorry, there were no jobs where found."
+msgstr ""
+
+#: includes/display-jobs.php:178 includes/widget.php:69
 msgid "There are no jobs available at this time."
 msgstr ""
 
@@ -54,49 +70,49 @@ msgstr ""
 msgid "Make sure all fields required are filled out correctly."
 msgstr ""
 
-#: includes/form.php:234 includes/input-fields.php:51
+#: includes/form.php:232 includes/input-fields.php:51
 msgid "Required"
 msgstr ""
 
-#: includes/form.php:240 includes/input-fields.php:56
+#: includes/form.php:239 includes/input-fields.php:56
 #: includes/submissions.php:372
 msgid "First Name"
 msgstr ""
 
-#: includes/form.php:249 includes/input-fields.php:61
+#: includes/form.php:248 includes/input-fields.php:61
 #: includes/submissions.php:380
 msgid "Last Name"
 msgstr ""
 
-#: includes/form.php:258 includes/input-fields.php:66
+#: includes/form.php:257 includes/input-fields.php:66
 #: includes/submissions.php:388
 msgid "Address"
 msgstr ""
 
-#: includes/form.php:267
+#: includes/form.php:266
 msgid "Address2"
 msgstr ""
 
-#: includes/form.php:276 includes/input-fields.php:76
+#: includes/form.php:275 includes/input-fields.php:76
 #: includes/submissions.php:405
 msgid "City"
 msgstr ""
 
-#: includes/form.php:286 includes/input-fields.php:81
+#: includes/form.php:285 includes/input-fields.php:81
 #: includes/submissions.php:414
 msgid "State"
 msgstr ""
 
-#: includes/form.php:297 includes/input-fields.php:86
+#: includes/form.php:296 includes/input-fields.php:86
 #: includes/submissions.php:424
 msgid "Zip Code"
 msgstr ""
 
-#: includes/form.php:306 includes/submissions.php:436
+#: includes/form.php:304 includes/submissions.php:436
 msgid "Primary Contact Number"
 msgstr ""
 
-#: includes/form.php:315 includes/submissions.php:445
+#: includes/form.php:314 includes/submissions.php:445
 msgid "Secondary Contact Number"
 msgstr ""
 
@@ -122,16 +138,16 @@ msgstr ""
 msgid "Cover Letter"
 msgstr ""
 
-#: includes/form.php:367 includes/form.php:389
+#: includes/form.php:367 includes/form.php:387
 msgid "(Please submit with good formatting)"
 msgstr ""
 
-#: includes/form.php:389 includes/input-fields.php:116
+#: includes/form.php:387 includes/input-fields.php:116
 #: includes/submissions.php:491
 msgid "Resume"
 msgstr ""
 
-#: includes/form.php:423
+#: includes/form.php:418
 msgid "Submit Resume"
 msgstr ""
 
@@ -167,7 +183,7 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: includes/input-fields.php:106 includes/settings.php:198
+#: includes/input-fields.php:106 includes/settings.php:205
 msgid "Attachments"
 msgstr ""
 
@@ -262,120 +278,124 @@ msgstr ""
 msgid "Are you sure you want to delete these entries?"
 msgstr ""
 
-#: includes/settings.php:93
+#: includes/settings.php:95
 msgid "Resume Settings"
 msgstr ""
 
-#: includes/settings.php:110
+#: includes/settings.php:112
 msgid "Core Options"
 msgstr ""
 
-#: includes/settings.php:116
+#: includes/settings.php:118
 msgid "Resume Form Page"
 msgstr ""
 
-#: includes/settings.php:128
+#: includes/settings.php:130
 msgid "Display Jobs Page"
 msgstr ""
 
-#: includes/settings.php:140
+#: includes/settings.php:142
+msgid "Show Job Search"
+msgstr ""
+
+#: includes/settings.php:147
 msgid "Use TinyMCE"
 msgstr ""
 
-#: includes/settings.php:145
+#: includes/settings.php:152
 msgid "Use TinyMCE Quick Tags"
 msgstr ""
 
-#: includes/settings.php:150
+#: includes/settings.php:157
 msgid "PDF Base File"
 msgstr ""
 
-#: includes/settings.php:152
+#: includes/settings.php:159
 msgid "Default"
 msgstr ""
 
-#: includes/settings.php:155
+#: includes/settings.php:162
 msgid "State List"
 msgstr ""
 
-#: includes/settings.php:158
+#: includes/settings.php:165
 msgid "Custom"
 msgstr ""
 
-#: includes/settings.php:162
+#: includes/settings.php:169
 msgid "Custom State List"
 msgstr ""
 
-#: includes/settings.php:164
+#: includes/settings.php:171
 msgid "Seperate with | Example: Florida | New York"
 msgstr ""
 
-#: includes/settings.php:167
+#: includes/settings.php:174
 msgid "Thank You Text"
 msgstr ""
 
-#: includes/settings.php:175
+#: includes/settings.php:182
 msgid "reCaptcha"
 msgstr ""
 
-#: includes/settings.php:181
+#: includes/settings.php:188
 msgid "Enable reCaptcha"
 msgstr ""
 
-#: includes/settings.php:186
+#: includes/settings.php:193
 msgid "reCaptcha - Private Key"
 msgstr ""
 
-#: includes/settings.php:190
+#: includes/settings.php:197
 msgid "reCaptcha - Public Key"
 msgstr ""
 
-#: includes/settings.php:204
+#: includes/settings.php:211
 msgid "Number of Attachments"
 msgstr ""
 
-#: includes/settings.php:208
+#: includes/settings.php:215
 msgid "Allowed Attachments"
 msgstr ""
 
-#: includes/settings.php:210
+#: includes/settings.php:217
 msgid "Seperate with | Example: pdf|docx"
 msgstr ""
 
-#: includes/settings.php:213
+#: includes/settings.php:220
 msgid "Delete Attachments"
 msgstr ""
 
-#: includes/settings.php:217
+#: includes/settings.php:224
 msgid ""
 "Will delete the submission's attachment(s) when the submission is deleted"
 msgstr ""
 
-#: includes/settings.php:224
+#: includes/settings.php:231
 msgid "Emailing"
 msgstr ""
 
-#: includes/settings.php:230
+#: includes/settings.php:237
 msgid "Send Admin Email To"
 msgstr ""
 
-#: includes/settings.php:234
+#: includes/settings.php:241
 msgid "Send User Email"
 msgstr ""
 
-#: includes/settings.php:239
+#: includes/settings.php:246
 msgid "Email User From"
 msgstr ""
 
-#: includes/settings.php:243
+#: includes/settings.php:250
 msgid "User Email Subject"
 msgstr ""
 
-#: includes/settings.php:247
+#: includes/settings.php:254
 msgid "User Email Copy"
 msgstr ""
 
-#: includes/settings.php:262
+#: includes/settings.php:269
 msgid "Helpful Hints"
 msgstr ""
 
@@ -396,7 +416,7 @@ msgid "Sorry, the submission could not be updated."
 msgstr ""
 
 #: includes/submissions.php:91
-msgid "There may not have been any change to he entry."
+msgid "There may not have been any change to the entry."
 msgstr ""
 
 #: includes/submissions.php:126
@@ -409,10 +429,6 @@ msgstr ""
 
 #: includes/submissions.php:149
 msgid "Find:"
-msgstr ""
-
-#: includes/submissions.php:149
-msgid "Search"
 msgstr ""
 
 #: includes/submissions.php:156
@@ -509,4 +525,8 @@ msgstr ""
 
 #: resume-submission.php:46
 msgid "Settings"
+msgstr ""
+
+#: resume-submission.php:101
+msgid "RSJP - Recently Submitted Resumes"
 msgstr ""
