@@ -1,8 +1,8 @@
 === Plugin Name ===
 Contributors: kandrews
-Donate link: http://www.geerservices.com/wordpress-plugins/resume-jobs/
+Donate link: http://www.geerservices.com/products/wordpress-plugins/resume-submissions-job-postings/
 Author URI: http://www.geerservices.com
-Plugin URI: http://www.geerservices.com/wordpress-plugins/resume-jobs/
+Plugin URI: http://www.geerservices.com/products/wordpress-plugins/resume-submissions-job-postings/
 Tags: resume submission, job postings, job listing, resume, jobs 
 Requires at least: 3.3
 Tested up to: 3.3.2
