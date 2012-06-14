@@ -1,11 +1,12 @@
 <?php
-global $wpdb;
+global $wpdb, $post;
 plugin_basename( $file );
 
 // Declarations
+$siteName   = get_option( 'blogname' );
 $message    = '';
 $searching  = $_POST['search'];
-$searchFor  = esc_html( $_POST['searchFor'] );
+$searchFor  = $_POST['searchFor'];
 $showing    = $_POST['showFor'];
 $showAllFor = $_POST['showAllFor'];
 $job        = 'General Purpose'; 
@@ -13,6 +14,7 @@ $find       = array('\'', '\"', '"', '<', '>');
 $replace    = array('&#39;', '&quot;', '&quot;', '&lt;', '&gt;');
 $edit       = $_POST['edit'];
 $ID         = $_GET['id'];
+$sendEmail  = $_POST['sendEmail'];
 
 // Delete single submission attachments
 $deleteAttach = $_POST['deleteAttach'];
@@ -39,6 +41,46 @@ if ( $deleteAttach ){
 	$message = '<div class="updated fade" id="message"><p>' . $updatedRecordMessage . $attachMessage . '</p></div>';
 }
 
+
+// Send PDF to other email
+if ( $sendEmail ) {
+	
+	$seTo      = $_POST['seTo'];
+	$seSubject = $_POST['seSubject'];
+	$seCopy    = $_POST['secopy'];
+	$sePDF     = $_POST['sePDF'];
+	
+	if ( $seTo ) {
+		
+		$seAttachment = array( WP_CONTENT_DIR . '/uploads/rsjp/pdfs/' . $sePDF );
+		
+		$seSubject = $seSubject;
+		$seBody    = '<html>
+						<head>
+							<title>' . $seSubject . '</title>
+						</head>
+						<body>
+							' . $seCopy . '
+						</body>
+					</html>';
+		$seHeaders  = 'MIME-Version: 1.0' . "\r\n";
+		$seHeaders .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+		$seHeaders .= 'From: "' . $siteName . '"<' . get_option( 'resume_send_admin_email_to' ) . '>' . "\r\n";
+		$mailIt     = wp_mail( $seTo, $seSubject, $seBody, $seHeaders, $seAttachment );
+		
+		if ( $mailIt ){
+			$message = '<div class="updated fade" id="message"><p>' . __( 'Resume was successfully sent to' ) . ' <b>' . $seTo . '</b>.</p></div>';
+		} else {
+			$message = '<div class="error fade" id="message"><p>' . __( 'Something went wrong. Please check your form and try again' ) . '.</p></div>';
+		}
+	
+	} else {
+		$message = '<div class="error fade" id="message"><p>' . __( 'To send an email, there must be an email address' ) . '...</p></div>';
+	}
+	
+}
+
+
 // BOF View/Edit Submission 
 if ( isset( $ID ) ){
 	$single = $wpdb->get_results( 'SELECT * FROM ' . SUBTABLE . ' WHERE id = "' . $ID . '"' );
@@ -57,8 +99,8 @@ if ( isset( $ID ) ){
 	$snumbertype = $_POST['snumbertype'];
 	$email       = esc_html( $_POST['email'] );
 	$job         = $_POST['job'];
-	$cover       = wp_kses_data( $_POST['cover'] );
-	$resume      = wp_kses_data( $_POST['resume'] );
+	$cover       = $_POST['cover'];
+	$resume      = $_POST['resume'];
 	
 	$resumeSubmit = '';
 	$formError    = false;
@@ -89,7 +131,7 @@ if ( isset( $ID ) ){
 		} else {
 			$updateText  = __( 'Sorry, the submission could not be updated.' );
 			$updateText2 = __( 'There may not have been any change to the entry.' );
-			$message     = '<div class="updated fade" id="message"><p>' . $updateText . ' <br />' . $updateText2 . '</p></div>';
+			$message     = '<div class="error fade" id="message"><p>' . $updateText . ' <br />' . $updateText2 . '</p></div>';
 		}
 	}
 }
@@ -162,11 +204,28 @@ if ( $deleteSubmit ){
     
                     <td align="right">
                     <?php 
-                    $showFor = $wpdb->get_results( $wpdb->prepare( 'SELECT title FROM ' . JOBTABLE . ' WHERE archive != "1" ORDER BY title DESC' ) );
+					$getJobsArg = array( 'post_type'  => 'rsjp_job_postings',
+										 'orderby'    => 'post_date',
+                                         'order'      => 'DESC',
+										 'meta_query' => array(
+															 array(
+																 'key' => 'rsjp_archive_posting',
+																 'value' => 1,
+																 'compare' => 'NOT LIKE'
+															 ) ) ); 
+			  		$getJobs = get_posts( $getJobsArg );
                     ?>
                     <form method="post" name="showfor" id="showfor">
-                        <p><?php _e( 'Show All For:' ); ?> <select name="showAllFor">                            	
-                            <?php echo arrayToSelect($showFor, $showFor->title, '', true); ?>
+                        <p><?php _e( 'Show All For:' ); ?> <select name="showAllFor">       
+                           <option value="">-- Select --</option>                     	
+                           <?php 
+						   foreach( $getJobs as $getJob ){
+							   ?>
+						       <option value="<?php echo $getJob->post_name; ?>"><?php echo $getJob->post_title; ?></option>
+                           <?php 
+						   }
+						   wp_reset_postdata();
+						   ?>
                             <option value="General Purpose" <?php if ( $showFor->title == 'General Purpose' ){ echo 'selected="selected"'; } ?>><?php _e( 'General Purpose' ); ?></option>    
                         </select>
                         <input type="submit" name="showFor" value="<?php _e( 'Display' ); ?>" class="button-secondary" /></p>
@@ -232,19 +291,23 @@ if ( $deleteSubmit ){
 				<tbody><?php 
 						if ( $numRows > 0 ){
 							foreach ( $infoQuery as $info ){
-								
+								$getJobArg = array( 'numberposts'     => 1,
+								                    'post_type'       => 'rsjp_job_postings',
+								   					'name' => $info->job ); 
+			 					$getJob = get_posts( $getJobArg );
 								?>
 								<tr>
 									<td><input type="checkbox" name="deleteID[]" value="<?php echo $info->id; ?>" /></td>
 									<td><p><?php echo $info->fname; ?> <?php echo $info->lname; ?></p></td>
 									<td><p><?php echo $info->email; ?></p></td>
-									<td><p><?php echo $info->job; ?></p></td>
+									<td><p><?php echo $getJob[0]->post_title; ?></p></td>
 									<td><p><?php echo date( 'F j, Y g:ia', strtotime( $info->pubdate ) ); ?></p></td>
 									<td>&nbsp;</td>
 									<td align="right" width="50px">
 										<input name="view" type="button" value="<?php _e( 'View/Edit' ); ?>" class="button-secondary" onclick="location.href='<?php echo admin_url(); ?>admin.php?page=rsjp-submissions&id=<?php echo $info->id; ?>'" /></td>
 								</tr>
 								<?php
+								wp_reset_postdata();
 							}
 						} else {
 							?>
@@ -460,10 +523,18 @@ if ( $deleteSubmit ){
 				  </tr>
 				  <?php
 			  }
+			  
+			  $getJobArg = array( 'numberposts'     => 1,
+								  'post_type'       => 'rsjp_job_postings',
+								  'name' => $single->job ); 
+			  $getJob = get_posts( $getJobArg );
 			  ?>
 			  <tr>
 				  <td><p><?php _e( 'Regarding Job' ); ?>: </p></td>
-				  <td><input type='text' name='job' size='60' value='<?php echo $single->job; ?>' readonly="readonly" /></td>
+					  <td><input type='text' name='job' size='60' value='<?php echo $getJob[0]->post_title; ?>' readonly="readonly" /></td>
+				  <?php
+                  wp_reset_postdata();
+			      ?>
 			  </tr>
 		  </table>
 		  <br />
@@ -553,7 +624,7 @@ if ( $deleteSubmit ){
 		  ?>
 		  <br />
 		  <br />
-		  <table class="widefat">
+		  <table class="widefat rsjp-download">
 			  <thead>
 				  <tr>
 					  <th scope="col"><img src="<?php echo resume_get_plugin_dir( 'go' ); ?>/images/icons/download-icon-20.png" alt="<?php _e( 'Export Submission' ); ?>" /><?php _e( 'Export Submission' ); ?></th>
@@ -575,6 +646,46 @@ if ( $deleteSubmit ){
 					  </td>
 				  </tr>
 			  </tbody>
+		  </table>
+          <br />
+          <br />
+		  <table class="widefat rsjp-email">
+			  <thead>
+				  <tr>
+					  <th scope="col"><img src="<?php echo resume_get_plugin_dir( 'go' ); ?>/images/icons/emailing-icon-20.png" alt="<?php _e( 'Email Submission' ); ?>" /><?php _e( 'Email Submission' ); ?></th>
+				  </tr>
+			  </thead>
+              <form name="sendResumeToEmail" enctype="multipart/form-data" method="post">
+			  <tbody>
+                  <tr>
+                      <td>
+                          <table cellpadding="2" cellspacing="2">
+                              <tr>
+                                  <td><p><b><?php _e( 'To' ); ?>:</b></p></td>
+                                  <td><input type="text" name="seTo" value="" size="40" /></td>
+                              </tr>
+                              <tr>
+                                  <td><p><b><?php _e( 'Subject' ); ?>:</b></p></td>
+                                  <td><input type="text" name="seSubject" value="" size="40" /></td>
+                              </tr>
+                              <tr>
+                                  <td><p><b><?php _e( 'Text' ); ?>:</b></p></td>
+                                  <td><input type="hidden" name="sePDF" value="<?php echo $pdfLink; ?>" /></td>
+                              </tr>
+                          </table>
+                          <table cellpadding="2" cellspacing="2">
+                              <tr>
+                                  <td><?php wp_editor( 'Hello, <br />The above attachment is the resume for ' . $single->fname . ' ' . $single->lname . '. <br /><br />If you cannot see this attachment, please <a href="' . WP_CONTENT_URL . '/uploads/rsjp/pdfs/' . $pdfLink . '" target="_blank">Click Here</a>.',
+                                                       'secopy', setTinySetting( 'secopy', '10', false, true, true ) ); ?></td>
+                              </tr>
+                              <tr>
+                                  <td><input type="submit" name="sendEmail" value="<?php _e( 'Send Email' ); ?>" class="button-primary"</td>
+                              </tr>
+                          </table>
+                      </td>
+                  </tr>
+			  </tbody>
+              </form>
 		  </table>
 	  </div>
 	  <?php  

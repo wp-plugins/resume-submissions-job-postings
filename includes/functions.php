@@ -17,7 +17,7 @@ function stateList(){
 // Put a list into selection  
 function arrayToSelect( $options, $selected = '', $optgroup = NULL, $blank ){
 	if ( $blank )
-		echo '<option value="">- - Select - -</option>';
+		echo '<option value="">- - ' . __( 'Select' ) . ' - -</option>';
 	foreach ( $options as $value ) {
 		if ( is_object( $value ) ){
 			$optValue = $value->title;
@@ -69,7 +69,7 @@ function replaceShortCode( $text, $array){
 // Set the TinyMce settings easily
 function setTinySetting( $name, $rows, $media, $tiny, $tags ) {
 	$settings = array(
-					'wpautop' => false,
+					'wpautop' => settype( get_option( 'resume_use_wpautop' ), boolean ),
 					'media_buttons' => $media,
 					'textarea_rows' => $rows,
 					'textarea_name' => $name,
@@ -214,10 +214,10 @@ function deleteFileFromUpload( $files, $folder ){
 	foreach( $files as $file ){
 		if ( $file ){
 			if ( !( @unlink( WP_CONTENT_DIR . '/uploads/rsjp/' . $folder . '/' . $file ) ) ) {
-				$message = '<p style="color:#A83434;"><b>Could not delete the attached file(s).</b></p>';
+				$message = '<p style="color:#A83434;"><b>' . __( 'Could not delete the attached file(s).' ) . '</b></p>';
 				$deleted = false;
 			} else {
-				$message = '<p style="color:#369B38;"><b>Attached file(s) were successfully deleted.</b></p>';
+				$message = '<p style="color:#369B38;"><b>' . __( 'Attached file(s) were successfully deleted.' ) . '</b></p>';
 				$deleted = true;
 			}
 		}
@@ -233,8 +233,8 @@ function exportSubToCSV() {
 	$exportEntries = $wpdb->get_results( 'SELECT * FROM ' . SUBTABLE . ' ORDER BY lname ASC, fname ASC, pubdate DESC' );				
 	$getFile       = fopen( resume_get_plugin_dir( 'path' ) . '/base-files/submission-entries.csv', 'w' );
 	
-	fputcsv( $getFile, array( 'First Name', 'Last Name', 'Address', 'Suite/Apt', 'City', 'State', 
-							  'Zip Code', 'Primary Number', 'Secondary Number', 'Email', 'Job', 'Attachments', 'Submit Date'  ), ',' );
+	fputcsv( $getFile, array( __( 'First Name' ), __( 'Last Name' ), __( 'Address' ), __( 'Suite/Apt' ), __( 'City' ), __( 'State' ), 
+							  __( 'Zip Code' ), __( 'Primary Number' ), __( 'Secondary Number' ), __( 'Email' ), __( 'Job' ), __( 'Attachments' ), __( 'Submit Date' )  ), ',' );
 	foreach ( $exportEntries as $entry ) {
 		$newline     = " \r\n";
 		$attachments = explode( ',', $entry->attachment );
@@ -242,9 +242,15 @@ function exportSubToCSV() {
 		foreach ( $attachments as $attachment ) {
 			$attachedNames .= $attachment . $newline;
 		}
+		$getJobArg = array( 'numberposts'     => 1,
+							'post_type'       => 'rsjp_job_postings',
+							'name' => $entry->job ); 
+		$getJob = get_posts( $getJobArg );
 		fputcsv( $getFile, array( $entry->fname, $entry->lname, $entry->address, $entry->address2, 
 								  $entry->city, $entry->state, $entry->zip, $entry->pnumber, $entry->snumber, 
-								  $entry->email, $entry->job, $attachedNames, date( 'm/d/Y', strtotime( $entry->pubdate ) ) ), ',' );
+								  $entry->email, $getJob[0]->post_title, $attachedNames, date( 'm/d/Y', strtotime( $entry->pubdate ) ) ), ',' );
+		
+		wp_reset_postdata();
 	}
 	fclose( $getFile );
 }

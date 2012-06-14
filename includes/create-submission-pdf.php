@@ -7,6 +7,11 @@ require_once( 'pdf-functions.php');
 $saveFile = md5( $id ) . '.pdf';
 $info     = $wpdb->get_row( 'SELECT * FROM ' . SUBTABLE . ' WHERE id = "' . $id . '"' );
 
+$getJobArg = array( 'numberposts'     => 1,
+    				'post_type'       => 'rsjp_job_postings',
+					'name' => $info->job ); 
+$getJob = get_posts( $getJobArg );
+
 // Setup the new pdf
 $pdf = new PDF(); 
 $pdf->AliasNbPages();
@@ -35,8 +40,9 @@ $pdf->Cell( 210, 5, $info->fname . ' ' . $info->lname, 0, 1, 'C' );
 $pdf->SetFont( 'Arial' ); 
 $pdf->SetFontSize( 16 ); 
 $pdf->SetTextColor( 0, 0, 0 ); 
-$pdf->SetXY( 0, 20 ); 
-$pdf->Cell( 210, 5, $info->job, 0, 1, 'C' );
+$pdf->SetXY( 0, 20 );
+$pdf->Cell( 210, 5, $getJob[0]->post_title, 0, 1, 'C' );
+wp_reset_postdata();
 
 // Submission Date
 $pdf->SetFont( 'Arial' ); 

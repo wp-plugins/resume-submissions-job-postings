@@ -8,9 +8,9 @@ $add         = $_POST['add'];
 $edit        = $_POST['edit'];
 $copy        = $_POST['copy'];
 $copyID      = $_GET['copyID'];
-$title       = esc_html( $_POST['title'] );
-$subTitle    = esc_html( $_POST['subTitle'] );
-$description = wp_kses_data( $_POST['description'] );
+$title       = $_POST['title'];
+$subTitle    = $_POST['subTitle'];
+$description = $_POST['description'];
 $archive     = $_POST['archive'];
 $pubDate     = date('Y-m-d H:i:s');
 
@@ -31,9 +31,9 @@ if ( $add ){
 																	"' . $archiveAdd . '",
 																	"' . $pubDate . '")' );
 	if( $insertQuery ){
-		$message = '<div class="updated fade" id="message"><p>The job posting &quot;<b>' . $title . '</b>&quot; was succesfully added.</p></div>';
+		$message = '<div class="updated fade" id="message"><p>' . __( 'The job posting' ) . ' &quot;<b>' . $title . '</b>&quot; ' . __( 'was succesfully added.' ) . '</p></div>';
 	} else {
-		$message = '<div class="updated fade" id="message"><p>Sorry, the job posting could not be added. Please try again.</p></div>';
+		$message = '<div class="error fade" id="message"><p>' . __( 'Sorry, the job posting could not be added. Please try again.' ) . '</p></div>';
 	}
 	
 }
@@ -55,9 +55,9 @@ if ( $edit ){
 															  archive = "' . $archiveUpdate . '"
 															  WHERE id = "' . $ID . '"' );
 	if( $updateQuery ){
-		$message = '<div class="updated fade" id="message"><p>The job posting was succesfully updated.</p></div>';
+		$message = '<div class="updated fade" id="message"><p>' . __( 'The job posting was succesfully updated.' ) . '</p></div>';
 	} else {
-		$message = '<div class="updated fade" id="message"><p>Sorry, the job posting could not be updated. Please try again.</p></div>';
+		$message = '<div class="error fade" id="message"><p>' . __( 'Sorry, the job posting could not be updated. Please try again.' ) . '</p></div>';
 	}
 	
 }
@@ -78,7 +78,7 @@ if ( $copyID ){
 		$message  = '<div class="updated fade" id="message"><p>' . $copyText . '</p></div>';
 	} else {
 		$copyText = __( 'Sorry, the job posting could not be copied. Please try again.' );
-		$message = '<div class="updated fade" id="message"><p>' . $copyText . '</p></div>';
+		$message = '<div class="error fade" id="message"><p>' . $copyText . '</p></div>';
 	}
 	
 }
@@ -179,7 +179,7 @@ if ( $ID ){
 				<td align="left"><input type="checkbox" name="archive" value="1" <?php echo $archiveChecked; ?> /></td>
 			</tr>
 			<tr>
-				<td><input type='hidden' name='edit' value='<?php _e( 'Edit' ); ?>' /></td>
+				<td><input type='hidden' name='edit' value='Edit' /></td>
 				<td><p><input type='submit' value='<?php _e( 'Update Job Posting' );?>' name='submit' class="button-primary" /></p></td>
 			</tr>
 		</table>
@@ -217,7 +217,7 @@ if ( $ID ){
 				<td align="left"><input type="checkbox" name="archive" value="1" /></td>
 			</tr>
 			<tr>
-				<td><input type='hidden' name='add' value='<?php _e( 'Add' ); ?>' /></td>
+				<td><input type='hidden' name='add' value='Add' /></td>
 				<td><p><input type='submit' value='<?php _e( 'Add Job Posting' ); ?>' name='addJob' class="button-primary" /></p></td>
 			</tr>
 		</table>

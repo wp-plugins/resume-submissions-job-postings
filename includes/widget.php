@@ -42,24 +42,30 @@ class resume_job_postings {
 		echo $args['before_widget'];
 		echo $args['before_title'] . $widgetTitle . $args['after_title'];
 		
-		$jobs = $wpdb->get_results( 'SELECT id, title, pubDate FROM ' . JOBTABLE . ' WHERE archive != 1 ORDER BY pubDate DESC, title DESC LIMIT ' . $widgetDisplay );
+		$getJobsArg = array( 'numberposts' => $widgetDisplay,
+							 'post_type'   => 'rsjp_job_postings',
+							 'orderby'     => 'post_date',
+							 'order'       => 'DESC',
+							 'meta_query'  => array(
+												  array( 'key'     => 'rsjp_archive_posting',
+													     'value'   => 1,
+													     'compare' => 'NOT LIKE'
+												  ) ) ); 
+		$getJobs = get_posts( $getJobsArg );
 		
-		if ( $jobs ){
+		if ( $getJobs ){
 			?>
         	<ul>
 				<?php
-                foreach ( $jobs as $job ){
-                    // Check to see if there are other variables
-                    if ( strpos( get_option( 'resume_jobs_page' ), '?' ) ) {
-                        $connect = '&';
-                    } else {
-                        $connect = '?';
-                    }
-                    ?>
-                    <li><a href="<?php echo get_option( 'resume_jobs_page' ) . $connect; ?>postingID=<?php echo $job->id; ?>"><?php echo $job->title; ?></a><br />
-                    &nbsp;&nbsp; - <i style="font-size:10px;"><?php _e( 'Posted' ); ?>: <?php echo date( 'M j, Y', strtotime( $job->pubDate ) ); ?></i></li>
-                    <?php
-                }				
+                $jobs = new WP_Query( $getJobsArg );
+	
+				while ( $jobs->have_posts() ) : $jobs->the_post();
+					?>
+					<li><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a><br />
+			            &nbsp;&nbsp; - <i style="font-size:10px;"><?php _e( 'Posted' ); ?>: <?php the_date(); ?></i></li>
+				   <?php 
+				endwhile;
+				wp_reset_postdata();				
             	?>
             </ul>
             <center><a href="<?php echo get_option( 'resume_jobs_page' ); ?>"><?php _e( 'View All Current Jobs' ); ?></a></center>

@@ -1,13 +1,14 @@
 <?php
 //***** Installer *****
 global $wp_version, $wpdb;
+
 if ( version_compare( $wp_version, '3.0', '<' ) ) {
 	require_once( ABSPATH . 'wp-admin/upgrade.php' );
 } else {
 	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 }
 //***Installer variables***
-$resume_db_version = "2.1.8";
+$resume_db_version = "2.5";
 //***Installer****
 if( $wpdb->get_var( 'SHOW TABLES LIKE "' . SUBTABLE . '"' ) != SUBTABLE ) {
 	$sql = 'CREATE TABLE ' . SUBTABLE . ' (
@@ -34,34 +35,8 @@ if( $wpdb->get_var( 'SHOW TABLES LIKE "' . SUBTABLE . '"' ) != SUBTABLE ) {
 	dbDelta( $sql );
 }	
 
-if( $wpdb->get_var( 'SHOW TABLES LIKE "' . JOBTABLE . '"' ) != JOBTABLE ) {
-	$sql = 'CREATE TABLE ' . JOBTABLE . ' (
-		  id int(12) NOT NULL auto_increment,
-		  title varchar(1000) NOT NULL,
-		  subTitle varchar(1000) NOT NULL,
-		  description text NOT NULL,
-		  archive int(1) NOT NULL DEFAULT 0,
-		  pubDate datetime NOT NULL,
-		  PRIMARY KEY  (id)
-		);';
-	dbDelta( $sql );
-}
 
-// Bring over info from old tables
-if( $wpdb->get_var( 'SHOW TABLES LIKE "' . OLDSUBTABLE . '"' ) == OLDSUBTABLE ) {
-	$transferSUB = 'INSERT INTO ' . SUBTABLE . ' ( id, fname, lname, address, address2, city, state, zip, pnumber, pnumbertype, snumber, snumbertype, email, job, cover, resume, pubdate ) 
-					SELECT id, fname, lname, address, address2, city, state, zip, pnumber, pnumbertype, snumber, snumbertype, email, job, cover, resume, pubdate FROM ' . OLDSUBTABLE;
-	dbDelta( $transferSUB );
-}
-if( $wpdb->get_var( 'SHOW TABLES LIKE "' . OLDJOBTABLE . '"' ) == OLDJOBTABLE ) {
-	$transferJob = 'INSERT INTO ' . JOBTABLE . ' ( id, title, subTitle, description, archive, pubDate ) 
-					SELECT id, title, subTitle, description, archive, pubDate FROM ' . OLDJOBTABLE;
-	dbDelta( $transferJob );
-}
-
-
-
-add_option( 'resume_widget_title', 'Resumé Submission' );
+add_option( 'resume_widget_title', 'Resume Submission' );
 
 add_option( 'resume_db_version', $resume_db_version );
 
@@ -69,11 +44,12 @@ add_option( 'resume_db_version', $resume_db_version );
 add_option( 'resume_captcha', 'Disabled' );
 add_option( 'resume_captcha_private_key', '' );
 add_option( 'resume_captcha_public_key', '' );
+add_option( 'resume_captcha_options', array( 'theme' => 'red', 'lang' => 'en' ) );
 add_option( 'resume_form_page', '' );
 add_option( 'resume_jobs_page', '' );
-add_option( 'resume_show_job_search', 'Enabled' );
-add_option( 'resume_use_tinymce', 'Enabled' );
-add_option( 'resume_use_tinymce_qt', false );
+add_option( 'resume_use_wpautop', 'true' );
+add_option( 'resume_use_tinymce', 'true' );
+add_option( 'resume_use_tinymce_qt', 'false' );
 add_option( 'resume_thank_you_text', '<p style="color:#008f07;"><b>Thank you for your submission.</b></p>
 <p style="color:#008f07;">Your resumé is now stored in our database for future reference.</p>
 <p style="color:#008f07;">If you have any questions, please feel free to contact us.</p>' );
@@ -101,6 +77,11 @@ add_option( 'resume_input_fields', array( 'fname' => array( 1, 1 ), 'lname' => a
 										  'email' => array( 1, 1 ), 'attachment' => array( 1, 0 ), 'cover' => array( 1, 1 ), 'resume' => array( 1, 1 ) ) );
 
 
+
+// Remove Old Settings
+delete_option( 'resume_show_job_search' );
+
+
 // Create rsjb upload folder
 if( !is_dir( WP_CONTENT_DIR . '/uploads/rsjp/' ) ) {
 	mkdir( WP_CONTENT_DIR . '/uploads/rsjp/', 0777, true );
@@ -118,10 +99,7 @@ $installed_ver = get_option( 'resume_db_version' );
 if( $installed_ver != $resume_db_version ) {
 	
 	update_option( 'resume_db_version', $resume_db_version );
-	
-	update_option( 'resume_input_fields', array( 'fname' => array( 1, 1 ), 'lname' => array( 1, 1 ), 'address' => array( 1, 1 ), 'address2' => array( 1, 1 ), 
-											  'city' => array( 1, 1 ), 'state' => array( 1, 1 ), 'zip' => array( 1, 1 ), 'pnumber' => array( 1, 1 ), 'snumber' => array( 1, 1 ),
-											  'email' => array( 1, 1 ), 'attachment' => array( 1, 0 ), 'cover' => array( 1, 1 ), 'resume' => array( 1, 1 ) ) );
+
 	
 }
 //***** End Installer *****

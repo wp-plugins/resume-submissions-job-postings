@@ -29,7 +29,7 @@ if ( $update ){
 	
 	update_option( 'resume_input_fields', $inputFieldsArray );
 	
-	$message = '<div class="updated fade" id="message"><p>Input Fields have been updated.</p></div>';
+	$message = '<div class="updated fade" id="message"><p>' . __( 'Input Fields have been updated.' ) . '</p></div>';
 	
 }
 
@@ -123,7 +123,7 @@ if ( $update ){
              
     </table>
     <br />
-        <input type="submit" name="update" value="Save Input Fields" class="button-primary" /></td>
+        <input type="submit" name="update" value="<?php __( 'Save Input Fields' ); ?>" class="button-primary" /></td>
     </form>
     
  
