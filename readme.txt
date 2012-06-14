@@ -5,8 +5,8 @@ Author URI: http://www.geerservices.com
 Plugin URI: http://www.geerservices.com/products/wordpress-plugins/resume-submissions-job-postings/
 Tags: resume submission, job postings, job listing, resume, jobs 
 Requires at least: 3.3
-Tested up to: 3.3.2
-Stable tag: 2.1.8
+Tested up to: 3.4
+Stable tag: 2.5
 
 Allows the admin to create and show job postings. Users can submit their resume in response to a posting or for general purposes. 
 
@@ -21,7 +21,13 @@ When there are open jobs, users can go in and look at each one. They may also su
 Once the user submits his/her information, the admin may look at, edit, or delete the submitted resume.
 
 
-The admin may sort resumes by job, or anything else they search for.
+The admin may sort resumes by job, or anything else they search.
+
+= New Features: =
+* Now Using Custom Post Type for Posting Jobs
+* Send Resume Submission's PDF to an email address
+* Add the Submit Resume For This Job button anywhere
+
 
 = Features: =
 * Post Jobs
@@ -42,7 +48,7 @@ The admin may sort resumes by job, or anything else they search for.
  
 == Features ==
 
-1. Post Jobs
+1. Post Jobs Using Custom Post Type!
 2. Users Submit Resume
 3. Enable Captcha
 4. Send User 'Thank You' Email
@@ -59,6 +65,9 @@ The admin may sort resumes by job, or anything else they search for.
 3. Place the shortcodes `[resumeForm]`, `[jobPostings]`, and `[resumeDisplay]` in their respected pages
 
 == Frequently Asked Questions ==
+
+= The line breaks and styling in the forms are not carrying over. =
+If it is not keeping the styles, switch the option "Use wpautop()" to Disabled. If this does not work, then I would look into adding the plugin "TinyMCE Advanced".
 
 = I click on "Submit Resume for this Job", but nothing happens or the page is not found. =
 Make sure to have the "Resume Form Page" field filled out to go to the page that has the Form shortcode in it.
@@ -78,11 +87,22 @@ The PDF that you use for the base file MUST be saved in the PDF/A format.
 == Screenshots ==
 
 1. The Resume Submissions lets you view or edit submitted user resumes. Can also sort by job or keyword.
-2. The Job Posting screen where you can add, edit, delete, copy, or archive jobs.
+2. The New Job Postings page that now uses the custom post type feature.
 3. The Settings page where you can set the Core Settings, reCaptcha, Attachments, and Emailing.
 4. The Input Fields page where you can set which fields are display and/or required.
 
 == Changelog ==
+= 2.5 =
+* Job Postings now use the Custom Post Types feature
+* Added the ability to send the pdf version of the resume submission to an email(s)
+* Added the option to theme and localize the reCaptcha
+* Added the option to enable/disable the wpautop() for the TinyMCE
+* Added code to hide the form on a successful resume submission
+* Replaced the php mail() with wp_mail()
+* Corrected some minor coding errors
+* Removed unused settings
+* Removed Job Search feature since the jobs can now be search through the built in search
+
 = 2.1.8 = 
 * Added a Dashboard widget that displays the last 5 resume submissions
 * Reversed the TinyMCE wpautop to false, which now shows the p tags and breaks
@@ -191,6 +211,10 @@ The PDF that you use for the base file MUST be saved in the PDF/A format.
 
 
 == Upgrade Notice ==
+= 2.5 =
+* Job Postings are now created using custom post types
+* Admin can now send a submission's pdf to an email address while on the submission's page
+
 = 2.1.5 =
 * Shortcode `[resumeDisplay]` added to display resumes in posts or pages
 
