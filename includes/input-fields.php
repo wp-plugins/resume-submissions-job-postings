@@ -123,7 +123,7 @@ if ( $update ){
              
     </table>
     <br />
-        <input type="submit" name="update" value="<?php __( 'Save Input Fields' ); ?>" class="button-primary" /></td>
+        <input type="submit" name="update" value="<?php _e( 'Save Input Fields' ); ?>" class="button-primary" /></td>
     </form>
     
  
