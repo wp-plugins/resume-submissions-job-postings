@@ -339,7 +339,8 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
 				<td valign="top" align="left"><select name="job">                            	
 						<option value="General Purpose" <?php if ( $errorJob == 'General Purpose' ){ echo 'selected="selected"'; } ?>><?php _e( 'General Purpose' ); ?></option>
                         <?php
-						$getJobsArg = array( 'post_type'  => 'rsjp_job_postings',
+						$getJobsArg = array( 'numberposts'  => 1000,
+											 'post_type'  => 'rsjp_job_postings',
 											 'orderby'    => 'post_date',
 											 'order'      => 'DESC',
 											 'meta_query' => array(
