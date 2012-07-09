@@ -1,6 +1,11 @@
 <?php
 // Functions
 
+// Display a submit button when the shortcode is set
+function rsjpSubmitFormInclude( $job ){
+	include( 'submit-button.php' );
+}
+
 // Set states into an array
 function stateList(){
 	$stateList = array( 'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 
