@@ -96,7 +96,7 @@ The PDF that you use for the base file MUST be saved in the PDF/A format.
 * Fixed: Attachment security vulnerability
 * Added: jQuery library function call since some themes don't always call it
 * Added: Blank index file
-* Coding: Refromated the way the posting are called
+* Coding: Reformated the way the posting are called
 * Bug Fix: Date would not show in the widget or on some postings
 
 = 2.5.1 =
