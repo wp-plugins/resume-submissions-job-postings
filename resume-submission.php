@@ -3,7 +3,7 @@
 Plugin Name: Resume Submissions & Job Postings
 Plugin URI: http://www.geerservices.com/wordpress-plugins/resume-jobs/
 Description: Allows the admin to create and show job postings. Users can submit their resume in response to a posting or for general purposes. 
-Version: 2.5.1
+Version: 2.5.2
 Author: Keith Andrews (GSI)
 Author URI: http://www.geerservices.com
 License: GPL2
@@ -82,14 +82,6 @@ function resume_load_textdomain() {
 add_action( 'init', 'resume_load_textdomain' );
 
 
-// Function for adding the Multi-File attachment script
-function multiFileScript() {
-	wp_deregister_script( 'jqueryMultiFile' );
-	wp_register_script( 'jqueryMultiFile', resume_get_plugin_dir( 'go' ) . '/includes/jQuery/jquery.multi-file.js' );
-	wp_enqueue_script( 'jqueryMultiFile' );
-} 
-
-
 // Add widget to Dashboard
 function rsjp_dashboard_widget_function() {
 	include( 'includes/dashboard-widget.php' );
@@ -101,13 +93,18 @@ function rsjp_dashboard() {
 
 add_action( 'wp_dashboard_setup', 'rsjp_dashboard' );
 
+// Function for adding the Multi-File attachment script
+function multiFileScript() {
+	wp_deregister_script( 'jqueryMultiFile' );
+	wp_register_script( 'jqueryMultiFile', resume_get_plugin_dir( 'go' ) . '/includes/jQuery/jquery.multi-file.js' );
+	wp_enqueue_script( 'jqueryMultiFile' );
+} 
 
 // Function for adding the settings script
 function rsjpSettingsScript() {
 	//if ( is_page( get_option( 'resume_form_page' ) ) ){
 		wp_deregister_script( 'jqueryRSJPSettings' );
 		wp_register_script( 'jqueryRSJPSettings', resume_get_plugin_dir( 'go' ) . '/includes/jQuery/settings.js' );
-
 		wp_enqueue_script( 'jqueryRSJPSettings' );
 	//}
 }
@@ -126,9 +123,13 @@ function addStyles ( $hook ){
 // Add functions to head
 add_action( 'admin_enqueue_scripts', 'admin_register_resume_style' );
 add_action( 'wp_enqueue_scripts', 'addStyles' );
+wp_enqueue_script( 'jquery' );
 add_action( 'wp_enqueue_scripts', 'multiFileScript' );
-if( $hook == 'rsjp-resumes_page_rsjp-settings' )
+if( $hook == 'rsjp-resumes_page_rsjp-settings' ){
+	wp_enqueue_script( 'jquery' );
 	add_action( 'wp_footer', 'rsjpSettingsScript' );
+}
+
 
 // Bring in the functions
 include( 'includes/functions.php' );

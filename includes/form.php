@@ -84,74 +84,82 @@ if ( ( $action == 'add' ) && formErrorCheck( $fields ) == true ){
 if( $action == 'add' && $formError == false ) {
 	
 	$attachFinal = uploadAttachments( $attachment, 'attachment' );
-	$insertQuery = $wpdb->query('INSERT INTO ' . SUBTABLE . ' VALUES (NULL,
-																	"' . $fname . '",
-																	"' . $lname . '",
-																	"' . $address . '",
-																	"' . $address2 . '",
-																	"' . $city . '",
-																	"' . $state . '",
-																	"' . $zip . '",
-																	"' . $pnumber . '",
-																	"' . $pnumbertype . '",
-																	"' . $snumber . '",
-																	"' . $snumbertype . '",
-																	"' . $email . '",
-																	"' . $job . '",
-																	"' . $attachFinal . '",
-																	"' . $cover . '",
-																	"' . $resume . '",
-																	"' . $pubDate . '")' );
 	
-	if ( $insertQuery ){
+	if ( $attachFinal != 'Error' ){
 		
-		$resumeSubmit = "submitted";
+		$insertQuery = $wpdb->query('INSERT INTO ' . SUBTABLE . ' VALUES (NULL,
+																		"' . $fname . '",
+																		"' . $lname . '",
+																		"' . $address . '",
+																		"' . $address2 . '",
+																		"' . $city . '",
+																		"' . $state . '",
+																		"' . $zip . '",
+																		"' . $pnumber . '",
+																		"' . $pnumbertype . '",
+																		"' . $snumber . '",
+																		"' . $snumbertype . '",
+																		"' . $email . '",
+																		"' . $job . '",
+																		"' . $attachFinal . '",
+																		"' . $cover . '",
+																		"' . $resume . '",
+																		"' . $pubDate . '")' );
 		
-		// Get the info of the inserted entry so the admin can click on the link, also builds array for replacing the shortcodes
-		$upload = $wpdb->get_row( 'SELECT * FROM ' . SUBTABLE . ' WHERE email = "' . $email . '" ORDER BY pubdate DESC LIMIT 1' );
-		
-		// Send email to the admin
-		$admin_to      = $adminEmail;
-		$admin_subject = 'New Resume Submitted';
-		$admin_message = '<html>
-							<head>
-								<title>New Resume Submitted</title>
-							</head>
-							<body>
-								<p>' . $fname . ' ' . $lname . ' has uploaded their resume into the database.</p>
-								<p>The user\'s submission is for: ' . $job . '.</p>
-								<p><a href="' . admin_url() . 'admin.php?page=rsjp-submissions&id=' . $upload->id . '"><b>Click Here</b></a> to view their resume.</p>
-								<br/>
-							</body>
-						</html>';
-		
-		$admin_headers  = 'MIME-Version: 1.0' . "\r\n";
-		$admin_headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-		$admin_headers .= 'From: "' . $siteName . '"<' . $adminEmail . '>' . "\r\n";
-		wp_mail( $admin_to, $admin_subject, $admin_message, $admin_headers );
-	  
-	  	// Send email to the user, if enabled
-		if ( get_option( 'resume_send_email_to_user' )  == 'Enabled' ) {
-			$to      = $email; 
-			$subject = get_option( 'resume_user_email_subject' );
-			$message = '<html>
-							<head>
-								<title>' . get_option( 'resume_user_email_subject' ) . '</title>
-							</head>
-							<body>
-								' . replaceShortCode( get_option( 'resume_user_email_copy' ), $upload ) . '
-							</body>
-						</html>';
-			$headers  = 'MIME-Version: 1.0' . "\r\n";
-			$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-			$headers .= 'From: "' . $siteName . '"<' . $fromAdminEmail . '>' . "\r\n";
-			wp_mail( $to, $subject, $message, $headers );
+		if ( $insertQuery ){
+			
+			$resumeSubmit = "submitted";
+			
+			// Get the info of the inserted entry so the admin can click on the link, also builds array for replacing the shortcodes
+			$upload = $wpdb->get_row( 'SELECT * FROM ' . SUBTABLE . ' WHERE email = "' . $email . '" ORDER BY pubdate DESC LIMIT 1' );
+			
+			// Send email to the admin
+			$admin_to      = $adminEmail;
+			$admin_subject = 'New Resume Submitted';
+			$admin_message = '<html>
+								<head>
+									<title>New Resume Submitted</title>
+								</head>
+								<body>
+									<p>' . $fname . ' ' . $lname . ' has uploaded their resume into the database.</p>
+									<p>The user\'s submission is for: ' . $job . '.</p>
+									<p><a href="' . admin_url() . 'admin.php?page=rsjp-submissions&id=' . $upload->id . '"><b>Click Here</b></a> to view their resume.</p>
+									<br/>
+								</body>
+							</html>';
+			
+			$admin_headers  = 'MIME-Version: 1.0' . "\r\n";
+			$admin_headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+			$admin_headers .= 'From: "' . $siteName . '"<' . $adminEmail . '>' . "\r\n";
+			wp_mail( $admin_to, $admin_subject, $admin_message, $admin_headers );
+		  
+			// Send email to the user, if enabled
+			if ( get_option( 'resume_send_email_to_user' )  == 'Enabled' ) {
+				$to      = $email; 
+				$subject = get_option( 'resume_user_email_subject' );
+				$message = '<html>
+								<head>
+									<title>' . get_option( 'resume_user_email_subject' ) . '</title>
+								</head>
+								<body>
+									' . replaceShortCode( get_option( 'resume_user_email_copy' ), $upload ) . '
+								</body>
+							</html>';
+				$headers  = 'MIME-Version: 1.0' . "\r\n";
+				$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+				$headers .= 'From: "' . $siteName . '"<' . $fromAdminEmail . '>' . "\r\n";
+				wp_mail( $to, $subject, $message, $headers );
+			}
+			$formMessage = get_option( 'resume_thank_you_text' );
+			
 		}
-		$formMessage = get_option( 'resume_thank_you_text' );
-		
+	} else {
+		$formError = true;
+		$formMessage = '<p style="color:#CC0000;"><b>' . __( 'Error' ) . ':</b> ' . __( 'The uploaded file(s) extension is not allowed.' ) . '</p>';
 	}
-}
-$upload = $wpdb->get_row( 'SELECT * FROM ' . SUBTABLE . ' ORDER BY pubdate DESC LIMIT 1' );
+	$upload = $wpdb->get_row( 'SELECT * FROM ' . SUBTABLE . ' ORDER BY pubdate DESC LIMIT 1' );
+} 
+
 
 // Set the inputs to the submitted data if the form has an error, if not the unset
 if ( $formError == true ){
@@ -227,6 +235,7 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
 	if ( $formError == true || $action != 'add' ) {
 		?>
 		
+
 		<form id='formSubmission' method='POST' action="" enctype="multipart/form-data">
 		<table width="100%" cellpadding="0" cellspacing="5">
 			<tr>
@@ -371,7 +380,8 @@ for( $t2 = 0; $t2 < count( $type2 ); $t2++ ){
 				<tr>
 					<td valign="top" width="190px"><p><?php _e( 'Attachment(s):' ); ?> </p></td>
 					<td valign="top" align="left"><input type="file" name="attachment[]" id="attachment" class="multi" accept="<?php echo $attachSettings['allowed']; ?>" maxlength="<?php echo $attachSettings['num']; ?>" />
-						<sup><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'attachment', 1 ) ); ?></sup></td>
+						<sup><?php echo displayRequired( grabContents( get_option( 'resume_input_fields' ), 'attachment', 1 ) ); ?></sup><br />
+                        <i><small><?php _e( 'Allowed extensions:' );?> <?php echo str_replace( '|', ',', $attachSettings['allowed'] ); ?></small></i></td>
 				</tr>
 				<?php 
 			}

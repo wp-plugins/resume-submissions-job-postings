@@ -130,6 +130,7 @@ function formErrorCheck( $fields ) {
 			case 'address2':
 						if ( !$fields['address2'] && $key[1] == 1 )
 							$error = true;
+
 						break;
 			case 'city':
 						if ( !$fields['city'] && $key[1] == 1 )
@@ -197,6 +198,13 @@ function uploadAttachments( $files, $input ){
 			$name     = md5( date( 'Y-m-d H:i:s' ) ) . '-' . $count . '.' . $ext;
 			$moveFile = move_uploaded_file( $tmpName, $uploadDir . $name );
 			
+			// Double check the allowed file types
+			$attachSet = get_option( 'resume_attachments' );
+			$allowed   = strpos( $attachSet['allowed'], $ext );
+			if ( $allowed === false ){
+				$dbInsert = 'Error';
+				return $dbInsert;
+			}
 			if ( $moveFile ){
 				if ( $count > 1 ) {
 					$sep = ',';

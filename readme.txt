@@ -6,7 +6,7 @@ Plugin URI: http://www.geerservices.com/products/wordpress-plugins/resume-submis
 Tags: resume submission, job postings, job listing, resume, jobs 
 Requires at least: 3.3
 Tested up to: 3.4.1
-Stable tag: 2.5.1
+Stable tag: 2.5.2
 
 Allows the admin to create and show job postings. Users can submit their resume in response to a posting or for general purposes. 
 
@@ -92,6 +92,13 @@ The PDF that you use for the base file MUST be saved in the PDF/A format.
 4. The Input Fields page where you can set which fields are display and/or required.
 
 == Changelog ==
+= 2.5.2 = 
+* Fixed: Attachment security vulnerability
+* Added: jQuery library function call since some themes don't always call it
+* Added: Blank index file
+* Coding: Refromated the way the posting are called
+* Bug Fix: Date would not show in the widget or on some postings
+
 = 2.5.1 =
 * Fixed bug where the submit button function was trying to redeclare itself
 * Fixed code that only showed 5 jobs in the drop down box on the submission form

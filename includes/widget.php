@@ -2,6 +2,7 @@
 add_action( 'widgets_init', array( 'resume_job_postings', 'register' ) );
 register_activation_hook( __FILE__, array( 'resume_job_postings', 'activate' ) );
 register_deactivation_hook( __FILE__, array( 'resume_job_postings', 'deactivate' ) );
+
 class resume_job_postings {
 	function activate(){
 		$data = array( 'title' => '' ,'display' => 5 );
@@ -29,7 +30,7 @@ class resume_job_postings {
 		}
     }
 	function widget( $args ){
-		global $wpdb;
+		global $wpdb, $post;
 		
 		$data          = get_option( 'resume_job_postings_widget' );
 		$widgetTitle   = $data['title'];
@@ -57,14 +58,12 @@ class resume_job_postings {
 			?>
         	<ul>
 				<?php
-                $jobs = new WP_Query( $getJobsArg );
-	
-				while ( $jobs->have_posts() ) : $jobs->the_post();
+				foreach( $getJobs as $job ) :	setup_postdata( $job );
 					?>
-					<li><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a><br />
-			            &nbsp;&nbsp; - <i style="font-size:10px;"><?php _e( 'Posted' ); ?>: <?php the_date(); ?></i></li>
+					<li><a href="<?php echo get_permalink( $job->ID ); ?>" title="<?php echo $job->post_title; ?>"><?php echo $job->post_title; ?></a><br />
+			            &nbsp;&nbsp; - <i style="font-size:10px;"><?php _e( 'Posted' ); ?>: <?php echo date_i18n( get_option( 'date_format' ), strtotime( $job->post_date ) ); ?></i></li>
 				   <?php 
-				endwhile;
+				endforeach;
 				wp_reset_postdata();				
             	?>
             </ul>
