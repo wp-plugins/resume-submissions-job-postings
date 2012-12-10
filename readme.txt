@@ -12,6 +12,11 @@ Allows the admin to create and show job postings. Users can submit their resume 
 
 == Description ==
 
+= Attention =
+After the first of the year and when current projects start to slow down, I plan on re-writing this plugin in order to add more features that I have in mind.
+So if you have any suggests on what should be added to make this a better plugin, please let me know in the support forum. 
+Thanks!
+
 The Resume Submissions & Job Postings plugin will allow an admin to post jobs on their website.
 
 
@@ -92,6 +97,9 @@ The PDF that you use for the base file MUST be saved in the PDF/A format.
 4. The Input Fields page where you can set which fields are display and/or required.
 
 == Changelog ==
+= 2.5.3 = 
+* Add the custom post type to the query loop
+
 = 2.5.2 = 
 * Fixed: Attachment security vulnerability
 * Added: jQuery library function call since some themes don't always call it
