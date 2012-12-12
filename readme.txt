@@ -6,7 +6,7 @@ Plugin URI: http://www.geerservices.com/products/wordpress-plugins/resume-submis
 Tags: resume submission, job postings, job listing, resume, jobs 
 Requires at least: 3.3
 Tested up to: 3.4.1
-Stable tag: 2.5.2
+Stable tag: 2.5.3
 
 Allows the admin to create and show job postings. Users can submit their resume in response to a posting or for general purposes. 
 
