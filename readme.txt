@@ -15,7 +15,6 @@ Allows the admin to create and show job postings. Users can submit their resume 
 After the first of the year and when current projects start to slow down, I plan on re-writing this plugin in order to add more features that I have in mind.
 So if you have any suggests on what should be added to make this a better plugin, please let me know in the support forum. 
 Thanks!
-= --- --- =
 
 The Resume Submissions & Job Postings plugin will allow an admin to post jobs on their website.
 
